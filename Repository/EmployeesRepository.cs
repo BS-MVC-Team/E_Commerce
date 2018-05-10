@@ -6,11 +6,13 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils;
 
 namespace BuildSchool.MvcSolution.OnlineStore.Repository
 {
     class EmployeesRepository
     {
+        //新增員工資料
         public void Create(Employees model)
         {
             SqlConnection connection = new SqlConnection(
@@ -28,7 +30,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             command.ExecuteNonQuery();
             connection.Close();
         }
-
+        //修改員工資料
         public void Update(Employees model)
         {
             SqlConnection connection = new SqlConnection(
@@ -46,7 +48,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             command.ExecuteNonQuery();
             connection.Close();
         }
-
+        //刪除員工資料
         public void Delete(Employees model)
         {
             SqlConnection connection = new SqlConnection(
@@ -61,7 +63,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             command.ExecuteNonQuery();
             connection.Close();
         }
-
+        //查詢員工資料byID
         public Employees FindById(string EmployeeID)
         {
             SqlConnection connection = new SqlConnection(
@@ -80,20 +82,22 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
             while (reader.Read())
             {
-                //2
-                employees = new Employees();
-                for (var i = 0; i < reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault(
-                        p => p.Name == fieldName);
-                    if (property == null)
-                        continue;
+                //3
+                employees = DbReaderModelBinder<Employees>.Bind(reader);
 
-                    if (!reader.IsDBNull(i))
-                        property.SetValue(employees,
-                            reader.GetValue(i));
-                }
+                //2
+                //employees = new Employees();
+                //for (var i = 0; i < reader.FieldCount; i++)
+                //{
+                //    var fieldName = reader.GetName(i);
+                //    var property = properties.FirstOrDefault(
+                //        p => p.Name == fieldName);
+                //    if (property == null)
+                //        continue;
+                //    if (!reader.IsDBNull(i))
+                //        property.SetValue(employees,
+                //            reader.GetValue(i));
+                //}
 
                 //1
                 //employees.EmployeeID = (int)reader.GetValue(reader.GetOrdinal("EmployeeID"));
