@@ -111,6 +111,32 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             return employees;
         }
 
+        //FindByHireYear
+
+        public Employees FindByHireYear(DateTime hireDate)
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=.; database=Commerce; integrated security=true");
+            var sql = "SELECT * FROM Employees WHERE HireDate = @hireDate ORDER BY YEAR(HireDate) DESC";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@HireDate", hireDate);
+
+            connection.Open();
+
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var properties = typeof(Employees).GetProperties();
+            Employees employees = null;
+
+            while (reader.Read())
+            {
+                employees = DbReaderModelBinder<Employees>.Bind(reader);
+            }
+            reader.Close();
+
+            return employees;
+        }
+
         public IEnumerable<Employees> GetAll()
         {
             SqlConnection connection = new SqlConnection(
