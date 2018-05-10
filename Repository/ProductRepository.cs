@@ -79,18 +79,23 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var properties = typeof(Product).GetProperties();
             var product = new Product();
-
             while (reader.Read())
             {
-                product.ProductID = (int)reader.GetValue(reader.GetOrdinal("ProductID"));
-                product.ProductName = reader.GetValue(reader.GetOrdinal("ProductName")).ToString();
-                product.UnitPrice = (int)reader.GetValue(reader.GetOrdinal("UnitPrice"));
-                product.Description = reader.GetValue(reader.GetOrdinal("Description")).ToString();
-                product.CategoryID = (int)reader.GetValue(reader.GetOrdinal("CategoryID"));
-                product.ProductImage = reader.GetValue(reader.GetOrdinal("ProductImage")).ToString();
-            }
+                product = new Product();
+                for (var i = 0; i < reader.FieldCount; i++)
+                {
+                    var fieldName = reader.GetName(i);
+                    var property = properties.FirstOrDefault(p => p.Name == fieldName);
+                    if (property == null)
+                        continue;
 
+                    if (!reader.IsDBNull(i))
+                        property.SetValue(product, reader.GetValue(i));
+                }
+
+            }
             reader.Close();
 
             return product;
