@@ -106,18 +106,24 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var properties = typeof(Members).GetProperties();
             var members = new List<Members>();
 
             while (reader.Read())
             {
-                var member = new Members();
-                member.MemberID = reader.GetValue(reader.GetOrdinal("MemberID")).ToString();
-                member.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
-                member.Name = reader.GetValue(reader.GetOrdinal("Name")).ToString();
-                member.Phone = reader.GetValue(reader.GetOrdinal("Phone")).ToString();
-                member.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
-                member.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
-                members.Add(member);
+               var member = new Members();
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    var fieldName = reader.GetName(i);
+                    var property = properties.FirstOrDefault(p => p.Name == fieldName);
+
+                    if (property == null)
+                        continue;
+                    if (!reader.IsDBNull(i))
+                        property.SetValue(members,reader.GetValue(i));
+                        
+                }
+              
             }
 
             reader.Close();

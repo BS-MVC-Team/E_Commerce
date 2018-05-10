@@ -73,12 +73,28 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var category = new Category();
+            var properties = typeof(Category).GetProperties();
+            Category category = null;
+            
 
             while (reader.Read())
             {
-                category.CategoryID = (int)reader.GetValue(reader.GetOrdinal("CategoryID"));
-                category.CategoryName = reader.GetValue(reader.GetOrdinal("CategoryName")).ToString();
+                category = new Category();
+                for (var i = 0; i < reader.FieldCount; i++)
+                {
+                    var fieldName = reader.GetName(i);
+                    var property = properties.FirstOrDefault(
+                        p => p.Name == fieldName);
+
+                    if (property == null)
+                        continue;
+
+                    if (!reader.IsDBNull(i))
+                        property.SetValue(category,
+                            reader.GetValue(i));
+                }
+                //category.CategoryID = (int)reader.GetValue(reader.GetOrdinal("CategoryID"));
+                //category.CategoryName = reader.GetValue(reader.GetOrdinal("CategoryName")).ToString();
             }
 
             reader.Close();
