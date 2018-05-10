@@ -6,12 +6,13 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils;
 
 namespace BuildSchool.MvcSolution.OnlineStore.Repository
 {
     public class ProductRepository
     {
-        public void Create(Product model)
+        public void Create(Products model)
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=Commerce; integrated security=true");
@@ -31,7 +32,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             connection.Close();
         }
 
-        public void Update(Product model)
+        public void Update(Products model)
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=Commerce; integrated security=true");
@@ -51,7 +52,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             connection.Close();
         }
 
-        public void Delete(Product model)
+        public void Delete(Products model)
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=Commerce; integrated security=true");
@@ -66,7 +67,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             connection.Close();
         }
 
-        public Product FindById(int ProductID)
+        public Products FindById(int ProductID)
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=Commerce; integrated security=true");
@@ -79,21 +80,11 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var properties = typeof(Product).GetProperties();
-            var product = new Product();
+            var properties = typeof(Products).GetProperties();
+            var product = new Products();
             while (reader.Read())
             {
-                product = new Product();
-                for (var i = 0; i < reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault(p => p.Name == fieldName);
-                    if (property == null)
-                        continue;
-
-                    if (!reader.IsDBNull(i))
-                        property.SetValue(product, reader.GetValue(i));
-                }
+                product = DbReaderModelBinder<Products>.Bind(reader);
 
             }
             reader.Close();
@@ -101,7 +92,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             return product;
         }
 
-        public IEnumerable<Product> GetAll()
+        public IEnumerable<Products> GetAll()
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=Commerce; integrated security=true");
@@ -111,17 +102,12 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var products = new List<Product>();
+            var products = new List<Products>();
 
             while (reader.Read())
             {
-                var product = new Product();
-                product.ProductID = (int)reader.GetValue(reader.GetOrdinal("ProductID"));
-                product.ProductName = reader.GetValue(reader.GetOrdinal("ProductName")).ToString();
-                product.UnitPrice = (int)reader.GetValue(reader.GetOrdinal("UnitPrice"));
-                product.Description = reader.GetValue(reader.GetOrdinal("Description")).ToString();
-                product.CategoryID = (int)reader.GetValue(reader.GetOrdinal("CategoryID"));
-                product.ProductImage = reader.GetValue(reader.GetOrdinal("ProductImage")).ToString();
+                var product = new Products();
+                product = DbReaderModelBinder<Products>.Bind(reader);
 
                 products.Add(product);
             }
@@ -130,6 +116,32 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
             return products;
 
+        }
+
+
+        public Products FindByProductName(string ProductName)
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=.; database=Commerce; integrated security=true");
+            var sql = "SELECT * FROM Products WHERE ProductName = @ProductName";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("@ProductName", ProductName);
+
+            connection.Open();
+
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var properties = typeof(Products).GetProperties();
+            var product = new Products();
+            while (reader.Read())
+            {
+                product = DbReaderModelBinder<Products>.Bind(reader);
+
+            }
+            reader.Close();
+
+            return product;
         }
     }
 }
