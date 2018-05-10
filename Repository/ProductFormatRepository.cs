@@ -47,5 +47,41 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
             return fotmats;
         }
+
+        public IEnumerable<ProductFormat> GetAll()
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=.; database=Commerce; integrated security=true");
+            var sql = "SELECT * FROM Members";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var properties = typeof(ProductFormat).GetProperties();
+            var fotmats = new List<ProductFormat>();
+
+            while (reader.Read())
+            {
+                var member = new ProductFormat();
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    var fieldName = reader.GetName(i);
+                    var property = properties.FirstOrDefault(p => p.Name == fieldName);
+
+                    if (property == null)
+                        continue;
+                    if (!reader.IsDBNull(i))
+                        property.SetValue(fotmats, reader.GetValue(i));
+
+                }
+
+            }
+
+            reader.Close();
+
+            return fotmats;
+
+        }
     }
 }
