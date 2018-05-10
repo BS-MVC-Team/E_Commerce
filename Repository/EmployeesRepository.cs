@@ -75,14 +75,31 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var employees = new Employees();
+            var properties = typeof(Employees).GetProperties();
+            Employees employees = null;
 
             while (reader.Read())
             {
-                employees.EmployeeID = (int)reader.GetValue(reader.GetOrdinal("EmployeeID"));
-                employees.Name = reader.GetValue(reader.GetOrdinal("Name")).ToString();
-                employees.Phone = reader.GetValue(reader.GetOrdinal("Phone")).ToString();
-                employees.HireDate = (DateTime)reader.GetValue(reader.GetOrdinal("HireDate"));
+                //2
+                employees = new Employees();
+                for (var i = 0; i < reader.FieldCount; i++)
+                {
+                    var fieldName = reader.GetName(i);
+                    var property = properties.FirstOrDefault(
+                        p => p.Name == fieldName);
+                    if (property == null)
+                        continue;
+
+                    if (!reader.IsDBNull(i))
+                        property.SetValue(employees,
+                            reader.GetValue(i));
+                }
+
+                //1
+                //employees.EmployeeID = (int)reader.GetValue(reader.GetOrdinal("EmployeeID"));
+                //employees.Name = reader.GetValue(reader.GetOrdinal("Name")).ToString();
+                //employees.Phone = reader.GetValue(reader.GetOrdinal("Phone")).ToString();
+                //employees.HireDate = (DateTime)reader.GetValue(reader.GetOrdinal("HireDate"));
             }
 
             reader.Close();
