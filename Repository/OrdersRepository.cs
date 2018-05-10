@@ -133,15 +133,15 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             return Orders;
         }
 
-        public ProductFormat GetOrderDate(int OrderID)
+        public ProductFormat GetOrderDate(String OrderDate)
         {
             SqlConnection connection = new SqlConnection(
                 "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
-            var sql = "SELECT OrderDate FROM Orders WHERE OrderID = @OrderID";
+            var sql = "SELECT * FROM Orders WHERE OrderDate LIKE '@OrderDate%'";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("@OrderID", OrderID);
+            command.Parameters.AddWithValue("@OrderDate", OrderDate);
 
             connection.Open();
 
