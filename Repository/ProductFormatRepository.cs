@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils;
 
 namespace BuildSchool.MvcSolution.OnlineStore.Repository
 {
@@ -67,7 +68,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
-            var sql = "SELECT * FROM fotmats WHERE ProductFormatID = @ProductFormatID";
+            var sql = "SELECT * FROM ProductFormat WHERE ProductFormatID = @ProductFormatID";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -103,36 +104,27 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public IEnumerable<ProductFormat> GetAll()
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
-            var sql = "SELECT * FROM Members";
+                "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
+            var sql = "SELECT * FROM ProductFormat";
 
             SqlCommand command = new SqlCommand(sql, connection);
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var productFormats = new List<ProductFormat>();
             var properties = typeof(ProductFormat).GetProperties();
-            var fotmats = new List<ProductFormat>();
 
             while (reader.Read())
             {
-                var member = new ProductFormat();
-                for (int i = 0; i < reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault(p => p.Name == fieldName);
+                var productFormat = new ProductFormat();
+                productFormat = DbReaderModelBinder<ProductFormat>.Bind(reader);
 
-                    if (property == null)
-                        continue;
-                    if (!reader.IsDBNull(i))
-                        property.SetValue(fotmats, reader.GetValue(i));
-
-                }
-
+                productFormats.Add(productFormat);
             }
 
             reader.Close();
 
-            return fotmats;
+            return productFormats;
 
         }
     }
