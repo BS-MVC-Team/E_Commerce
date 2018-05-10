@@ -11,6 +11,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 {
     class EmployeesRepository
     {
+        //新增員工資料
         public void Create(Employees model)
         {
             SqlConnection connection = new SqlConnection(
@@ -28,7 +29,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             command.ExecuteNonQuery();
             connection.Close();
         }
-
+        //修改員工資料
         public void Update(Employees model)
         {
             SqlConnection connection = new SqlConnection(
@@ -46,7 +47,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             command.ExecuteNonQuery();
             connection.Close();
         }
-
+        //刪除員工資料
         public void Delete(Employees model)
         {
             SqlConnection connection = new SqlConnection(
@@ -61,7 +62,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             command.ExecuteNonQuery();
             connection.Close();
         }
-
+        //查詢員工資料byID
         public Employees FindById(string EmployeeID)
         {
             SqlConnection connection = new SqlConnection(
