@@ -112,25 +112,38 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
                 }
 
             }
-            while (reader.Read())
-            {
-               
-                Orders.OrderID = (int)reader.GetValue(reader.GetOrdinal("OrderID"));
-                Orders.EmployeeID = (int)reader.GetValue(reader.GetOrdinal("EmployeeID"));
-                Orders.MemberID = reader.GetValue(reader.GetOrdinal("MemberID")).ToString();
-                Orders.ShipName = reader.GetValue(reader.GetOrdinal("ShipName")).ToString();
-                Orders.ShipAddress = reader.GetValue(reader.GetOrdinal("ShipAddress")).ToString();
-                Orders.ShipPhone = reader.GetValue(reader.GetOrdinal("ShipPhone")).ToString();
-                Orders.ShippedDate = (DateTime)reader.GetValue(reader.GetOrdinal("ShippedDate"));
-                Orders.OrderDate = (DateTime)reader.GetValue(reader.GetOrdinal("OrderDate"));
-                Orders.ReceiptedDate = (DateTime)reader.GetValue(reader.GetOrdinal("ReceiptedDate"));
-                Orders.Status = reader.GetValue(reader.GetOrdinal("Status")).ToString();
-                Orders.Discount = (decimal)reader.GetValue(reader.GetOrdinal("Discount"));
-
-            }
 
             reader.Close();
             return Orders;
+        }
+
+        public IEnumerable<Orders> GetStatus(string status)
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
+            var sql = "SELECT * FROM Orders WHERE Status = @Status";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("@Status", status);
+
+            connection.Open();
+
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var orders = new List<Orders>();
+            var properties = typeof(Orders).GetProperties();
+
+            while (reader.Read())
+            {
+                var order = new Orders();
+                order = DbReaderModelBinder<Orders>.Bind(reader);
+
+                orders.Add(order);
+            }
+
+            reader.Close();
+
+            return orders;
         }
 
         public ProductFormat GetOrderDate(String OrderDate)
