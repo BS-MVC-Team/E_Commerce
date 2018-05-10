@@ -89,14 +89,34 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var Orders = new Orders();
+            //var Orders = new Orders();
+            var properties = typeof(Orders).GetProperties();
+            Orders Orders = null;
 
+            while (reader.Read())
+            {
+                Orders = new Orders();
+                for (var i = 0; i < reader.FieldCount; i++)
+                {
+                    var fieldName = reader.GetName(i);
+                    var property = properties.FirstOrDefault(
+                        p => p.Name == fieldName);
+
+                    if (property == null)
+                        continue;
+
+                    if (!reader.IsDBNull(i))
+                        property.SetValue(Orders,
+                            reader.GetValue(i));
+                }
+
+            }
             while (reader.Read())
             {
                
                 Orders.OrderID = (int)reader.GetValue(reader.GetOrdinal("OrderID"));
                 Orders.EmployeeID = (int)reader.GetValue(reader.GetOrdinal("EmployeeID"));
-                Orders.MemberID = (int)reader.GetValue(reader.GetOrdinal("MemberID"));
+                Orders.MemberID = reader.GetValue(reader.GetOrdinal("MemberID")).ToString();
                 Orders.ShipName = reader.GetValue(reader.GetOrdinal("ShipName")).ToString();
                 Orders.ShipAddress = reader.GetValue(reader.GetOrdinal("ShipAddress")).ToString();
                 Orders.ShipPhone = reader.GetValue(reader.GetOrdinal("ShipPhone")).ToString();
