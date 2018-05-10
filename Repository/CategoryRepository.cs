@@ -6,12 +6,13 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Utils;
 
 namespace BuildSchool.MvcSolution.OnlineStore.Repository
 {
     public class CategoryRepository
     {
+        //新增分類
         public void Create(Category model)
         {
             SqlConnection connection = new SqlConnection(
@@ -28,7 +29,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             connection.Close();
         }
 
-
+        //修改分類
         public void Update(Category model)
         {
             SqlConnection connection = new SqlConnection(
@@ -45,6 +46,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             connection.Close();
         }
 
+        //刪除分類
         public void Delete(Category model)
         {
             SqlConnection connection = new SqlConnection(
@@ -60,6 +62,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             connection.Close();
         }
 
+        //查詢分類by ID
         public Category FindById(int CategoryID)
         {
             SqlConnection connection = new SqlConnection(
@@ -79,20 +82,26 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
             while (reader.Read())
             {
-                category = new Category();
-                for (var i = 0; i < reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault(
-                        p => p.Name == fieldName);
+                //3
+                category = DbReaderModelBinder<Category>.Bind(reader);
 
-                    if (property == null)
-                        continue;
+                //2
+                //category = new Category();
+                //for (var i = 0; i < reader.FieldCount; i++)
+                //{
+                //    var fieldName = reader.GetName(i);
+                //    var property = properties.FirstOrDefault(
+                //        p => p.Name == fieldName);
 
-                    if (!reader.IsDBNull(i))
-                        property.SetValue(category,
-                            reader.GetValue(i));
-                }
+                //    if (property == null)
+                //        continue;
+
+                //    if (!reader.IsDBNull(i))
+                //        property.SetValue(category,
+                //            reader.GetValue(i));
+                //}
+
+                //1
                 //category.CategoryID = (int)reader.GetValue(reader.GetOrdinal("CategoryID"));
                 //category.CategoryName = reader.GetValue(reader.GetOrdinal("CategoryName")).ToString();
             }
@@ -127,5 +136,36 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
             return categories;
         }
+
+        public Category FindByCategoryName(string CategoryName)
+        {
+            SqlConnection connection = new SqlConnection(
+               "data source=.; database=Commerce; integrated security=true");
+            var sql = "SELECT * FROM Category WHERE CategoryName = @CategoryName";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("@CategoryName", CategoryName);
+
+            connection.Open();
+
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var properties = typeof(Category).GetProperties();
+            Category category = null;
+
+
+            while (reader.Read())
+            {
+                category = DbReaderModelBinder<Category>.Bind(reader);
+ 
+            }
+
+            reader.Close();
+
+            return category;
+
+        }
+
+
     }
 }

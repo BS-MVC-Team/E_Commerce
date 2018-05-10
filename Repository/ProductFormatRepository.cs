@@ -6,16 +6,69 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils;
 
 namespace BuildSchool.MvcSolution.OnlineStore.Repository
 {
     public class ProductFormatRepository
     {
+        public void Create(ProductFormat model) //新增
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
+            var sql = "INSERT INTO ProductFormat VALUES (@ProductFormatID, @ProductID, @Size, @Color,@StockQuantity)";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("@ProductFormatID", model.ProductFormatID);
+            command.Parameters.AddWithValue("@ProductID", model.ProductID);
+            command.Parameters.AddWithValue("@Size", model.Size);
+            command.Parameters.AddWithValue("@Color", model.Color);
+            command.Parameters.AddWithValue("@StockQuantity", model.StockQuantity);
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public void Update(ProductFormat model) //修改
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
+            var sql = "UPDATE ProductFormat SET ProductID=@ProductID, Size=@Size, Color=@Color,StockQuantity =@StockQuantity WHERE ProductFormatID = @ProductFormatID";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("@ProductID", model.ProductID);
+            command.Parameters.AddWithValue("@Size", model.Size);
+            command.Parameters.AddWithValue("@Color", model.Color);
+            command.Parameters.AddWithValue("@StockQuantity", model.StockQuantity);
+
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public void Delete(ProductFormat model) //刪除
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
+            var sql = "DELETE FROM ProductFormat WHERE ProductFormatID = @ProductFormatID";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("@ProductFormatID", model.ProductFormatID);
+
+
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+
         public ProductFormat FindById(int ProductFormatID)
         {
             SqlConnection connection = new SqlConnection(
                 "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
-            var sql = "SELECT * FROM fotmats WHERE ProductFormatID = @ProductFormatID";
+            var sql = "SELECT * FROM ProductFormat WHERE ProductFormatID = @ProductFormatID";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -46,6 +99,33 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             reader.Close();
 
             return fotmats;
+        }
+
+        public IEnumerable<ProductFormat> GetAll()
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
+            var sql = "SELECT * FROM ProductFormat";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var productFormats = new List<ProductFormat>();
+            var properties = typeof(ProductFormat).GetProperties();
+
+            while (reader.Read())
+            {
+                var productFormat = new ProductFormat();
+                productFormat = DbReaderModelBinder<ProductFormat>.Bind(reader);
+
+                productFormats.Add(productFormat);
+            }
+
+            reader.Close();
+
+            return productFormats;
+
         }
     }
 }

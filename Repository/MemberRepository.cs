@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils;
 
 namespace BuildSchool.MvcSolution.OnlineStore.Repository
 {
@@ -83,12 +84,8 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
             while (reader.Read())
             {
-                members.MemberID = reader.GetValue(reader.GetOrdinal("MemberID")).ToString();
-                members.Password = reader.GetValue(reader.GetOrdinal("Password")).ToString();
-                members.Name = reader.GetValue(reader.GetOrdinal("Name")).ToString();
-                members.Phone = reader.GetValue(reader.GetOrdinal("Phone")).ToString();
-                members.Address = reader.GetValue(reader.GetOrdinal("Address")).ToString();
-                members.Email = reader.GetValue(reader.GetOrdinal("Email")).ToString();
+
+                var member = DbReaderModelBinder<Members>.Bind(reader);
             }
 
             reader.Close();
@@ -111,19 +108,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
             while (reader.Read())
             {
-               var member = new Members();
-                for (int i = 0; i < reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault(p => p.Name == fieldName);
-
-                    if (property == null)
-                        continue;
-                    if (!reader.IsDBNull(i))
-                        property.SetValue(members,reader.GetValue(i));
-                        
-                }
-              
+                var member = DbReaderModelBinder<Members>.Bind(reader);
             }
 
             reader.Close();

@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils;
 
 namespace BuildSchool.MvcSolution.OnlineStore.Repository
 {
@@ -81,20 +82,22 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
             while (reader.Read())
             {
-                //2
-                employees = new Employees();
-                for (var i = 0; i < reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault(
-                        p => p.Name == fieldName);
-                    if (property == null)
-                        continue;
+                //3
+                employees = DbReaderModelBinder<Employees>.Bind(reader);
 
-                    if (!reader.IsDBNull(i))
-                        property.SetValue(employees,
-                            reader.GetValue(i));
-                }
+                //2
+                //employees = new Employees();
+                //for (var i = 0; i < reader.FieldCount; i++)
+                //{
+                //    var fieldName = reader.GetName(i);
+                //    var property = properties.FirstOrDefault(
+                //        p => p.Name == fieldName);
+                //    if (property == null)
+                //        continue;
+                //    if (!reader.IsDBNull(i))
+                //        property.SetValue(employees,
+                //            reader.GetValue(i));
+                //}
 
                 //1
                 //employees.EmployeeID = (int)reader.GetValue(reader.GetOrdinal("EmployeeID"));
@@ -138,6 +141,32 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
                 }
             }
             reader.Close();
+            return employees;
+        }
+
+        //FindByHireYear
+
+        public Employees FindByHireYear(DateTime hireDate)
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=.; database=Commerce; integrated security=true");
+            var sql = "SELECT * FROM Employees WHERE HireDate = @hireDate ORDER BY YEAR(HireDate) DESC";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@HireDate", hireDate);
+
+            connection.Open();
+
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var properties = typeof(Employees).GetProperties();
+            Employees employees = null;
+
+            while (reader.Read())
+            {
+                employees = DbReaderModelBinder<Employees>.Bind(reader);
+            }
+            reader.Close();
+
             return employees;
         }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BuildSchool.MvcSolution.OnlineStore.Models
 {
-    public class Product
+    public class Products
     {
         public int ProductID { get; set; }
         public string ProductName { get; set; }
