@@ -45,6 +45,7 @@
     <Compile Include="MemberRepository.cs" />
     <Compile Include="OrderDetailsRepository.cs" />
     <Compile Include="OrdersRepository.cs" />
+    <Compile Include="ProductFormatRepository.cs" />
     <Compile Include="ProductRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
