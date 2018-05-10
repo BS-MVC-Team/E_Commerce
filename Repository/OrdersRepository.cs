@@ -146,5 +146,42 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             return orders;
         }
 
+        public ProductFormat GetOrderDate(int OrderID)
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
+            var sql = "SELECT OrderDate FROM Orders WHERE OrderID = @OrderID";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("@OrderID", OrderID);
+
+            connection.Open();
+
+            var properties = typeof(ProductFormat).GetProperties();
+            ProductFormat fotmats = null;
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+
+            while (reader.Read())
+            {
+                fotmats = new ProductFormat();
+                for (var i = 0; i < reader.FieldCount; i++)
+                {
+                    var fieldName = reader.GetName(i);
+                    var property = properties.FirstOrDefault((o) => o.Name == fieldName);
+
+                    if (property == null)
+                        continue;
+
+                    if (!reader.IsDBNull(i))
+                        property.SetValue(fotmats, reader.GetValue(i));
+                }
+            }
+
+            reader.Close();
+
+            return fotmats;
+        }
+
     }
 }
