@@ -12,6 +12,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 {
     public class CategoryRepository
     {
+        //新增分類
         public void Create(Category model)
         {
             SqlConnection connection = new SqlConnection(
@@ -28,7 +29,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             connection.Close();
         }
 
-
+        //修改分類
         public void Update(Category model)
         {
             SqlConnection connection = new SqlConnection(
@@ -45,6 +46,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             connection.Close();
         }
 
+        //刪除分類
         public void Delete(Category model)
         {
             SqlConnection connection = new SqlConnection(
@@ -60,6 +62,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             connection.Close();
         }
 
+        //查詢分類by ID
         public Category FindById(int CategoryID)
         {
             SqlConnection connection = new SqlConnection(
