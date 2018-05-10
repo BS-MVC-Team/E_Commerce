@@ -108,7 +108,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
                 employee.EmployeeID = int.Parse(reader.GetValue(reader.GetOrdinal("EmployeeID")).ToString());
                 employee.Name = reader.GetValue(reader.GetOrdinal("Name")).ToString();
                 employee.Phone = reader.GetValue(reader.GetOrdinal("Phone")).ToString();
-                employee.HireDate = reader.GetValue(reader.GetOrdinal("HireDate")).ToString();
+                employee.HireDate = (DateTime) reader.GetValue(reader.GetOrdinal("HireDate"));
                 employees.Add(employee);
             }
 
