@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestSettings id="d52bc783-b9ba-4ded-86a0-586b7f7e721e" name="CommerceTest" enableDefaultDataCollectors="false" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Description><!--_locID_text="Description1"-->這些是本機測試回合的預設測試設定。</Description>
+  <Deployment enabled="false"/>
+</TestSettings>

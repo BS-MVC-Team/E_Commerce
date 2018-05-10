@@ -10,7 +10,7 @@ using Utils;
 
 namespace BuildSchool.MvcSolution.OnlineStore.Repository
 {
-    class EmployeesRepository
+    public class EmployeesRepository
     {
         //新增員工資料
         public void Create(Employees model)

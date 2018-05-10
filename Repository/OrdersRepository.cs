@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils;
 
 namespace BuildSchool.MvcSolution.OnlineStore.Repository
 {
@@ -167,6 +168,33 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             reader.Close();
 
             return fotmats;
+        }
+
+        public IEnumerable<Orders> GetAll() //查尋全部資料
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
+            var sql = "SELECT * FROM Orders";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+            connection.Open();
+
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var orders = new List<Orders>();
+            var properties = typeof(Orders).GetProperties();
+
+            while (reader.Read())
+            {
+                var order = new Orders();
+                order = DbReaderModelBinder<Orders>.Bind(reader);
+
+                orders.Add(order);
+            }
+
+            reader.Close();
+
+            return orders;
+
         }
 
     }
