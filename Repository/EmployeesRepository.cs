@@ -107,6 +107,39 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
             return employees;
         }
+        public Employees FindByName(string Name)
+        {
+            SqlConnection connection = new SqlConnection(
+               "data source=.; database=Commerce; integrated security=true");
+            var sql = "SELECT * FROM Employees WHERE Name = @Name";
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("@Name", Name);
+            connection.Open();
+
+            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var properties = typeof(Employees).GetProperties();
+            Employees employees = null;
+            while (reader.Read())
+            {
+               
+                employees = new Employees();
+                for (var i = 0; i < reader.FieldCount; i++)
+                {
+                    var fieldName = reader.GetName(i);
+                    var property = properties.FirstOrDefault(
+                        p => p.Name == fieldName);
+                    if (property == null)
+                        continue;
+
+                    if (!reader.IsDBNull(i))
+                        property.SetValue(employees,
+                            reader.GetValue(i));
+                }
+            }
+            reader.Close();
+            return employees;
+        }
 
         public IEnumerable<Employees> GetAll()
         {
