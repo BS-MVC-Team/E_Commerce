@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F0185E25-D0F1-40AC-ADE1-F22197A1C6D3}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BuildSchool.MvcSolution.OnlineStore.Repository</RootNamespace>
-    <AssemblyName>BuildSchool.MvcSolution.OnlineStore.Repository</AssemblyName>
+    <ProjectGuid>{0802430C-6B6E-4683-86BF-FD207FB446C9}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>OrderDetailTest</RootNamespace>
+    <AssemblyName>OrderDetailTest</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,18 +42,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CategoryRepository.cs" />
-    <Compile Include="EmployeesRepository.cs" />
-    <Compile Include="MemberRepository.cs" />
-    <Compile Include="OrderDetailsRepository.cs" />
-    <Compile Include="OrdersRepository.cs" />
-    <Compile Include="ProductRepository.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{522B70B1-BA21-4FE0-990C-31D5780A86A3}</Project>
+      <Project>{78b78475-64e9-47e2-b586-3b7c9718b176}</Project>
       <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{f0185e25-d0f1-40ac-ade1-f22197a1c6d3}</Project>
+      <Name>Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
