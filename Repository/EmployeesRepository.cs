@@ -105,10 +105,10 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             while (reader.Read())
             {
                 var employee = new Employees();
-                employee.EmployeeID = reader.GetValue(reader.GetOrdinal("EmployeeID")).ToString();
+                employee.EmployeeID = int.Parse(reader.GetValue(reader.GetOrdinal("EmployeeID")).ToString());
                 employee.Name = reader.GetValue(reader.GetOrdinal("Name")).ToString();
                 employee.Phone = reader.GetValue(reader.GetOrdinal("Phone")).ToString();
-                employee.HireDate = reader.GetValue(reader.GetOrdinal("HireDate")).ToString();
+                employee.HireDate =DateTime.Parse(reader.GetValue(reader.GetOrdinal("HireDate")).ToString());
                 employees.Add(employee);
             }
 
