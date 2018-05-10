@@ -10,7 +10,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Models
     {
         public int OrderID { get; set; }
         public int EmployeeID { get; set; }
-        public int MemberID { get; set; }
+        public string MemberID { get; set; }
         public string ShipName { get; set; }
         public string ShipAddress { get; set; }
         public string ShipPhone { get; set; }
