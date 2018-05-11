@@ -146,11 +146,11 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             return orders;
         }
 
-        public ProductFormat GetOrderDate(String OrderDate)
+        public IEnumerable<Orders> GetOrderDate(string OrderDate)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
-            var sql = "SELECT * FROM Orders WHERE OrderDate LIKE '@OrderDate%'";
+                "data source=.; database=Commerce; integrated security=true");
+            var sql = "select * FROM Orders WHERE CONVERT(VARCHAR(25), OrderDate, 126) LIKE @OrderDate";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -158,31 +158,20 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
             connection.Open();
 
-            var properties = typeof(ProductFormat).GetProperties();
-            ProductFormat fotmats = null;
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var properties = typeof(Orders).GetProperties();
+            var Orders = new List<Orders>();
 
             while (reader.Read())
             {
-                fotmats = new ProductFormat();
-                for (var i = 0; i < reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault((o) => o.Name == fieldName);
-
-                    if (property == null)
-                        continue;
-
-                    if (!reader.IsDBNull(i))
-                        property.SetValue(fotmats, reader.GetValue(i));
-                }
+                var Order = new Orders();
+                Order = DbReaderModelBinder<Orders>.Bind(reader);
+                Orders.Add(Order);
             }
-
             reader.Close();
 
-            return fotmats;
+            return Orders;
         }
-
         public IEnumerable<Orders> GetAll() //查尋全部資料
         {
             SqlConnection connection = new SqlConnection(

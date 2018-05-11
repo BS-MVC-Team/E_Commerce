@@ -12,7 +12,6 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 {
     public class EmployeesRepository
     {
-        //新增員工資料
         public void Create(Employees model)
         {
             SqlConnection connection = new SqlConnection(
@@ -30,7 +29,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             command.ExecuteNonQuery();
             connection.Close();
         }
-        //修改員工資料
+
         public void Update(Employees model)
         {
             SqlConnection connection = new SqlConnection(
@@ -48,7 +47,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             command.ExecuteNonQuery();
             connection.Close();
         }
-        //刪除員工資料
+
         public void Delete(Employees model)
         {
             SqlConnection connection = new SqlConnection(
@@ -63,8 +62,8 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             command.ExecuteNonQuery();
             connection.Close();
         }
-        //查詢員工資料byID
-        public Employees FindById(string EmployeeID)
+
+        public Employees FindById(int EmployeeID)
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=Commerce; integrated security=true");
@@ -78,93 +77,68 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             var properties = typeof(Employees).GetProperties();
-            Employees employees = null;
+            Employees employee = null;
 
             while (reader.Read())
             {
-                //3
-                employees = DbReaderModelBinder<Employees>.Bind(reader);
-
-                //2
-                //employees = new Employees();
-                //for (var i = 0; i < reader.FieldCount; i++)
-                //{
-                //    var fieldName = reader.GetName(i);
-                //    var property = properties.FirstOrDefault(
-                //        p => p.Name == fieldName);
-                //    if (property == null)
-                //        continue;
-                //    if (!reader.IsDBNull(i))
-                //        property.SetValue(employees,
-                //            reader.GetValue(i));
-                //}
-
-                //1
-                //employees.EmployeeID = (int)reader.GetValue(reader.GetOrdinal("EmployeeID"));
-                //employees.Name = reader.GetValue(reader.GetOrdinal("Name")).ToString();
-                //employees.Phone = reader.GetValue(reader.GetOrdinal("Phone")).ToString();
-                //employees.HireDate = (DateTime)reader.GetValue(reader.GetOrdinal("HireDate"));
+                employee = new Employees();
+                employee = DbReaderModelBinder<Employees>.Bind(reader);
             }
 
             reader.Close();
 
-            return employees;
+            return employee;
         }
         public Employees FindByName(string Name)
         {
             SqlConnection connection = new SqlConnection(
-               "data source=.; database=Commerce; integrated security=true");
+                "data source=.; database=Commerce; integrated security=true");
             var sql = "SELECT * FROM Employees WHERE Name = @Name";
+
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@Name", Name);
+
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             var properties = typeof(Employees).GetProperties();
-            Employees employees = null;
+            Employees employee = null;
+
             while (reader.Read())
             {
-               
-                employees = new Employees();
-                for (var i = 0; i < reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault(
-                        p => p.Name == fieldName);
-                    if (property == null)
-                        continue;
-
-                    if (!reader.IsDBNull(i))
-                        property.SetValue(employees,
-                            reader.GetValue(i));
-                }
+                employee = new Employees();
+                employee = DbReaderModelBinder<Employees>.Bind(reader);
             }
+
             reader.Close();
-            return employees;
+
+            return employee;
         }
 
-        //FindByHireYear
-
-        public Employees FindByHireYear(DateTime hireDate)
+        public IEnumerable<Employees> FindByHireYear(int startYear, int endYear)
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=Commerce; integrated security=true");
-            var sql = "SELECT * FROM Employees WHERE HireDate = @hireDate ORDER BY YEAR(HireDate) DESC";
+            var sql = "SELECT * FROM Employees WHERE YEAR(HireDate) BETWEEN @startYear AND @endYear ORDER BY HireDate DESC";
 
             SqlCommand command = new SqlCommand(sql, connection);
-            command.Parameters.AddWithValue("@HireDate", hireDate);
+
+            command.Parameters.AddWithValue("@startYear", startYear);
+            command.Parameters.AddWithValue("@endYear", endYear);
 
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var properties = typeof(Employees).GetProperties();
-            Employees employees = null;
+            var employees = new List<Employees>();
 
             while (reader.Read())
             {
-                employees = DbReaderModelBinder<Employees>.Bind(reader);
+                Employees employee = new Employees();
+                employee = DbReaderModelBinder<Employees>.Bind(reader);
+                employees.Add(employee);
             }
+
             reader.Close();
 
             return employees;
@@ -185,10 +159,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             while (reader.Read())
             {
                 var employee = new Employees();
-                employee.EmployeeID = int.Parse(reader.GetValue(reader.GetOrdinal("EmployeeID")).ToString());
-                employee.Name = reader.GetValue(reader.GetOrdinal("Name")).ToString();
-                employee.Phone = reader.GetValue(reader.GetOrdinal("Phone")).ToString();
-                employee.HireDate = (DateTime) reader.GetValue(reader.GetOrdinal("HireDate"));
+                employee = DbReaderModelBinder<Employees>.Bind(reader);
                 employees.Add(employee);
             }
 

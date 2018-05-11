@@ -80,17 +80,18 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var members = new Members();
+            var properties = typeof(Members).GetProperties();
+            Members member = null;
 
             while (reader.Read())
             {
-
-                var member = DbReaderModelBinder<Members>.Bind(reader);
+                member = new Members();
+                member = DbReaderModelBinder<Members>.Bind(reader);
             }
 
             reader.Close();
 
-            return members;
+            return member;
         }
 
         public IEnumerable<Members> GetAll()
@@ -108,7 +109,9 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
             while (reader.Read())
             {
-                var member = DbReaderModelBinder<Members>.Bind(reader);
+                var member = new Members();
+                member = DbReaderModelBinder<Members>.Bind(reader);
+                members.Add(member);
             }
 
             reader.Close();

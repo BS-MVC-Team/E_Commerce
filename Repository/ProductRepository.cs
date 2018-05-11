@@ -80,10 +80,11 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            Products product = null;
             var properties = typeof(Products).GetProperties();
-            var product = new Products();
             while (reader.Read())
             {
+                product = new Products();
                 product = DbReaderModelBinder<Products>.Bind(reader);
 
             }
@@ -103,6 +104,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
             var products = new List<Products>();
+            var properties = typeof(Products).GetProperties();
 
             while (reader.Read())
             {
@@ -132,13 +134,15 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            Products product = null;
             var properties = typeof(Products).GetProperties();
-            var product = new Products();
+
             while (reader.Read())
             {
+                product = new Products();
                 product = DbReaderModelBinder<Products>.Bind(reader);
-
             }
+
             reader.Close();
 
             return product;

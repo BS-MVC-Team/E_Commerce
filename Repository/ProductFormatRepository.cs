@@ -76,29 +76,21 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
             connection.Open();
 
-            var properties = typeof(ProductFormat).GetProperties();
-            ProductFormat fotmats = null;
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            var productFormat = new ProductFormat();
 
             while (reader.Read())
             {
-                fotmats = new ProductFormat();
-                for (var i = 0; i < reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault((o) => o.Name == fieldName);
-
-                    if (property == null)
-                        continue;
-
-                    if (!reader.IsDBNull(i))
-                        property.SetValue(fotmats, reader.GetValue(i));
-                }
+                productFormat.ProductFormatID = (int)reader.GetValue(reader.GetOrdinal("ProductFormatID"));
+                productFormat.ProductID = (int)reader.GetValue(reader.GetOrdinal("ProductID"));
+                productFormat.Size = reader.GetValue(reader.GetOrdinal("Size")).ToString();
+                productFormat.Color = reader.GetValue(reader.GetOrdinal("Color")).ToString();
+                productFormat.StockQuantity = (int)reader.GetValue(reader.GetOrdinal("StockQuantity"));
             }
 
             reader.Close();
 
-            return fotmats;
+            return productFormat;
         }
 
         public IEnumerable<ProductFormat> GetAll()
@@ -111,9 +103,8 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var productFormats = new List<ProductFormat>();
             var properties = typeof(ProductFormat).GetProperties();
-
+            var productFormats = new List<ProductFormat>();
             while (reader.Read())
             {
                 var productFormat = new ProductFormat();
