@@ -15,7 +15,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Create(OrderDetails model) //新增
         {
             SqlConnection connection = new SqlConnection(
-                "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
+                "data source=.; database=Commerce; integrated security=true");
             var sql = "INSERT INTO OrderDetails VALUES (@OrderID, @ProductFormatID, @UnitPrice, @Quantity)";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -33,7 +33,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Update(OrderDetails model) //修改
         {
             SqlConnection connection = new SqlConnection(
-                "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
+                "data source=.; database=Commerce; integrated security=true");
             var sql = "UPDATE OrderDetails SET UnitPrice=@UnitPrice, Quantity=@Quantity WHERE OrderID = @OrderID AND ProductFormatID=@ProductFormatID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -49,7 +49,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Delete(OrderDetails model) //刪除
         {
             SqlConnection connection = new SqlConnection(
-                "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
+                "data source=.; database=Commerce; integrated security=true");
             var sql = "DELETE FROM OrderDetails WHERE OrderID = @OrderID AND ProductFormatID = @ProductFormatID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -66,7 +66,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public OrderDetails FindById(int orderId) //單查一筆資料
         {
             SqlConnection connection = new SqlConnection(
-                "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
+                "data source=.; database=Commerce; integrated security=true");
             var sql = "SELECT * FROM OrderDetails WHERE OrderID = @OrderID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -103,7 +103,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public IEnumerable<OrderDetails> GetAll() //查尋全部資料
         {
             SqlConnection connection = new SqlConnection(
-                "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
+                "data source=.; database=Commerce; integrated security=true");
             var sql = "SELECT * FROM OrderDetails";
 
             SqlCommand command = new SqlCommand(sql, connection);

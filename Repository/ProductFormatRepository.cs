@@ -15,7 +15,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Create(ProductFormat model) //新增
         {
             SqlConnection connection = new SqlConnection(
-                "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
+                "data source=.; database=Commerce; integrated security=true");
             var sql = "INSERT INTO ProductFormat VALUES (@ProductFormatID, @ProductID, @Size, @Color,@StockQuantity)";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -33,7 +33,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Update(ProductFormat model) //修改
         {
             SqlConnection connection = new SqlConnection(
-                "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
+                "data source=.; database=Commerce; integrated security=true");
             var sql = "UPDATE ProductFormat SET ProductID=@ProductID, Size=@Size, Color=@Color,StockQuantity =@StockQuantity WHERE ProductFormatID = @ProductFormatID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -51,7 +51,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Delete(ProductFormat model) //刪除
         {
             SqlConnection connection = new SqlConnection(
-                "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
+                "data source=.; database=Commerce; integrated security=true");
             var sql = "DELETE FROM ProductFormat WHERE ProductFormatID = @ProductFormatID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -67,7 +67,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public ProductFormat FindById(int ProductFormatID)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
+                "data source=.; database=Commerce; integrated security=true");
             var sql = "SELECT * FROM ProductFormat WHERE ProductFormatID = @ProductFormatID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -77,10 +77,11 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             connection.Open();
 
             var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var productFormat = new ProductFormat();
+            ProductFormat productFormat = null;
 
             while (reader.Read())
             {
+                productFormat = new ProductFormat();
                 productFormat.ProductFormatID = (int)reader.GetValue(reader.GetOrdinal("ProductFormatID"));
                 productFormat.ProductID = (int)reader.GetValue(reader.GetOrdinal("ProductID"));
                 productFormat.Size = reader.GetValue(reader.GetOrdinal("Size")).ToString();
@@ -96,7 +97,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public IEnumerable<ProductFormat> GetAll()
         {
             SqlConnection connection = new SqlConnection(
-                "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
+                "data source=.; database=Commerce; integrated security=true");
             var sql = "SELECT * FROM ProductFormat";
 
             SqlCommand command = new SqlCommand(sql, connection);
