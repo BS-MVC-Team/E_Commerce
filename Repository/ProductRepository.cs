@@ -1,4 +1,5 @@
-﻿using BuildSchool.MvcSolution.OnlineStore.Models;
+﻿
+using BuildSchool.MvcSolution.OnlineStore.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
