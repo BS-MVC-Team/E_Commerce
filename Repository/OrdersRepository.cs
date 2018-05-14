@@ -120,7 +120,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public IEnumerable<Orders> GetStatus(string status)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
+                "data source=.; database=Commerce; integrated security=true");
             var sql = "SELECT * FROM Orders WHERE Status = @Status";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -175,7 +175,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public IEnumerable<Orders> GetAll() //查尋全部資料
         {
             SqlConnection connection = new SqlConnection(
-                "data source=SZUYUANHUANG-PC; database=Commerce; integrated security=true");
+                "data source=.; database=Commerce; integrated security=true");
             var sql = "SELECT * FROM Orders";
 
             SqlCommand command = new SqlCommand(sql, connection);

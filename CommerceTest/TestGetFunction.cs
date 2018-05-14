@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using BuildSchool.MvcSolution.OnlineStore.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
