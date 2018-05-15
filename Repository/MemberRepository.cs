@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Utils;
+using Dapper;
 
 namespace BuildSchool.MvcSolution.OnlineStore.Repository
 {
@@ -69,54 +70,69 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
         public Members FindById(string MemberID)
         {
-            SqlConnection connection = new SqlConnection(
+            IDbConnection connection = new SqlConnection(
                 "data source=.; database=Commerce; integrated security=true");
-            var sql = "SELECT * FROM Members WHERE MemberID = @MemberID";
 
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            command.Parameters.AddWithValue("@MemberID", MemberID);
-
-            connection.Open();
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var properties = typeof(Members).GetProperties();
+            var result = connection.Query<Members>("SELECT * FROM Members WHERE MemberID = @MemberID", new { MemberID });
             Members member = null;
-
-            while (reader.Read())
+            foreach (var item in result)
             {
-                member = new Members();
-                member = DbReaderModelBinder<Members>.Bind(reader);
+                member = item;
             }
-
-            reader.Close();
-
             return member;
+            //SqlConnection connection = new SqlConnection(
+            //    "data source=.; database=Commerce; integrated security=true");
+            //var sql = "SELECT * FROM Members WHERE MemberID = @MemberID";
+
+            //SqlCommand command = new SqlCommand(sql, connection);
+
+            //command.Parameters.AddWithValue("@MemberID", MemberID);
+
+            //connection.Open();
+
+            //var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            //var properties = typeof(Members).GetProperties();
+            //Members member = null;
+
+            //while (reader.Read())
+            //{
+            //    member = new Members();
+            //    member = DbReaderModelBinder<Members>.Bind(reader);
+            //}
+
+            //reader.Close();
+
+            //return member;
         }
 
         public IEnumerable<Members> GetAll()
         {
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
-            var sql = "SELECT * FROM Members";
+            IDbConnection connection = new SqlConnection(
+                 "data source=.; database=Commerce; integrated security=true");
 
-            SqlCommand command = new SqlCommand(sql, connection);
-            connection.Open();
+            return connection.Query<Members>("SELECT * FROM Members");
 
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var properties = typeof(Members).GetProperties();
-            var members = new List<Members>();
+            //SqlConnection connection = new SqlConnection(
+            //    "data source=.; database=Commerce; integrated security=true");
+            //var sql = "SELECT * FROM Members";
 
-            while (reader.Read())
-            {
-                var member = new Members();
-                member = DbReaderModelBinder<Members>.Bind(reader);
-                members.Add(member);
-            }
+            //SqlCommand command = new SqlCommand(sql, connection);
+            //connection.Open();
 
-            reader.Close();
+            //var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            //var properties = typeof(Members).GetProperties();
+            //var members = new List<Members>();
 
-            return members;
+            //while (reader.Read())
+            //{
+            //    var member = new Members();
+            //    member = DbReaderModelBinder<Members>.Bind(reader);
+            //    members.Add(member);
+            //}
+
+            //reader.Close();
+
+            //return members;
 
         }
     }

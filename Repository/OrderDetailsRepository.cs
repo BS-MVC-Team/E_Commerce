@@ -1,4 +1,5 @@
 ﻿using BuildSchool.MvcSolution.OnlineStore.Models;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -63,67 +64,77 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         }
 
 
-        public OrderDetails FindById(int orderId) //單查一筆資料
+        public OrderDetails FindById(int OrderID) //單查一筆資料
         {
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
-            var sql = "SELECT * FROM OrderDetails WHERE OrderID = @OrderID";
-
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            command.Parameters.AddWithValue("@OrderID", orderId);
-
-            connection.Open();
-
-            var properties = typeof(OrderDetails).GetProperties();
-            OrderDetails orderDetails = null;
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-
-            while (reader.Read())
+            IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            var result = connection.Query<OrderDetails>("SELECT * FROM OrderDetails WHERE OrderID = @OrderID", new {  OrderID });
+            OrderDetails orderDetail = null;
+            foreach (var item in result)
             {
-                orderDetails = new OrderDetails();
-                for(var i=0;i<reader.FieldCount;i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault((o) => o.Name == fieldName);
-
-                    if (property == null)
-                        continue;
-
-                    if (!reader.IsDBNull(i))
-                        property.SetValue(orderDetails, reader.GetValue(i));
-                }
+                orderDetail = item;
             }
+            return orderDetail;
+            //SqlConnection connection = new SqlConnection(
+            //    "data source=.; database=Commerce; integrated security=true");
+            //var sql = "SELECT * FROM OrderDetails WHERE OrderID = @OrderID";
 
-            reader.Close();
+            //SqlCommand command = new SqlCommand(sql, connection);
 
-            return orderDetails;
+            //command.Parameters.AddWithValue("@OrderID", orderId);
+
+            //connection.Open();
+
+            //var properties = typeof(OrderDetails).GetProperties();
+            //OrderDetails orderDetails = null;
+            //var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+
+            //while (reader.Read())
+            //{
+            //    orderDetails = new OrderDetails();
+            //    for(var i=0;i<reader.FieldCount;i++)
+            //    {
+            //        var fieldName = reader.GetName(i);
+            //        var property = properties.FirstOrDefault((o) => o.Name == fieldName);
+
+            //        if (property == null)
+            //            continue;
+
+            //        if (!reader.IsDBNull(i))
+            //            property.SetValue(orderDetails, reader.GetValue(i));
+            //    }
+            //}
+
+            //reader.Close();
+
+            //return orderDetails;
         }
 
         public IEnumerable<OrderDetails> GetAll() //查尋全部資料
         {
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
-            var sql = "SELECT * FROM OrderDetails";
+            IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            return connection.Query<OrderDetails>("SELECT * FROM OrderDetails ");
+            //SqlConnection connection = new SqlConnection(
+            //    "data source=.; database=Commerce; integrated security=true");
+            //var sql = "SELECT * FROM OrderDetails";
 
-            SqlCommand command = new SqlCommand(sql, connection);
-            connection.Open();
+            //SqlCommand command = new SqlCommand(sql, connection);
+            //connection.Open();
 
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var orderDetails = new List<OrderDetails>();
-            var properties = typeof(OrderDetails).GetProperties();
+            //var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            //var orderDetails = new List<OrderDetails>();
+            //var properties = typeof(OrderDetails).GetProperties();
 
-            while (reader.Read())
-            {
-                var orderDetail = new OrderDetails();
-                orderDetail = DbReaderModelBinder<OrderDetails>.Bind(reader);
+            //while (reader.Read())
+            //{
+            //    var orderDetail = new OrderDetails();
+            //    orderDetail = DbReaderModelBinder<OrderDetails>.Bind(reader);
 
-                orderDetails.Add(orderDetail);
-            }
+            //    orderDetails.Add(orderDetail);
+            //}
 
-            reader.Close();
+            //reader.Close();
 
-            return orderDetails;
+            //return orderDetails;
 
         }
     }

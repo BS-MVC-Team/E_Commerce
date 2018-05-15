@@ -1,4 +1,5 @@
 ﻿using BuildSchool.MvcSolution.OnlineStore.Models;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -66,57 +67,67 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
         public ProductFormat FindById(int ProductFormatID)
         {
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
-            var sql = "SELECT * FROM ProductFormat WHERE ProductFormatID = @ProductFormatID";
-
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            command.Parameters.AddWithValue("@ProductFormatID", ProductFormatID);
-
-            connection.Open();
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            var result = connection.Query<ProductFormat>("SELECT * FROM ProductFormat WHERE ProductFormatID = @ProductFormatID", new { ProductFormatID });
             ProductFormat productFormat = null;
-
-            while (reader.Read())
+            foreach (var item in result)
             {
-                productFormat = new ProductFormat();
-                productFormat.ProductFormatID = (int)reader.GetValue(reader.GetOrdinal("ProductFormatID"));
-                productFormat.ProductID = (int)reader.GetValue(reader.GetOrdinal("ProductID"));
-                productFormat.Size = reader.GetValue(reader.GetOrdinal("Size")).ToString();
-                productFormat.Color = reader.GetValue(reader.GetOrdinal("Color")).ToString();
-                productFormat.StockQuantity = (int)reader.GetValue(reader.GetOrdinal("StockQuantity"));
+                productFormat = item;
             }
-
-            reader.Close();
-
             return productFormat;
+            //SqlConnection connection = new SqlConnection(
+            //    "data source=.; database=Commerce; integrated security=true");
+            //var sql = "SELECT * FROM ProductFormat WHERE ProductFormatID = @ProductFormatID";
+
+            //SqlCommand command = new SqlCommand(sql, connection);
+
+            //command.Parameters.AddWithValue("@ProductFormatID", ProductFormatID);
+
+            //connection.Open();
+
+            //var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            //ProductFormat productFormat = null;
+
+            //while (reader.Read())
+            //{
+            //    productFormat = new ProductFormat();
+            //    productFormat.ProductFormatID = (int)reader.GetValue(reader.GetOrdinal("ProductFormatID"));
+            //    productFormat.ProductID = (int)reader.GetValue(reader.GetOrdinal("ProductID"));
+            //    productFormat.Size = reader.GetValue(reader.GetOrdinal("Size")).ToString();
+            //    productFormat.Color = reader.GetValue(reader.GetOrdinal("Color")).ToString();
+            //    productFormat.StockQuantity = (int)reader.GetValue(reader.GetOrdinal("StockQuantity"));
+            //}
+
+            //reader.Close();
+
+            //return productFormat;
         }
 
         public IEnumerable<ProductFormat> GetAll()
         {
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
-            var sql = "SELECT * FROM ProductFormat";
+            IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            return connection.Query<ProductFormat>("SELECT * FROM ProductFormat ");
+            //SqlConnection connection = new SqlConnection(
+            //    "data source=.; database=Commerce; integrated security=true");
+            //var sql = "SELECT * FROM ProductFormat";
 
-            SqlCommand command = new SqlCommand(sql, connection);
-            connection.Open();
+            //SqlCommand command = new SqlCommand(sql, connection);
+            //connection.Open();
 
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var properties = typeof(ProductFormat).GetProperties();
-            var productFormats = new List<ProductFormat>();
-            while (reader.Read())
-            {
-                var productFormat = new ProductFormat();
-                productFormat = DbReaderModelBinder<ProductFormat>.Bind(reader);
+            //var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            //var properties = typeof(ProductFormat).GetProperties();
+            //var productFormats = new List<ProductFormat>();
+            //while (reader.Read())
+            //{
+            //    var productFormat = new ProductFormat();
+            //    productFormat = DbReaderModelBinder<ProductFormat>.Bind(reader);
 
-                productFormats.Add(productFormat);
-            }
+            //    productFormats.Add(productFormat);
+            //}
 
-            reader.Close();
+            //reader.Close();
 
-            return productFormats;
+            //return productFormats;
 
         }
     }

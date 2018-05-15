@@ -13,7 +13,7 @@ namespace CommerceTest
         {
             var repository = new ProductRepository();
             var product = repository.FindByProductName("abc");
-            Assert.IsNull(product);
+            Assert.IsTrue(product.Count() == 0);
         }
         [TestMethod]
         public void Test_FindByName()

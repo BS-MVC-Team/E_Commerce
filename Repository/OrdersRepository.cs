@@ -1,4 +1,5 @@
 ﻿using BuildSchool.MvcSolution.OnlineStore.Models;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -79,71 +80,81 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
         public Orders FindById(int OrderID)
         {
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
-            var sql = "SELECT * FROM Orders WHERE OrderID = @OrderID";
-
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            command.Parameters.AddWithValue("@OrderID", OrderID);
-
-            connection.Open();
-
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            //var Orders = new Orders();
-            var properties = typeof(Orders).GetProperties();
-            Orders Orders = null;
-
-            while (reader.Read())
+            IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            var result = connection.Query<Orders>("select * FROM Orders WHERE OrderID = @OrderID", new { @OrderID = OrderID });
+            Orders order = null;
+            foreach (var item in result)
             {
-                Orders = new Orders();
-                for (var i = 0; i < reader.FieldCount; i++)
-                {
-                    var fieldName = reader.GetName(i);
-                    var property = properties.FirstOrDefault(
-                        p => p.Name == fieldName);
-
-                    if (property == null)
-                        continue;
-
-                    if (!reader.IsDBNull(i))
-                        property.SetValue(Orders,
-                            reader.GetValue(i));
-                }
-
+                order = item;
             }
+            return order;
+            //SqlConnection connection = new SqlConnection(
+            //    "data source=.; database=Commerce; integrated security=true");
+            //var sql = "SELECT * FROM Orders WHERE OrderID = @OrderID";
 
-            reader.Close();
-            return Orders;
+            //SqlCommand command = new SqlCommand(sql, connection);
+
+            //command.Parameters.AddWithValue("@OrderID", OrderID);
+
+            //connection.Open();
+
+            //var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+            ////var Orders = new Orders();
+            //var properties = typeof(Orders).GetProperties();
+            //Orders Orders = null;
+
+            //while (reader.Read())
+            //{
+            //    Orders = new Orders();
+            //    for (var i = 0; i < reader.FieldCount; i++)
+            //    {
+            //        var fieldName = reader.GetName(i);
+            //        var property = properties.FirstOrDefault(
+            //            p => p.Name == fieldName);
+
+            //        if (property == null)
+            //            continue;
+
+            //        if (!reader.IsDBNull(i))
+            //            property.SetValue(Orders,
+            //                reader.GetValue(i));
+            //    }
+
+            //}
+
+            //reader.Close();
+            //return Orders;
         }
 
-        public IEnumerable<Orders> GetStatus(string status)
+        public IEnumerable<Orders> GetStatus(string Status)
         {
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
-            var sql = "SELECT * FROM Orders WHERE Status = @Status";
+            IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            return connection.Query<Orders>("select * FROM Orders WHERE Status = @Status", new { Status });
+        //SqlConnection connection = new SqlConnection(
+        //    "data source=.; database=Commerce; integrated security=true");
+        //var sql = "SELECT * FROM Orders WHERE Status = @Status";
 
-            SqlCommand command = new SqlCommand(sql, connection);
+        //SqlCommand command = new SqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("@Status", status);
+        //command.Parameters.AddWithValue("@Status", status);
 
-            connection.Open();
+        //connection.Open();
 
-            var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
-            var orders = new List<Orders>();
-            var properties = typeof(Orders).GetProperties();
+        //var reader = command.ExecuteReader(CommandBehavior.CloseConnection);
+        //var orders = new List<Orders>();
+        //var properties = typeof(Orders).GetProperties();
 
-            while (reader.Read())
-            {
-                var order = new Orders();
-                order = DbReaderModelBinder<Orders>.Bind(reader);
+        //while (reader.Read())
+        //{
+        //    var order = new Orders();
+        //    order = DbReaderModelBinder<Orders>.Bind(reader);
 
-                orders.Add(order);
-            }
+        //    orders.Add(order);
+        //}
 
-            reader.Close();
+        //reader.Close();
 
-            return orders;
+        //return orders;
         }
 
         public IEnumerable<Orders> GetOrderDate(string OrderDate)
