@@ -12,7 +12,7 @@ namespace Procedure
 {
     public class Procedure
     {
-        public IEnumerable<Orders> GetBuyerOrder(int memberID)
+        public IEnumerable<Orders> GetBuyerOrder(string memberID)
         {
             SqlConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
             SqlCommand command = new SqlCommand();

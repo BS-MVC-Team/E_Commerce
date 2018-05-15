@@ -15,7 +15,7 @@ namespace Procedure.Tests
         public void GetBuyerOrderTest()
         {
             var procrdure = new Procedure();
-            var getBuyerOrder = procrdure.GetBuyerOrder(1);
+            var getBuyerOrder = procrdure.GetBuyerOrder("1");
             Assert.IsTrue(getBuyerOrder.Count() != 0);
         }
     }
