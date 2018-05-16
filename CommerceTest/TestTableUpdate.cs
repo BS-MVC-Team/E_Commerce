@@ -95,7 +95,7 @@ namespace CommerceTest
                 Nullable<DateTime> n = null;
                 Orders order = new Orders()
                 {
-                    OrderID = 1,
+                    OrderID = 7,
                     EmployeeID = 1,
                     MemberID = "123",
                     ShipName = "黃宗畦1",
@@ -108,7 +108,7 @@ namespace CommerceTest
                     Status = "派送中"
                 };
                 repository.Update(order);
-                var orders = repository.FindById(1);
+                var orders = repository.FindById(7);
                 Assert.IsTrue(orders.ShipName == "黃宗畦1");
             }
             [TestMethod]
@@ -117,7 +117,7 @@ namespace CommerceTest
                 var repository = new OrderDetailsRepository();
                 OrderDetails orderdetail = new OrderDetails()
                 {
-                    OrderID = 1,
+                    OrderID = 7,
                     ProductFormatID = 1,
                     Quantity = 5,
                     UnitPrice = 470

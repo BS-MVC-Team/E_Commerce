@@ -38,6 +38,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
             SqlCommand command = new SqlCommand(sql, connection);
 
+            command.Parameters.AddWithValue("@ProductFormatID", model.ProductFormatID);
             command.Parameters.AddWithValue("@ProductID", model.ProductID);
             command.Parameters.AddWithValue("@Size", model.Size);
             command.Parameters.AddWithValue("@Color", model.Color);
