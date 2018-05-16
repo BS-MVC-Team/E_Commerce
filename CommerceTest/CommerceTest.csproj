@@ -60,6 +60,7 @@
     <Compile Include="TestFindByID.cs" />
     <Compile Include="TestGetFunction.cs" />
     <Compile Include="TestTableCreate.cs" />
+    <Compile Include="TestTableUpdate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

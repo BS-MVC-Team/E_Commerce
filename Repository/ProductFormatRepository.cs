@@ -17,11 +17,10 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=Commerce; integrated security=true");
-            var sql = "INSERT INTO ProductFormat VALUES (@ProductFormatID, @ProductID, @Size, @Color,@StockQuantity)";
+            var sql = "INSERT INTO ProductFormat VALUES (@ProductID, @Size, @Color,@StockQuantity)";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("@ProductFormatID", model.ProductFormatID);
             command.Parameters.AddWithValue("@ProductID", model.ProductID);
             command.Parameters.AddWithValue("@Size", model.Size);
             command.Parameters.AddWithValue("@Color", model.Color);

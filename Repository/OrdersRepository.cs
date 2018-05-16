@@ -17,22 +17,35 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=Commerce; integrated security=true");
-            var sql = "INSERT INTO Orders VALUES (@OrderID, @EmployeeID, @MemberID, @ShipName, @ShipAddress, @ShipPhone, @ShippedDate, @OrderDate, @ReceiptedDate, @Status, @Discount)";
+            var sql = "INSERT INTO Orders VALUES ( @EmployeeID, @MemberID, @ShipName, @ShipAddress, @ShipPhone, @ShippedDate, @OrderDate, @ReceiptedDate, @Discount, @Status)";
+            //var sql = "INSERT INTO Orders VALUES ( @EmployeeID, @MemberID, @ShipName, @ShipAddress, @ShipPhone, @ShippedDate, @OrderDate, @ReceiptedDate, @Discount, @Status)";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("@OrderID", model.OrderID);
             command.Parameters.AddWithValue("@EmployeeID", model.EmployeeID);
             command.Parameters.AddWithValue("@MemberID", model.MemberID);
             command.Parameters.AddWithValue("@ShipName", model.ShipName);
             command.Parameters.AddWithValue("@ShipAddress", model.ShipAddress);
             command.Parameters.AddWithValue("@ShipPhone", model.ShipPhone);
-            command.Parameters.AddWithValue("@ShippedDate", model.ShippedDate);
+            if (model.ShippedDate != null)
+            {
+                command.Parameters.AddWithValue("@ShippedDate", model.ShippedDate);
+            }
+            else
+            {
+                command.Parameters.AddWithValue("@ShippedDate", DBNull.Value);
+            }
             command.Parameters.AddWithValue("@OrderDate", model.OrderDate);
-            command.Parameters.AddWithValue("@ReceiptedDate", model.ReceiptedDate);
-            command.Parameters.AddWithValue("@Status", model.Status);
+            if (model.ReceiptedDate != null)
+            {
+                command.Parameters.AddWithValue("@ReceiptedDate", model.ReceiptedDate);
+            }
+            else
+            {
+                command.Parameters.AddWithValue("@ReceiptedDate", DBNull.Value);
+            }
             command.Parameters.AddWithValue("@Discount", model.Discount);
-
+            command.Parameters.AddWithValue("@Status", model.Status);
 
             connection.Open();
             command.ExecuteNonQuery();

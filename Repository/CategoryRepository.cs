@@ -18,11 +18,10 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=Commerce; integrated security=true");
-            var sql = "INSERT INTO Category VALUES (@CategoryID, @CategoryName)";
+            var sql = "INSERT INTO Category VALUES (@CategoryName)";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("@CategoryID", model.CategoryID);
             command.Parameters.AddWithValue("@CategoryName", model.CategoryName);
 
             connection.Open();
