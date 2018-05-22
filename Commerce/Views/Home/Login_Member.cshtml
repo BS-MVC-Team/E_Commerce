@@ -19,7 +19,7 @@
                 <input type="text" id="memberpassword" class="form-control" placeholder="密碼" aria-label="Password" aria-describedby="memberpassword">
             </div>
             <div class="col-12">
-                <button id="loginBtn" type="button" class="btn btn-outline-dark" onclick="location.href = '@Url.Action("Home","Home")';">登入</button>
+                <button id="loginBtn" type="button" class="btn btn-outline-dark" >登入</button>
             </div>
         </div>
         <div class="row" id="C">
@@ -28,5 +28,25 @@
             </div>
         </div>   
     </div>
+
+    <script>
+          $("#loginBtn").on("click", function (event) {
+              var id = $("#memberid").val();
+              var password = $("#memberpassword").val();
+              if (isNullOrWhiteSpace(id) || isNullOrWhiteSpace(password)) {
+                  alert("帳號密碼不可為空白");
+              }
+              else
+              {
+                  console.log(id + " " + password);
+                  location.href = '@Url.Action("Home","Home")';
+              }
+        });
+
+        function isNullOrWhiteSpace(str) {
+            return (!str || str.length === 0 || /^\s*$/.test(str))
+        }
+
+    </script>
    </body>
 </html>
