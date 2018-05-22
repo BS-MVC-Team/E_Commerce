@@ -1,0 +1,30 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="\Content\login_employeeStyle.css">
+  </head>
+  <body>
+    <div class="container-fluid" id="container-fluid">
+        <div class="row" id="A">
+            
+        </div>
+        <div class="row" id="B">
+            <div class="col-12" id="Ba">
+                <img id="logo-big" src='/images/logo.png' alt=''/>
+            </div>
+        </div>
+        <div class="row" id="C">
+            <div class="col-5" id="Ca"></div>
+            <div class="col-2" id="Cb">
+                <button id="wantLoginBtn" type="button" class="btn btn-outline-light" onclick="location.href = '@Url.Action("Login_Member","Home")';">我要登入</button>
+            </div>
+            <div class="col-5" id="Cc"></div>
+        </div>
+        <div class="row" id="D">
+            <div class="col-12">
+                <a href='@Url.Action("SignUp","Home")' target="_blank" title="signup">新會員註冊</a>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

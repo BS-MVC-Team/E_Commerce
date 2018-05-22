@@ -1,0 +1,164 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="\Content\categoryStyle.css">
+</head>
+  <body>
+    <div class="container-fluid" id="container-fluid">
+        <div class="row" id="A">
+            <div class="col">
+                <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color:rgba(255, 255, 255, 0);">
+                    <a class="navbar-brand" href='@Url.Action("Category","Home")'>
+                        <img src="/images/logo.png" width="70" class="d-inline-block align-center" alt="">
+                        TODAY
+                    </a> 
+                    <div id="searchbar1" style="position:fixed;left:500px;" >
+                        <div class="input-group mb-3">
+                            <input type="text" style="text-align: center;" class="form-control" placeholder="關鍵字" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button">搜尋本站</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="/login_Member.html"><input type="submit" class="btn btn-outline-danger" style="position: absolute; right: 2em;" value="會員登入"/></a>
+                    </div>
+                </nav>
+            </div>            
+        </div>
+        <!--左邊小白框B+內框C+分類連結-->
+        <div class="row" id="B-categoryButton">
+            <div class="col">
+                <div class="row" id="C-categoryButton">
+                    <div class="col">
+                        <ul class="nav nav-pills flex-column" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <li class="nav-item">
+                                <a class="nav-link  active" href='@Url.Action("Index","Home")'>-x 回首頁 x-</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="cate1-tab" data-toggle="pill" href="#cate1" role="tab" aria-controls="cate1" aria-selected="true">分類1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="cate2-tab" data-toggle="pill" href="#cate2" role="tab" aria-controls="cate2" aria-selected="false">分類2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="cate3-tab" data-toggle="pill" href="#cate3" role="tab" aria-controls="cate3" aria-selected="false">分類3</a>
+                            </li>
+                        </ul>
+                        <hr>
+                        <ul class="nav nav-pills nav-fill"id="eventList">
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="#">-× ✿ ×-<br>六月活動<br>敬請期待</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" href="#">-× ✿ ×-<br>七月活動<br>敬請期待</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--右邊大白框B+內框C+內容-->
+        <div class="row" id="B">
+            <div class="col-12" id="Ba">
+                <div class="row" id="C">
+                    <div class="col">
+                        <div class="tab-content" id="v-pills-tabContent">
+                            <div class="tab-pane fade show active" id="cate1" role="tabpanel" aria-labelledby="cate1-tab">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>1標標題標題標題標題題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>1標題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>1標題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>1標題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>1標題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                    </div>
+                                    <div class="col-3"></div>
+                                    <div class="col-3"></div>
+                                    <div class="col-3"></div>
+                                    <div class="col-3"></div>
+                                    <div class="col-3"></div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="cate2" role="tabpanel" aria-labelledby="cate3-tab">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>2標題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>2標題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>2標題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>2標題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>2標題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>2標題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                    </div>
+                                    <div class="col-3">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="cate3" role="tabpanel" aria-labelledby="cate3-tab">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>3標題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>3標題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                    </div>
+                                    <div class="col-3">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>3標題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                    </div>
+                                    <div class="col-3"></div>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>
+  </body>
+</html>

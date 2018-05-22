@@ -1,0 +1,56 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="\Content\signupStyle.css">
+  </head>
+  <body>
+    <div class="container-fluid" id="container-fluid">
+        <div class="row" id="A">
+            <div class="col-12" id="signup">
+                <h1 >SIGN UP</h1>
+            </div>            
+        </div>
+        <div class="row" id="B">
+            <div class="col-12" id="Ba">
+                <img id="logo-small" src='/images/logo.png' alt=''/>
+            </div>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                    <input type="Id" class="form-control" id="menberId" placeholder="設定帳號">
+                    </div>
+                    <div class="form-group col-md-6">
+                    <input type="password" class="form-control" id="memberPassword" placeholder="設定密碼">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="memberName" placeholder="姓名">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" id="memberPhone" placeholder="請輸入可收簡訊電話號碼">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                    <input type="email" class="form-control" id="menberEmail" placeholder="請輸入可正常收信之信箱">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="memberAddress" placeholder="請填寫收件地址">
+                </div>
+                
+                </form>
+            <div class="col-12">
+                <a href="#"><button id="signupBtn" type="button" class="btn btn-outline-dark">確認註冊</button></a>
+            </div>
+        </div>
+        <div class="row" id="C">
+            <div class="col-12">
+                <button type="button" id="wantLoginBtn" class="btn btn-outline-light" onclick="location.href = '@Url.Action("Login_Member","Home")';">已有帳號？點此登入</button>
+            </div>
+        </div>   
+    </div>
+    
+  </body>
+</html>

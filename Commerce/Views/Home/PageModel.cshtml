@@ -1,0 +1,333 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="\Content\pageModelStyle.css">
+</head>
+  <body>
+    <div class="container-fluid" id="container-fluid">
+        <!--Navbar欄-->
+        <div class="row" id="A">
+            <div class="col">
+                <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color:rgba(255, 255, 255, 0);">
+                    <a class="navbar-brand" href="/category.html">
+                        <img src="/images/logo.png" width="70" class="d-inline-block align-center" alt="">
+                        TODAY
+                    </a> 
+                    <div id="searchbar1" style="position:fixed;left:500px;" >
+                        <div class="input-group mb-3">
+                            <input type="text" style="text-align: center;" class="form-control" placeholder="關鍵字" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button">搜尋本站</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="/login.html"><input type="submit" class="btn btn-outline-danger" style="position: absolute; right: 2em;" value="會員登入"/></a>
+                    </div>
+                </nav>
+            </div>            
+        </div>
+        <!--左邊小白框B+內框C+分類連結-->
+        <div class="row" id="B-categoryButton">
+            <div class="col">
+                <div class="row" id="C-categoryButton">
+                    <div class="col">
+                        <ul class="nav nav-pills nav-fill" id="categoryList">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">分類1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">分類2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">分類3</a>
+                            </li>
+                        </ul>                  
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--右邊大白框B+內框C+內容-->
+        <div class="row" id="B">
+            <div class="col-12">
+                <div class="row" id="C">
+                    <div class="col-12">
+                        <div class="content" data-mcs-theme="rounded-dots">
+                            <div class="row">
+                                <div class="col-12">
+                                    <!--圖片輪播-->
+                                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                        <ol class="carousel-indicators">
+                                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                            <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                                        </ol>
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                                <img class="d-block w-100" src="https://placehold.it/500x200?text=Pic" alt="0">
+                                                <div class="carousel-caption d-none d-md-block">
+                                                    <h3>哇哇哇</h3>
+                                                    <p>yeeeyeeeyeeeyeeeyeeeyeeeyeeeyeeeyeeeyeee</p>
+                                                    <button type="button" class="btn btn-light">傳送門</button>                                                
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img class="d-block w-100" src="https://placehold.it/500x200?text=Pic" alt="1">
+                                                <div class="carousel-caption d-none d-md-block">
+                                                    <h3>哇哇哇</h3>
+                                                    <p>yeeeyeeeyeeeyeeeyeeeyeeeyeeeyeeeyeeeyeee</p>
+                                                    <button type="button" class="btn btn-light">傳送門</button> 
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img class="d-block w-100" src="https://placehold.it/500x200?text=Pic" alt="2">
+                                                <div class="carousel-caption d-none d-md-block">
+                                                    <h3>哇哇哇</h3>
+                                                    <p>yeeeyeeeyeeeyeeeyeeeyeeeyeeeyeeeyeeeyeee</p>
+                                                    <button type="button" class="btn btn-light">傳送門</button> 
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img class="d-block w-100" src="https://placehold.it/500x200?text=Pic" alt="3">
+                                                <div class="carousel-caption d-none d-md-block">
+                                                    <h3>哇哇哇</h3>
+                                                    <p>yeeeyeeeyeeeyeeeyeeeyeeeyeeeyeeeyeeeyeee</p>
+                                                    <button type="button" class="btn btn-light">傳送門</button> 
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <img class="d-block w-100" src="https://placehold.it/500x200?text=Pic" alt="4">
+                                                <div class="carousel-caption d-none d-md-block">
+                                                    <h3>哇哇哇</h3>
+                                                    <p>yeeeyeeeyeeeyeeeyeeeyeeeyeeeyeeeyeeeyeee</p>
+                                                    <button type="button" class="btn btn-light">傳送門</button> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </div>
+                                    <!--   熱銷/促銷欄位    -->
+                                    <div id="hotproduct">   
+                                        <div class="text">                      
+                                            <hr>
+                                            <b><h1>XXXX</h1></b>
+                                            <hr>
+                                        </div>
+                                        <div class="row">
+                                            <hr>
+                                            <div class="col">
+                                                <h3>#1</h3>
+                                                <img src='https://placehold.it/275x275?text=Pic' alt=''/>
+                                                <h5>標題</h5>
+                                                <p>標語</p>
+                                            </div>
+                                            <div class="col">
+                                                <h3>#2</h3>
+                                                <img src='https://placehold.it/275x275?text=Pic' alt=''/>
+                                                <h5>標題</h5>
+                                                <p>標語</p>
+                                            </div>
+                                            <div class="col">
+                                                <h3>#3</h3>
+                                                <img src='https://placehold.it/275x275?text=Pic' alt=''/>
+                                                <h5>標題</h5>
+                                                <p>標語</p>
+                                            </div>
+                                            <div class="col">
+                                                <h3>#4</h3>
+                                                <img src='https://placehold.it/275x275?text=Pic' alt=''/>
+                                                <h5>標題</h5>
+                                                <p>標語</p>
+                                            </div>
+                                            <div class="col">
+                                                <h3>#5</h3>
+                                                <img src='https://placehold.it/275x275?text=Pic' alt=''/>
+                                                <h5>標題</h5>
+                                                <p>標語</p>
+                                            </div>
+                                            <div class="col">
+                                                <h3>#6</h3>
+                                                <img src='https://placehold.it/275x275?text=Pic' alt=''/>
+                                                <h5>標題</h5>
+                                                <p>標語</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 依分類排序但不提供快跳功能 -->
+                            <div class="text">
+                                <hr>
+                                <b><h1>XXXX</h1></b>
+                                <hr>
+                            </div>   
+                            <div class="text">
+                                <b><h3>分類1</h3></b>
+                                <a href="#"> 看全部 >> </a>
+                            </div>                         
+                            <div class="row">
+                                <div class="col-3 productBox text">
+                                    <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                    <h4><b>標題標題</b></h4>
+                                    <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字</p>
+                                </div>     
+                                <div class="col-3 productBox text">
+                                    <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                    <h4><b>標題標題</b></h4>
+                                    <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                </div>     
+                                <div class="col-3 productBox text">
+                                    <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                    <h4><b>標題標題</b></h4>
+                                    <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                </div>
+                                <div class="col-3 productBox text">
+                                    <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                    <h4><b>標題標題</b></h4>
+                                    <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                </div>    
+                                <div class="col-3 productBox text">
+                                    <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                    <h4><b>標題標題</b></h4>
+                                    <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                </div>     
+                                <div class="col-3 productBox text">
+                                    <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                    <h4><b>標題標題</b></h4>
+                                    <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                </div>     
+                                <div class="col-3 productBox text">
+                                    <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                    <h4><b>標題標題</b></h4>
+                                    <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                </div>  
+                                <div class="col-3 productBox text">
+                                    <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                    <h4><b>標題標題</b></h4>
+                                    <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                </div>  
+                            </div>   
+                            <div class="text">
+                                <hr>
+                                <b><h3>分類2</h3></b>
+                                <a href="#"> 看全部 >> </a>
+                            </div>                           
+                            <div class="row">
+                                <div class="col-3 productBox text">
+                                    <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                    <h4><b>標題標題</b></h4>
+                                    <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字</p>
+                                </div>     
+                                <div class="col-3 productBox text">
+                                    <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                    <h4><b>標題標題</b></h4>
+                                    <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                </div>     
+                                <div class="col-3 productBox text">
+                                    <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                    <h4><b>標題標題</b></h4>
+                                    <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                </div>
+                                <div class="col-3 productBox text">
+                                    <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                    <h4><b>標題標題</b></h4>
+                                    <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                </div>     
+                                <div class="col-3 productBox text">
+                                    <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                    <h4><b>標題標題</b></h4>
+                                    <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                </div>     
+                                <div class="col-3 productBox text">
+                                    <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                    <h4><b>標題標題</b></h4>
+                                    <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                </div>     
+                                <div class="col-3 productBox text">
+                                    <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                    <h4><b>標題標題</b></h4>
+                                    <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                </div>  
+                                <div class="col-3 productBox text">
+                                    <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                    <h4><b>標題標題</b></h4>
+                                    <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                </div>  
+                            </div>   
+                            <div class="text">
+                                    <hr>
+                                    <b><h3>分類3</h3></b>
+                                    <a href="#"> 看全部 >> </a>
+                                </div>                           
+                                <div class="row">
+                                    <div class="col-3 productBox text">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>標題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字</p>
+                                    </div>     
+                                    <div class="col-3 productBox text">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>標題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                    </div>     
+                                    <div class="col-3 productBox text">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>標題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                    </div>
+                                    <div class="col-3 productBox text">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>標題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                    </div>     
+                                    <div class="col-3 productBox text">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>標題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                    </div>     
+                                    <div class="col-3 productBox text">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>標題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                    </div>     
+                                    <div class="col-3 productBox text">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>標題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                    </div>  
+                                    <div class="col-3 productBox text">
+                                        <img src='https://placehold.it/160x160?text=Pic' alt=''/>
+                                        <h4><b>標題標題</b></h4>
+                                        <p>文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述文字描述</p>
+                                    </div>  
+                                </div>   
+                                <!-- 建議搜尋bar -->
+                            <div class="text">
+                                <hr>
+                                <b><h3>真的找不到你喜歡的商品嗎？試試這個</h3></b>
+                                <input class="form" type="search" style="text-align: center;" placeholder="關鍵字" aria-label="Search" style="margin-right:2px;">
+                                <button class="btn btn-outline-light" type="submit">搜尋</button>
+                                <hr>
+                            </div>    
+                        </div>
+                    </div>
+                </div>   
+            </div>
+        </div>   
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
