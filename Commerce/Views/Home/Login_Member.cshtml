@@ -48,8 +48,15 @@
                       contentType: "application/json; charset=utf-8",
                       dataType: "json",
                       success: function (response) {
-                          alert("Hello: " + response.memberid + " .\nPassword: " + response.memberpassword);
-                          location.href = '@Url.Action("Home","Home")';
+                          if (response == "")
+                          {
+                              alert("帳號或是密碼錯誤");
+                          }
+                          else
+                          {
+                              alert("Hello: " + response.memberid + " .\nPassword: " + response.memberpassword);
+                              location.href = '@Url.Action("Home","Home")';
+                          }
                       },
                       failure: function (response) {
                           alert(response.responseText);
@@ -58,15 +65,12 @@
                           alert(response.responseText);
                       }
                   });
-
-
-
               }
         });
 
         function isNullOrWhiteSpace(str) {
             return (!str || str.length === 0 || /^\s*$/.test(str))
-        }
+          }
 
       </script>
 
