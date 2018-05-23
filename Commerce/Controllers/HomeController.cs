@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Commerce.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,6 +21,17 @@ namespace Commerce.Controllers
             ViewBag.Title = "登入";
 
             return View();
+        }
+
+        [HttpPost]
+        public JsonResult Login_Member(string memberid,string memberpassword)
+        {
+            Account account = new Account
+            {
+                memberid = memberid,
+                memberpassword = memberpassword
+            };
+            return Json(account);
         }
 
         public ActionResult Home()
