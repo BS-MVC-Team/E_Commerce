@@ -57,7 +57,6 @@
 
 .form-control{
     text-align: center;
-    position: relative;
     top:50px;
     margin: 0 auto;
     margin-top:1em;
@@ -83,4 +82,8 @@
 form{
     margin-right: 1em;
     margin-left: 2em;
+}
+
+.form-row {
+    padding: 15px 5px;
 }
