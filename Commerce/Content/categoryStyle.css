@@ -1,10 +1,10 @@
 /*----網頁框架start----*/
 /*背景與漸層*/
-#container-fluid{
+#container-fluid {
     background: -webkit-linear-gradient(270deg, #FFFFFF 0%, rgba(255, 255, 255, 0.38) 50%, rgba(255, 255, 255, 0) 100%), url(/images/bg-pic.png);
     background-blend-mode: normal, color-burn, normal;
-    background-position:center;
-    background-repeat:no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
     background-attachment: fixed;
     position: absolute;
     overflow: hidden;
@@ -13,46 +13,42 @@
     background-size: cover;
 }
 /*Navbar*/
-#A{
-    height:8em;
+#A {
+    height: 8em;
 }
 
 /* 左小白框*/
-#B-categoryButton{
+#B-categoryButton {
     display: block;
-    position: fixed;
-    left:2em;   
-    width: 15%;
+    left: 2em;
     height: 650px;
     border-radius: 50px;
     background: rgba(255, 255, 255, 0.5);
 }
 
-/* 左小白框內框*/ 
-#C-categoryButton{
+/* 左小白框內框*/
+#C-categoryButton {
     display: block;
     margin: auto;
     position: relative;
-    top:25px;
-    width: 100%;
+    top: 25px;
     height: 600px;
     background: rgba(255, 255, 255, 0);
     overflow-y: auto;
 }
 
 /* 大白框*/
-#B{
+#B {
+    margin-left: 1em;
     display: block;
-    position: fixed;
-    left: 15em;    
-    width: 80%;
+    right: 2em;
     height: 650px;
     background: rgba(255, 255, 255, 0.5);
     border-radius: 50px;
 }
 
 /* 大白框內框*/
-#C{
+#C {
     display: block;
     margin: auto;
     position: relative;
@@ -63,6 +59,6 @@
 }
 /*----網頁框架ending----*/
 
-.nav-link{
+.nav-link {
     text-align: center;
 }
