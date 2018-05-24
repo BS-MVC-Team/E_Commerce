@@ -87,6 +87,12 @@ namespace Commerce.Controllers
             return View();
         }
 
+        [HttpPost]
+        public JsonResult SignUp(string MemberId,string MemberPassword,string Name,string Phone,string Email,string Address)
+        {
+            return Json("");
+        }
+
         public ActionResult Category()
         {
             ViewBag.Title = "目錄";
