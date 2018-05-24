@@ -84,6 +84,7 @@ form{
     margin-left: 2em;
 }
 
-.form-row {
-    padding: 15px 5px;
+.form-row 
+{
+    padding: 2px 0px 0px 0px;
 }
