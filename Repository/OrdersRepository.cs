@@ -18,7 +18,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=Commerce; integrated security=true");
             var sql = "INSERT INTO Orders VALUES ( @EmployeeID, @MemberID, @ShipName, @ShipAddress, @ShipPhone, @ShippedDate, @OrderDate, @ReceiptedDate, @Discount, @Status)";
-            //var sql = "INSERT INTO Orders VALUES ( @EmployeeID, @MemberID, @ShipName, @ShipAddress, @ShipPhone, @ShippedDate, @OrderDate, @ReceiptedDate, @Discount, @Status)";
+            
 
             SqlCommand command = new SqlCommand(sql, connection);
 

@@ -1,6 +1,7 @@
 ﻿
 using BuildSchool.MvcSolution.OnlineStore.Models;
 using Dapper;
+using Procedure;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -132,7 +133,16 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
         }
 
-
+        public IEnumerable<Products> FindProductByUnitPrice(decimal lower, decimal upper)
+        {
+            SqlConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            return connection.Query<Products>("FindProductByUnitPrice", new { lower, upper }, commandType: CommandType.StoredProcedure);
+        }
+        public IEnumerable<FindProductFormatByProductID> FindProductFormatByProductID(int productid)
+        {
+            SqlConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            return connection.Query<FindProductFormatByProductID>("FindProductFormatByProductID", new { productid }, commandType: CommandType.StoredProcedure);
+        }
         public IEnumerable<Products> FindByProductName(string ProductName)
         {
             IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
