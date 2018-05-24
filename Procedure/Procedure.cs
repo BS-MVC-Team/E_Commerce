@@ -56,6 +56,19 @@ namespace Procedure
         public int Total { get; set; }
     }
 
+    public class FindProductFormatByProductID
+    {
+        public int ProductID { get; set; }
+        public string ProductName { get; set; }
+        public string ProductImage { get; set; }
+        public decimal UnitPrice { get; set; }
+        public string Description { get; set; }
+        public string Color { get; set; }
+        public string Size { get; set; }
+        public int StockQuantity { get; set; }
+        public int ProductFormatID { get; set; }
+    }
+
     public class Procedure
     {
         public IEnumerable<GetBuyerOrderModel> GetBuyerOrder(string memberID)

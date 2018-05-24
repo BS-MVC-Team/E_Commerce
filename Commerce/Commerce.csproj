@@ -152,6 +152,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Commerce.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ShoppingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -163,6 +164,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\categoryStyle.css" />
+    <Content Include="Content\navbarStyle.css" />
+    <Content Include="Content\ProductInterface.css" />
     <Content Include="Content\homeStyle.css" />
     <Content Include="Content\indexStyle.css" />
     <Content Include="Content\login_employeeStyle.css" />
@@ -209,7 +212,13 @@
     <None Include="Views\Home\Login_Employee.cshtml" />
     <None Include="Views\Home\Login_Member.cshtml" />
     <None Include="Views\Home\PageModel.cshtml" />
+    <Content Include="Views\Home\Quantity.cshtml" />
+    <Content Include="Views\Home\shoppingcar1.cshtml" />
     <None Include="Views\Home\SignUp.cshtml" />
+    <None Include="Views\Home\ProductInterface.cshtml" />
+    <Content Include="Views\Shopping\Main.cshtml" />
+    <None Include="Views\Shopping\navbar.cshtml" />
+    <None Include="Views\Home\origin.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -244,6 +253,10 @@
       <Project>{78b78475-64e9-47e2-b586-3b7c9718b176}</Project>
       <Name>Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Procedure\Procedure.csproj">
+      <Project>{9A3C2F9D-4FBB-4990-9696-4DD7523D172E}</Project>
+      <Name>Procedure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Repository\Repository.csproj">
       <Project>{f0185e25-d0f1-40ac-ade1-f22197a1c6d3}</Project>
       <Name>Repository</Name>
@@ -263,7 +276,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52036</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

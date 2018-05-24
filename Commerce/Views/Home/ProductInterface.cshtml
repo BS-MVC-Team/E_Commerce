@@ -1,0 +1,232 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Product | TODAY</title>
+
+    <link rel="stylesheet" href="~/Content/ProductInterface.css" />
+
+</head>
+
+<body>
+
+
+    <div id="container-fluid">
+        <div class="row" id="A">
+            <div class="col">
+                <nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color:rgba(255, 255, 255, 0);">
+                    <a class="navbar-brand" href="/home.html">
+                        <img src="https://i.imgur.com/qwIDe4E.png" width="80" class="d-inline-block align-center" alt=""> TODAY
+                    </a>
+                    <div class="btn-group" role="group" aria-label="">
+                        <button type="button" class="btn btn-outline-danger" style="margin-right:1px;">外套</button>
+                        <button type="button" class="btn btn-outline-dark" style="margin-right:1px;">上衣</button>
+                        <button type="button" class="btn btn-outline-danger" style="margin-right:1px;">褲子</button>
+                        <button type="button" class="btn btn-outline-dark" style="margin-right:1px;">內搭</button>
+                        <button type="button" class="btn btn-outline-danger" style="margin-right:1px;">配件</button>
+                    </div>
+                    <button type="button" class="btn btn-dark" style="margin-left:2px;" data-toggle="collapse" data-target="#searchbar">
+                        搜尋
+                    </button>
+                    <div id="searchbar" class="collapse in">
+                        <form class="form-inline">
+                            <input class="form" type="search" placeholder="Search" aria-label="Search" style="margin-right:1px;">
+                            <button class="btn btn-outline-success" type="submit">搜尋</button>
+                        </form>
+                    </div>
+                    <div>
+                        <a href="/login.html">
+                            <input type="submit" class="btn btn-outline-danger" style="position: absolute; right: 2em;" value="會員登入" />
+                        </a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div id="B">
+            <div class="row">
+                <div class="nav flex-column nav-pills col-2" id="left" role="tablist" aria-orientation="vertical">
+                    <a class="nav-link active" id="v" data-toggle="pill" href="#v-pills-a" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                        <img src="https://photo.hitobp.com.tw/photo/02070183-01.jpg" height="100%" width="100%;">
+                    </a>
+                    <a class="nav-link" id="v" data-toggle="pill" href="#v-pills-b" role="tab" aria-controls="v-pills-messages" aria-selected="false">
+                        <img src="https://photo.hitobp.com.tw/photo/02070183-02.jpg" height="100%" width="100%;">
+                    </a>
+                    <a class="nav-link" id="v" data-toggle="pill" href="#v-pills-c" role="tab" aria-controls="v-pills-messages" aria-selected="false">
+                        <img src="https://photo.hitobp.com.tw/photo/02070183-03.jpg" height="100%" width="100%;">
+                    </a>
+                    <a class="nav-link" id="v" data-toggle="pill" href="#v-pills-d" role="tab" aria-controls="v-pills-messages" aria-selected="false">
+                        <img src="https://photo.hitobp.com.tw/photo/02070183-04.jpg" height="100%" width="100%;">
+                    </a>
+                </div>
+                <div class="tab-content col-4" id="right">
+                    <div class="tab-pane fade show active productimg " id="v-pills-a" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <img src="https://photo.hitobp.com.tw/photo/02070183-01.jpg" width="96%">
+                    </div>
+                    <div class="tab-pane fade productimg" id="v-pills-b" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <img src="https://photo.hitobp.com.tw/photo/02070183-02.jpg" width="96%">
+                    </div>
+                    <div class="tab-pane fade productimg" id="v-pills-c" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                        <img src="https://photo.hitobp.com.tw/photo/02070183-03.jpg" width="96%">
+                    </div>
+                    <div class="tab-pane fade productimg" id="v-pills-d" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                        <img src="https://photo.hitobp.com.tw/photo/02070183-05.jpg" width="96%">
+                    </div>
+                </div>
+                <div id="text" class="col-4">
+                    不敗百搭單品
+                    <br>
+                    <p id="Product_Name">@ViewData["productname"]</p>
+                    <br>
+                    <br>
+                    <table class="table">
+                        <tr>
+                            商品尺寸：
+                            <div id="selectStyle">
+                                <select id="select_size">
+
+                                    @if (ViewData["productsize"] == null)
+                                {
+                                    <option></option>
+                            }
+                            else
+                            {
+                                foreach (var item in ViewData["productsize"] as IEnumerable<string>)
+                                {
+                                    <option>@item</option>
+                            }
+                        }
+                                    @*<option>XL</option>
+                                    <option>L</option>
+                                    <option>M</option>
+                                    <option>S</option>
+                                    <option>XS</option>*@
+                                </select>
+                            </div>
+                            </select>
+                        </tr>
+                    </table>
+                    <table class="table">
+                        <tr>
+                            商品顏色：
+                            <div id="selectStyle">
+                                <select id="select_color">
+
+                                    @if (ViewData["productcolor"] == null)
+                                {
+                                    <option></option>
+                            }
+                            else
+                            {
+                                foreach (var item in ViewData["productcolor"] as IEnumerable<string>)
+                                {
+                                    <option>@item</option>
+                            }
+                        }
+                                    @*<option>黑色</option>
+                                    <option>灰色</option>
+                                    <option>紅色</option>
+                                    <option>藍色</option>
+                                    <option>綠色</option>*@
+                                </select>
+                            </div>
+                            </select>
+                        </tr>
+                    </table>
+                    <table class="table">
+                        <tr>
+                            商品售價
+                            <td>
+                                <h1 id=""> $ <span id="price">@ViewData["productprice"]</span> </h1>/件
+                            </td>
+                            <td>
+                                <p>當前庫存數量:<label id="quantry"></label></p>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="input-group mb-7">
+                        <input id="totalcount" type="text" class="form-control" placeholder="總共購買數量" aria-label="">
+                        <div class="input-group-append">
+                            <button id="entertocar" class="btn btn-outline-light" type="submit">加入購物車！</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="p" hidden>@ViewData["product"]</div>
+        <div id="pid" hidden>@ViewData["productid"]</div>
+</body>
+
+
+<script>
+
+    $("#entertocar").on("click", function (event) {
+        var id = $("#pid").text();
+        console.log("id ="+ id)
+        var size = $("#select_size").val();
+        var color = $("#select_color").val();
+        var price = $("#price").text();
+        var totalQuality = $("#totalcount").val();
+        var quality = $("#quality").val();
+        if (quality == 0) {
+            alert("很抱歉!該商品進貨中");
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                url: "/Home/shoppingcar1",
+                data: {
+                    productid: $("#pid").text(),
+                    color: $("#select_color").val(),
+                    size: $("#select_size").val(),
+                    Quantity: $("#totalcount").val(),
+                },
+                success: function (result) {
+                    location.href = '@Url.Action("shoppingcar1","Home")';
+                }
+            });
+
+        }
+    });
+    $(document).on("change", "#select_color", function (e) {
+        console.log(e);
+        quantity();
+    })
+    $(document).on("change", "#select_size", function (e) {
+        console.log(e);
+        quantity();
+    })
+    var quantity = function () {
+        $("#quantry").text("");
+        $.ajax({
+            url: "/Home/Quantity",
+            data: {
+                color: $("#select_color").val(),
+                size: $("#select_size").val(),
+                productjson: $("#p").text(),
+            },
+            success: function (result) {
+                $("#quantry").text(result);
+            }
+        });
+    }
+    $(function () {
+        $("#quantry").text("");
+        $.ajax({
+            url: "/Home/Quantity",
+            data: {
+                color: $("#select_color").val(),
+                size: $("#select_size").val(),
+                productjson: $("#p").text(),
+            },
+            success: function (result) {
+                $("#quantry").html(result);
+            }
+        });
+    })
+   
+    
+
+</script>
+
+</html>
+

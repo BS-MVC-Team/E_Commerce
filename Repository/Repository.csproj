@@ -57,6 +57,10 @@
       <Project>{522B70B1-BA21-4FE0-990C-31D5780A86A3}</Project>
       <Name>Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Procedure\Procedure.csproj">
+      <Project>{9A3C2F9D-4FBB-4990-9696-4DD7523D172E}</Project>
+      <Name>Procedure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Utils\Utils.csproj">
       <Project>{a3958876-9da9-49f6-be37-bd02d8856926}</Project>
       <Name>Utils</Name>
