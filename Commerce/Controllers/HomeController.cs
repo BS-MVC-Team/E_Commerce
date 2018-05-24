@@ -5,6 +5,8 @@ using Procedure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -90,6 +92,69 @@ namespace Commerce.Controllers
             return View();
         }
 
+        [HttpPost]
+        public JsonResult SignUp(string MemberId,string MemberPassword, string MemberCheckPassword, string Name,string Phone,string Email,string Address)
+        {
+            if(string.IsNullOrWhiteSpace(MemberId) || string.IsNullOrWhiteSpace(MemberPassword) || string.IsNullOrWhiteSpace(MemberCheckPassword) ||
+                string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Phone) || string.IsNullOrWhiteSpace(Email) ||
+                string.IsNullOrWhiteSpace(Address))
+            {
+                return Json("填空區不可有空白");
+            }
+            else
+            {
+                if(Regex.Match(Name, @"[\u3000-\u9FA5\x20]{2,4}").Success && Regex.Match(MemberId, @"[\w\-]{8,12}").Success)
+                {
+                    if(Regex.Match(MemberPassword, @"[\x21-\x7E]{8,12}").Success)
+                    {
+                        if (MemberPassword != MemberCheckPassword)
+                        {
+                            return Json("確認密碼有誤");
+                        }
+                        else
+                        {
+                            if (IsValidEmail(Email) && Regex.Match(Phone, @"(\(?\d{3,4}\)?)?[\s-]?\d{7,8}[\s-]?\d{0,4}").Success)
+                            {
+                                MemberRepository repository = new MemberRepository();
+                                if (repository.FindById(MemberId) == null)
+                                {
+                                    Members members = new Members()
+                                    {
+                                        MemberID = MemberId,
+                                        Password = MemberPassword,
+                                        Name = Name,
+                                        Phone = Phone,
+                                        Email = Email,
+                                        Address = Address
+                                    };
+
+                                    repository.Create(members);
+                                    return Json("註冊成功");
+                                }
+                                else
+                                {
+                                    return Json("此帳號已擁有");
+                                }
+
+                            }
+                            else
+                            {
+                                return Json("電話或是電子信箱格式有誤");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return Json("密碼需8~12碼或是格式不符合");
+                    }                   
+                }
+                else
+                {
+                    return Json("姓名不符合格式或是帳戶需8~12碼");
+                }                
+            }           
+        }
+
         public ActionResult Category()
         {
             ViewBag.Title = "目錄";
@@ -120,6 +185,19 @@ namespace Commerce.Controllers
             Response.Cookies.Add(cookie);
 
             return RedirectToAction("Index");
+        }
+
+        bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
         }
         public ActionResult ProductInterface(string productid)
         {
