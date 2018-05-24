@@ -19,9 +19,6 @@ namespace Commerce.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "首頁";
-            var db = new Commerce();
-            //var query = db
-
             return View();
         }
 
