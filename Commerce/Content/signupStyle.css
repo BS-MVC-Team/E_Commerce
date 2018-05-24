@@ -1,9 +1,12 @@
+body {
+    min-width: 500px;
+}
 /*----背景與漸層----*/
-#container-fluid{
+#container-fluid {
     background: -webkit-linear-gradient(270deg, #FFFFFF 0%, rgba(255, 255, 255, 0.38) 50%, rgba(255, 255, 255, 0) 100%), url(/images/bg-pic.png);
     background-blend-mode: normal, color-burn, normal;
-    background-position:center;
-    background-repeat:no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
     background-attachment: fixed;
     position: absolute;
     overflow: hidden;
@@ -12,7 +15,7 @@
     background-size: cover;
 }
 
-#signup{
+#signup {
     text-align: center;
     position: absolute;
     margin: 1em 0 auto;
@@ -21,48 +24,53 @@
     color: rgba(127, 0, 123, 0.93);
 }
 
-#A{
-    height:8em;
+#A {
+    height: 8em;
 }
-#logo-big{
-    width:22%;
+
+#logo-big {
+    width: 22%;
     display: block;
     margin: auto;
 }
-#logo-small{
+
+#logo-small {
     width: 80px;
     display: block;
     margin: auto;
     position: relative;
-    top:1em;
+    top: 1em;
 }
 /* 小白框*/
-#B{
+#B {
     display: block;
     margin: auto;
     position: block;
-    width:800px;
+    width: 800px;
     height: 500px;
     background: rgba(255, 255, 255, 0.5);
     border-radius: 50px;
 }
-#C{
+
+#C {
     float: none;
     position: relative;
     margin-top: 2em;
 }
-#Cb{
+
+#Cb {
     float: none;
 }
 
-.form-control{
+.form-control {
     text-align: center;
-    top:50px;
+    position: relative;
+    top: 50px;
     margin: 0 auto;
-    margin-top:1em;
+    margin-top: 1em;
 }
 
-#signupBtn{
+#signupBtn {
     float: none;
     position: relative;
     display: flex;
@@ -71,7 +79,7 @@
     font-size: 22px;
 }
 
-#wantLoginBtn{
+#wantLoginBtn {
     float: none;
     position: relative;
     display: flex;
@@ -79,11 +87,7 @@
     font-size: 12px;
 }
 
-form{
+form {
     margin-right: 1em;
     margin-left: 2em;
-}
-
-.form-row {
-    padding: 15px 5px;
 }

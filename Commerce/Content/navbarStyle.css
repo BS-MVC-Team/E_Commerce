@@ -1,0 +1,18 @@
+/*----網頁框架start----*/
+/*背景與漸層*/
+#container-fluid{
+    background: -webkit-linear-gradient(270deg, #FFFFFF 0%, rgba(255, 255, 255, 0.38) 50%, rgba(255, 255, 255, 0) 100%), url(/images/bg-pic.png);
+    background-blend-mode: normal, color-burn, normal;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment: fixed;
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+/*Navbar*/
+#A{
+    height:8em;
+}

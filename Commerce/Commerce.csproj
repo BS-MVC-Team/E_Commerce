@@ -143,6 +143,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ShoppingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -153,6 +154,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\categoryStyle.css" />
+    <Content Include="Content\navbarStyle.css" />
     <Content Include="Content\ProductInterface.css" />
     <Content Include="Content\homeStyle.css" />
     <Content Include="Content\indexStyle.css" />
@@ -181,7 +183,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <None Include="Views\Home\Category.cshtml" />
-    <Content Include="Views\Home\EnterShoppingcar.cshtml" />
     <None Include="Views\Home\Home.cshtml" />
     <Content Include="images\bg-pic.png" />
     <Content Include="images\googleLogin.png" />
@@ -205,6 +206,9 @@
     <Content Include="Views\Home\shoppingcar1.cshtml" />
     <None Include="Views\Home\SignUp.cshtml" />
     <None Include="Views\Home\ProductInterface.cshtml" />
+    <Content Include="Views\Shopping\Main.cshtml" />
+    <None Include="Views\Shopping\navbar.cshtml" />
+    <None Include="Views\Home\origin.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

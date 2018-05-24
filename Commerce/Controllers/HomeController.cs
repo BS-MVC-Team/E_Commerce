@@ -240,7 +240,9 @@ namespace Commerce.Controllers
             return PartialView();
         }
 
-        public ActionResult EnterShoppingcar(string productid, string color, string size, string Quantity)
+
+        [HttpPost]
+        public ActionResult shoppingcar1(string productid, string color, string size, string Quantity)
         {
             JavaScriptSerializer JSONSerializer = new JavaScriptSerializer();
             var cookieName = "shoppingcar";
@@ -295,10 +297,13 @@ namespace Commerce.Controllers
                     Response.Cookies.Add(hc);
                 }
             }
-            return View("shoppingcar1");
+            return View();
+        }
 
+        public ActionResult shoppingcar1()
+        {
 
-
+            return View();
         }
 
     }
