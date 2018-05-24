@@ -17,16 +17,16 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=Commerce; integrated security=true");
-            var sql = "INSERT INTO Members VALUES (@MemberID, @Password, @Name, @Phone, @Address, @Email)";
+            var sql = "INSERT INTO Members VALUES (@MemberID, @Password, @Name, @Email, @Phone, @Address)";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@MemberID", model.MemberID);
             command.Parameters.AddWithValue("@Password", model.Password);
             command.Parameters.AddWithValue("@Name", model.Name);
-            command.Parameters.AddWithValue("@Phone", model.Phone);
-            command.Parameters.AddWithValue("@Address", model.Address);
             command.Parameters.AddWithValue("@Email", model.Email);
+            command.Parameters.AddWithValue("@Phone", model.Phone);
+            command.Parameters.AddWithValue("@Address", model.Address);    
 
             connection.Open();
             command.ExecuteNonQuery();
