@@ -208,6 +208,20 @@
             }
         });
     }
+    $(function () {
+        $("#quantry").text("");
+        $.ajax({
+            url: "/Home/Quantity",
+            data: {
+                color: $("#select_color").val(),
+                size: $("#select_size").val(),
+                productjson: $("#p").text(),
+            },
+            success: function (result) {
+                $("#quantry").html(result);
+            }
+        });
+    })
    
     
 

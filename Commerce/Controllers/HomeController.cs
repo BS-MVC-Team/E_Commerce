@@ -295,7 +295,7 @@ namespace Commerce.Controllers
                     Response.Cookies.Add(hc);
                 }
             }
-            return RedirectToAction("Index", "Home");
+            return View("shoppingcar1");
 
 
 

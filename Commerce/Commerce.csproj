@@ -202,6 +202,7 @@
     <None Include="Views\Home\Login_Member.cshtml" />
     <None Include="Views\Home\PageModel.cshtml" />
     <Content Include="Views\Home\Quantity.cshtml" />
+    <Content Include="Views\Home\shoppingcar1.cshtml" />
     <None Include="Views\Home\SignUp.cshtml" />
     <None Include="Views\Home\ProductInterface.cshtml" />
     <Content Include="Web.config" />
