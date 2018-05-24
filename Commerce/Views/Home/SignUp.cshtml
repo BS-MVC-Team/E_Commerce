@@ -16,24 +16,26 @@
             </div>
             <form>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <input type="text" class="form-control" id="memberId" placeholder="設定帳號">
+                    <div class="form-group col-sm-6">
+                        <input type="text" class="form-control" id="memberName" placeholder="姓名">
+                    </div><div class="form-group col-md-6 col-xs-12">
+                        <input type="Id" class="form-control" id="menberId" placeholder="設定帳號">
                     </div>
-                    <div class="form-group col-md-6">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
                         <input type="password" class="form-control" id="memberPassword" placeholder="設定密碼">
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <input type="text" class="form-control" id="memberName" placeholder="姓名">
-                    </div>
-                    <div class="form-group col-md-6">
-                        <input type="tel" class="form-control" id="memberPhone" placeholder="請輸入可收簡訊電話號碼">
+                    <div class="form-group col-sm-6">
+                        <input type="password" class="form-control" id="memberPassword" placeholder="再次確認密碼">
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-12">
-                        <input type="email" class="form-control" id="memberEmail" placeholder="請輸入可正常收信之信箱">
+                    <div class="form-group col-sm-6">
+                        <input type="text" class="form-control" id="memberPhone" placeholder="請輸入可收簡訊電話號碼">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <input type="email" class="form-control" id="menberEmail" placeholder="請輸入可正常收信之信箱">
                     </div>
                 </div>
                 <div class="form-group">
@@ -41,7 +43,7 @@
                 </div>
             </form>
             <div class="col-12">
-                <button id="signupBtn" type="button" class="btn btn-outline-dark">確認註冊</button>
+                <a href="#"><button id="signupBtn" type="button" class="btn btn-outline-dark">確認註冊</button></a>
             </div>
         </div>
         <div class="row" id="C">
@@ -50,33 +52,6 @@
             </div>
         </div>   
     </div>
-
-      <script>
-          $("#signupBtn").on("click", function (event)
-          {
-              var MemberId = $("#memberId").val();
-              var MemberPassword = $("#memberPassword").val();
-              var MemberName = $("#memberName").val();
-              var MemberPhone = $("#memberPhone").val();
-              var MemberEmail = $("#memberEmail").val();
-              var MemberAddress = $("#memberAddress").val();
-
-              if (check(MemberId) || check(MemberPassword) || check(MemberName) ||
-                  check(MemberPhone) || check(MemberEmail) || check(MemberAddress))
-              {
-                  alert("填空區不可有空白或是特殊字元");                 
-              }
-              else
-              {
-
-              }
-          });
-
-
-          function check(str) {
-              return (!str || str.length === 0 || /^\s*$/.test(str) || /\s/.test(str))
-          }
-      </script>
     
   </body>
 </html>
