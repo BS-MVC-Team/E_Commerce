@@ -14,11 +14,23 @@ namespace Commerce.Controllers
         // GET: Shopping
         public ActionResult ShoppingCart1()
         {
+            if(Request.Cookies["shoppingcar"] == null)
+            {
+                ViewBag.ShoppingCart = new List<Shopping>();
+            }
+            else
+            {
+                JavaScriptSerializer JSONSerializer = new JavaScriptSerializer();
+                string json = HttpUtility.UrlDecode(Request.Cookies["shoppingcar"].Value);
+                var shopping = JSONSerializer.Deserialize<List<Shopping>>(json);
+                ViewBag.ShoppingCart = shopping;
+            }
+
             return View();
         }
 
         [HttpPost]
-        public ActionResult ShoppingCart1(string productid, string color, string size, string Quantity)
+        public JsonResult ShoppingCart1(string productid, string color, string size, string Quantity)
         {
             JavaScriptSerializer JSONSerializer = new JavaScriptSerializer();
             var cookieName = "shoppingcar";
@@ -40,7 +52,7 @@ namespace Commerce.Controllers
             };
             if (quantity.StockQuantity == 0)
             {
-                return View("NoProductQuantity");
+                return Json("NoProductQuantity");
             }
             else
             {
@@ -73,7 +85,7 @@ namespace Commerce.Controllers
                     Response.Cookies.Add(hc);
                 }
             }
-            return View();
+            return Json("Add Success");
         }
 
         public ActionResult NavBar()

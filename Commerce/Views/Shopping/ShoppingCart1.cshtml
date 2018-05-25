@@ -133,73 +133,44 @@
 
     </div>
 
-    <div class="row mt-4">
-        <div class="col-4">
-            <img src="C:\Users\A550\Desktop\購物車\image\skirt.jpg" width="150" height="200">
-        </div>
+    @foreach (var item in (List<BuildSchool.MvcSolution.OnlineStore.Models.Shopping>) @ViewBag.ShoppingCart)
+    {
+        <div class="row mt-4">
+            <div class="col-4">
+                <img src="C:\Users\A550\Desktop\購物車\image\skirt.jpg" width="150" height="200">
+            </div>
 
-        <div class="col-4">
-            <h6>
-                輕柔氛雪紡中長裙
-                <br>
-                <br>顏色:白
-                <br>
-                <br>尺吋:S
-            </h6>
-        </div>
+            <div class="col-4">
+                <h6>
+                    商品: @item.ProductName
+                    <br>
+                    <br>顏色: @item.Color
+                    <br>
+                    <br>尺寸: @item.Size
+                </h6>
+            </div>
 
-        <div class="col-4 " id="col">
-            <nav class="nav">
-                <select>
-                    <option value="volvo">1</option>
-                    <option value="saab">2</option>
-                    <option value="opel">3</option>
-                    <option value="audi">4</option>
-                    <option value="audi">5</option>
-                </select>
-                <a class="nav-link disabled" href="#">NT.300</a>
-                <a class="nav-link disabled" href="#">NT.300</a>
-                <a class="nav-link disabled" href="#">NT.300</a>
-                <a class="nav-link disabled" href="#">
-                    <i class="fas fa-trash"></i>
-                </a>
-            </nav>
+            <div class="col-4 " id="col">
+                <nav class="nav">
+                    <select>
+                        <option value="volvo">1</option>
+                        <option value="saab">2</option>
+                        <option value="opel">3</option>
+                        <option value="audi">4</option>
+                        <option value="audi">5</option>
+                    </select>
+                    <a class="nav-link disabled" href="#">NT.300</a>
+                    <a class="nav-link disabled" href="#">NT.300</a>
+                    <a class="nav-link disabled" href="#">NT.300</a>
+                    <a class="nav-link disabled" href="#">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </nav>
+            </div>
         </div>
-    </div>
+    }
 
-    <div class="row mt-4">
-        <div class="col-4">
-            <img src="C:\Users\A550\Desktop\購物車\image\longskirt.jpg" width="150" height="200">
-        </div>
 
-        <div class="col-4">
-            <h6>
-                復古格紋高腰綁帶傘襬澎長裙
-                <br>
-                <br>顏色:紫
-                <br>
-                <br>尺吋:S
-            </h6>
-        </div>
-
-        <div class="col-4 " id="col">
-            <nav class="nav">
-                <select>
-                    <option value="volvo">1</option>
-                    <option value="saab">2</option>
-                    <option value="opel">3</option>
-                    <option value="audi">4</option>
-                    <option value="audi">5</option>
-                </select>
-                <a class="nav-link disabled" href="#">NT.300</a>
-                <a class="nav-link disabled" href="#">NT.300</a>
-                <a class="nav-link disabled" href="#">NT.300</a>
-                <a class="nav-link disabled" href="#">
-                    <i class="fas fa-trash"></i>
-                </a>
-            </nav>
-        </div>
-    </div>
     &nbsp; &nbsp;
     <HR color="	#888888" size="10" width="100%">
 
