@@ -173,7 +173,7 @@
         else {
             $.ajax({
                 type: "POST",
-                url: "/Home/shoppingcar1",
+                url: "/Shopping/ShoppingCart1",
                 data: {
                     productid: $("#pid").text(),
                     color: $("#select_color").val(),
@@ -181,7 +181,7 @@
                     Quantity: $("#totalcount").val(),
                 },
                 success: function (result) {
-                    location.href = '@Url.Action("shoppingcar1","Home")';
+                    location.href = '@Url.Action("ShoppingCart1","Shopping")';
                 }
             });
 
