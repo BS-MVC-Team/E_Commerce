@@ -19,18 +19,42 @@ namespace Commerce.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "首頁";
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                ViewBag.IsAuthenticated = false;
+                return View();
+            }
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            ViewBag.IsAuthenticated = true;
+            ViewBag.UserName = ticket.UserData;
+
             return View();
         }
 
-        public ActionResult Login_Member()
+        public ActionResult SignIn()
         {
             ViewBag.Title = "登入";
 
             return View();
         }
 
+        public ActionResult ProductDetail()
+        {
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            ViewBag.Title = "聯絡我們";
+
+            return View();
+        }
+
         [HttpPost]
-        public JsonResult Login_Member(string memberid, string memberpassword)
+        public JsonResult SignIn(string memberid, string memberpassword)
         {
             Account account = new Account
             {
@@ -64,24 +88,6 @@ namespace Commerce.Controllers
                 }
             }
 
-        }
-
-        public ActionResult Home()
-        {
-            ViewBag.Title = "首頁";
-            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-
-            if (cookie == null)
-            {
-                ViewBag.IsAuthenticated = false;
-                return View();
-            }
-
-            var ticket = FormsAuthentication.Decrypt(cookie.Value);
-            ViewBag.IsAuthenticated = true;
-            ViewBag.UserName = ticket.UserData;
-
-            return View();
         }
 
         public ActionResult SignUp()
@@ -152,27 +158,6 @@ namespace Commerce.Controllers
                     return Json("姓名不符合格式或是帳戶需8~12碼");
                 }                
             }           
-        }
-
-        public ActionResult Category()
-        {
-            ViewBag.Title = "目錄";
-
-            return View();
-        }
-
-        public ActionResult PageModel()
-        {
-            ViewBag.Title = "型號";
-
-            return View();
-        }
-
-        public ActionResult Login_Employee()
-        {
-            ViewBag.Title = "系統管理員登入";
-
-            return View();
         }
 
         [Route("Logout")]

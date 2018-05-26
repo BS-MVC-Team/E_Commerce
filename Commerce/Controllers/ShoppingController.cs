@@ -12,7 +12,7 @@ namespace Commerce.Controllers
     public class ShoppingController : Controller
     {
         // GET: Shopping
-        public ActionResult ShoppingCart1()
+        public ActionResult ShoppingCart()
         {
             if(Request.Cookies["shoppingcar"] == null)
             {
@@ -30,7 +30,7 @@ namespace Commerce.Controllers
         }
 
         [HttpPost]
-        public JsonResult ShoppingCart1(string productid, string color, string size, string Quantity)
+        public JsonResult ShoppingCart(string productid, string color, string size, string Quantity)
         {
             JavaScriptSerializer JSONSerializer = new JavaScriptSerializer();
             var cookieName = "shoppingcar";
