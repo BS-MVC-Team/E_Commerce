@@ -17,7 +17,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=Commerce; integrated security=true");
-            var sql = "INSERT INTO ProductFormat VALUES (@ProductID, @Size, @Color,@StockQuantity)";
+            var sql = "INSERT INTO ProductFormat VALUES (@ProductID, @Size, @Color,@StockQuantity,@image)";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -25,6 +25,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             command.Parameters.AddWithValue("@Size", model.Size);
             command.Parameters.AddWithValue("@Color", model.Color);
             command.Parameters.AddWithValue("@StockQuantity", model.StockQuantity);
+            command.Parameters.AddWithValue("@image", model.image);
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
@@ -34,7 +35,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=Commerce; integrated security=true");
-            var sql = "UPDATE ProductFormat SET ProductID=@ProductID, Size=@Size, Color=@Color,StockQuantity =@StockQuantity WHERE ProductFormatID = @ProductFormatID";
+            var sql = "UPDATE ProductFormat SET ProductID=@ProductID, Size=@Size, Color=@Color,StockQuantity =@StockQuantity ,image=@image WHERE ProductFormatID = @ProductFormatID";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -43,6 +44,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             command.Parameters.AddWithValue("@Size", model.Size);
             command.Parameters.AddWithValue("@Color", model.Color);
             command.Parameters.AddWithValue("@StockQuantity", model.StockQuantity);
+            command.Parameters.AddWithValue("@image", model.image);
 
             connection.Open();
             command.ExecuteNonQuery();
@@ -130,5 +132,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             //return productFormats;
 
         }
+        
+
     }
 }
