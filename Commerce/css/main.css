@@ -179,6 +179,11 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   line-height: 1em;
 }
 
+#logoword {
+    padding: 5px 20px 0px 10px;
+    color: #e6005c;
+}
+
 .btn-back-to-top:hover {
   opacity: 1;
   background-color: #717fe0;
