@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace BuildSchool.MvcSolution.OnlineStore.Models
 {
-    public class Products
+    public class ShoppingCart
     {
-        public int ProductID { get; set; }
-        public string ProductName { get; set; }
+        public int ShoppingCartID { get; set; }
+        public string MemberID { get; set; }
+        public int ProductFormatID { get; set; }
+        public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }
-        public string Description { get; set; }
-        public int CategoryID { get; set; }
-
     }
 }

@@ -19,7 +19,7 @@ namespace Commerce.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "首頁";
-            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            /*var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
             if (cookie == null)
             {
@@ -29,7 +29,9 @@ namespace Commerce.Controllers
 
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
             ViewBag.IsAuthenticated = true;
-            ViewBag.UserName = ticket.UserData;
+            ViewBag.UserName = ticket.UserData;*/
+
+
 
             return View();
         }
