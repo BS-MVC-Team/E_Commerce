@@ -17,7 +17,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=Commerce; integrated security=true");
-            var sql = "INSERT INTO Members VALUES (@MemberID, @Password, @Name, @Email, @Phone, @Address)";
+            var sql = "INSERT INTO Members VALUES (@MemberID, @Password, @Name, @Email, @Phone, @Address, @MemberGUID)";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -26,7 +26,8 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             command.Parameters.AddWithValue("@Name", model.Name);
             command.Parameters.AddWithValue("@Email", model.Email);
             command.Parameters.AddWithValue("@Phone", model.Phone);
-            command.Parameters.AddWithValue("@Address", model.Address);    
+            command.Parameters.AddWithValue("@Address", model.Address);
+            command.Parameters.AddWithValue("@MemberGUID", Guid.NewGuid());
 
             connection.Open();
             command.ExecuteNonQuery();
