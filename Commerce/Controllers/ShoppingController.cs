@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using System.Web.Security;
 
 namespace Commerce.Controllers
 {
@@ -14,17 +15,17 @@ namespace Commerce.Controllers
         // GET: Shopping
         public ActionResult ShoppingCart()
         {
-            if(Request.Cookies["shoppingcar"] == null)
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
             {
-                ViewBag.ShoppingCart = new List<Shopping>();
+                ViewBag.IsAuthenticated = false;
+                return View();
             }
-            else
-            {
-                JavaScriptSerializer JSONSerializer = new JavaScriptSerializer();
-                string json = HttpUtility.UrlDecode(Request.Cookies["shoppingcar"].Value);
-                var shopping = JSONSerializer.Deserialize<List<Shopping>>(json);
-                ViewBag.ShoppingCart = shopping;
-            }
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            ViewBag.IsAuthenticated = true;
+            ViewBag.UserName = ticket.UserData;
 
             return View();
         }
