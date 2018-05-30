@@ -60,7 +60,7 @@ namespace Procedure
     {
         public int ProductID { get; set; }
         public string ProductName { get; set; }
-        public string ProductImage { get; set; }
+        public string Image { get; set; }
         public decimal UnitPrice { get; set; }
         public string Description { get; set; }
         public string Color { get; set; }
@@ -151,6 +151,23 @@ namespace Procedure
             }
             command.Connection.Close();
             return GetProductOrders;
+        }
+
+        public IEnumerable<FindProductFormatByProductID> GetFormatByProductID(int productid)
+        {
+            var command = Command("dbo.FindProductFormatByProductID");
+            command.Parameters.Add(new SqlParameter("@productid", productid));
+            command.Connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            var GetFormatByProductID = new List<FindProductFormatByProductID>();
+            while (reader.Read())
+            {
+                var GetProductFormat = new FindProductFormatByProductID();
+                GetProductFormat = DbReaderModelBinder<FindProductFormatByProductID>.Bind(reader);
+                GetFormatByProductID.Add(GetProductFormat);
+            }
+            command.Connection.Close();
+            return GetFormatByProductID;
         }
 
         public SqlCommand Command(string CommandText)

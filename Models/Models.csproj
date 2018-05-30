@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Category.cs" />
     <Compile Include="Employees.cs" />
+    <Compile Include="FindIndexProducts.cs" />
     <Compile Include="Members.cs" />
     <Compile Include="OrderDetails.cs" />
     <Compile Include="Orders.cs" />

@@ -130,5 +130,11 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             //return productFormats;
 
         }
+
+        /*public IEnumerable<ProductFormat> FindIndexProducts()
+        {
+            SqlConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            
+        }*/
     }
 }

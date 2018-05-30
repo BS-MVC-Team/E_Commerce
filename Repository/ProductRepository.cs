@@ -148,5 +148,11 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
             return connection.Query<Products>("SELECT * FROM Products WHERE ProductName = @ProductName", new {ProductName });
         }
+
+        public IEnumerable<FindIndexProducts> FindIndexProducts()
+        {
+            SqlConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            return connection.Query<FindIndexProducts>("SELECT * FROM IndexProduct");
+        }
     }
 }

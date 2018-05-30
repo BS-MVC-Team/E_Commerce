@@ -1,0 +1,182 @@
+﻿
+@{
+    ViewBag.Title = "Modal";
+
+}
+@{
+    var i = 0;
+    foreach (var item in @ViewData["ImageGroup"] as IEnumerable<string>)
+    {
+        i++;
+    }
+}
+<div class="col-md-6 col-lg-7 p-b-30">
+
+    <div class="p-l-25 p-r-30 p-lr-0-lg">
+        <div class="wrap-slick3 flex-sb flex-w">
+            <div class="wrap-slick3-dots">
+                <ul class="slick3-dots" style="" role="tablist">
+
+                    @foreach (var item in @ViewData["ImageGroup"] as IEnumerable<string>)
+                    {
+
+                        if (i == 1)
+                        {
+                            <li class="slick-active" role="presentation">
+                                <img src=" @item ">
+                                <div class="slick3-dot-overlay"></div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li role="presentation">
+                                <img src=" @item ">
+                                <div class="slick3-dot-overlay"></div>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+            <div class="wrap-slick3-arrows flex-sb-m flex-w"><button class="arrow-slick3 prev-slick3 slick-arrow" style=""><i class="fa fa-angle-left" aria-hidden="true"></i></button><button class="arrow-slick3 next-slick3 slick-arrow" style=""><i class="fa fa-angle-right" aria-hidden="true"></i></button></div>
+
+            <div class="slick3 gallery-lb slick-initialized slick-slider slick-dotted">
+                <div class="slick-list draggable">
+                    <div class="slick-track" style="opacity: 1; width: 1539px;">
+                        @foreach (var item in @ViewData["ImageGroup"] as IEnumerable<string>)
+                        {
+                            <div class="item-slick3 slick-slide slick-current slick-active" data-thumb="@item" data-slick-index="0" aria-hidden="false" style="width: 513px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;" tabindex="0" role="tabpanel" id="slick-slide10" aria-describedby="slick-slide-control10">
+                                <div class="wrap-pic-w pos-relative">
+                                    <img src="@item" alt="IMG-PRODUCT">
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-5 p-b-30">
+    <div class="p-r-50 p-t-5 p-lr-0-lg">
+        <h4 class="mtext-105 cl2 js-name-detail p-b-14">
+            @foreach (var item in @ViewData["ProductName"] as IEnumerable<string>)
+            {
+                @item
+            }
+        </h4>
+
+        <span class="mtext-106 cl2">
+            $
+            @foreach (var item in @ViewData["UnitPrice"] as IEnumerable<decimal>)
+            {
+                @item
+            }
+        </span>
+
+        <p class="stext-102 cl3 p-t-23">
+            @foreach (var item in @ViewData["Description"] as IEnumerable<string>)
+            {
+                @item
+            }
+        </p>
+
+        <!--  -->
+        <div class="p-t-33">
+            <div class="flex-w flex-r-m p-b-10">
+                <div class="size-203 flex-c-m respon6">
+                    Size
+                </div>
+
+                <div class="size-204 respon6-next">
+                    <div class="rs1-select2 bor8 bg0">
+                        <select class="js-select2" name="time">
+                            
+                            @foreach (var item in @ViewData["Size"] as IEnumerable<string>)
+                            {
+                                <option>@item</option>
+                            }
+
+                        </select>
+                        <div class="dropDownSelect2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-w flex-r-m p-b-10">
+                <div class="size-203 flex-c-m respon6">
+                    Color
+                </div>
+
+                <div class="size-204 respon6-next">
+                    <div class="rs1-select2 bor8 bg0">
+                        <select class="js-select2" name="time" width="50%">
+                            
+                            @foreach (var item in @ViewData["Color"] as IEnumerable<string>)
+                            {
+                                <option>@item</option>
+                            }
+                        </select>
+                        <div class="dropDownSelect2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-w flex-r-m p-b-10">
+                <div class="size-204 flex-w flex-m respon6-next">
+                    <div class="wrap-num-product flex-w m-r-20 m-tb-10">
+                        <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m" id="minus_b">
+                            <i class="fs-16 zmdi zmdi-minus"></i>
+                        </div>
+
+                        <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+
+                        <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m" id="plus_b">
+                            <i class="fs-16 zmdi zmdi-plus"></i>
+                        </div>
+                    </div>
+
+                    <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" id="AddCart">
+                        Add to cart
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+    /*==================================================================
+        [ Slick3 ]*/
+    /*==================================================================
+    [ +/- num product ]*/
+    $('.btn-num-product-down').on('click', function () {
+        var numProduct = Number($(this).next().val());
+        if (numProduct > 0) $(this).next().val(numProduct - 1);
+    });
+
+    $('.btn-num-product-up').on('click', function () {
+        var numProduct = Number($(this).prev().val());
+        $(this).prev().val(numProduct + 1);
+    });
+    $("#AddCart").on("click", function () {
+        $.ajax({
+            url: "/Home/Modal",
+            data: {
+                productid: this.id
+            },
+            success: function (result) {
+                $('.js-modal1').addClass('show-modal1');
+                //$("#modalform").remove();
+                $("#modalform").html(result);
+
+            }
+        });
+    });
+
+
+</script>

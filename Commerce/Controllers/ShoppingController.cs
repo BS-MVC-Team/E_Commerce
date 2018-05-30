@@ -41,7 +41,6 @@ namespace Commerce.Controllers
             {
                 ProductID = quantity.ProductID,
                 ProductName = quantity.ProductName,
-                ProductImage = quantity.ProductImage,
                 UnitPrice = quantity.UnitPrice,
                 Description = quantity.Description,
                 StockQuantity = quantity.StockQuantity,

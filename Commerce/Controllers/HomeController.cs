@@ -4,6 +4,7 @@ using Commerce.Models;
 using Procedure;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
@@ -30,11 +31,39 @@ namespace Commerce.Controllers
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
             ViewBag.IsAuthenticated = true;
             ViewBag.UserName = ticket.UserData;*/
-
+            var productrepository = new ProductRepository();
+            var products = productrepository.FindIndexProducts();
+            ViewData["products"] = products;
+            
 
 
             return View();
         }
+
+        /*[HttpPost]
+        public JsonResult Index(string id)
+        {
+            ViewBag.Title = "首頁";
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                ViewBag.IsAuthenticated = false;
+                return View();
+            }
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            ViewBag.IsAuthenticated = true;
+            ViewBag.UserName = ticket.UserData;
+           
+                Procedure.Procedure procedure = new Procedure.Procedure();
+                var ProductFormat = procedure.GetFormatByProductID(int.Parse(id));
+                ViewData["ProductFormat"] = ProductFormat;
+            return Json(ProductFormat);
+            
+         
+            
+        }*/
 
         public ActionResult SignIn()
         {
@@ -42,6 +71,7 @@ namespace Commerce.Controllers
 
             return View();
         }
+
 
         public ActionResult ProductDetail()
         {
@@ -199,7 +229,6 @@ namespace Commerce.Controllers
                 ViewData["productname"] = item.ProductName;
                 ViewData["productprice"] = item.UnitPrice.ToString("#0.0");
                 ViewData["Description"] = item.Description;
-                ViewData["productimage"] = item.ProductImage;
                 productcolor.Add(item.Color);
                 productsize.Add(item.Size);
             }
@@ -210,20 +239,30 @@ namespace Commerce.Controllers
             return View();
         }
 
-        public ActionResult Quantity(string color, string size, string productjson)
+        public ActionResult Modal(string productid)
         {
-            JavaScriptSerializer JSONSerializer = new JavaScriptSerializer();
-            var products = JSONSerializer.Deserialize<List<FindProductFormatByProductID>>(productjson);
-            var product = products.FirstOrDefault((x) => x.Color == color && x.Size == size);
-            if (product == null)
-            {
-                ViewData["quantity"] = "0";
-            }
-            else
-            {
-                ViewData["quantity"] = product.StockQuantity.ToString();
-            }
+            Procedure.Procedure procedure = new Procedure.Procedure();
+            var ProductFormat = procedure.GetFormatByProductID(int.Parse(productid));
+            ViewData["ProductFormat"] = ProductFormat;
+            var imagegroup = ProductFormat.Select((x)=>x.Image).Distinct();
+            ViewData["ImageGroup"] = imagegroup;
+            var productName = ProductFormat.Select((x) => x.ProductName).Distinct();
+            ViewData["ProductName"] = productName;
+            var Description = ProductFormat.Select((x) => x.Description).Distinct();
+            ViewData["Description"] = Description;
+            var UnitPrice = ProductFormat.Select((x) => x.UnitPrice).Distinct();
+            ViewData["UnitPrice"] = UnitPrice;
+            var Color = ProductFormat.Select((x) => x.Color).Distinct();
+            ViewData["Color"] = Color;
+            var Size = ProductFormat.Select((x) => x.Size).Distinct();
+            ViewData["Size"] = Size;
             return PartialView();
+        }
+
+        [HttpPost]
+        public void ModaltoCart()
+        {
+
         }
     }
 }
