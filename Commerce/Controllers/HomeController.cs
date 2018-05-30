@@ -20,7 +20,7 @@ namespace Commerce.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "首頁";
-            /*var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
             if (cookie == null)
             {
@@ -30,6 +30,8 @@ namespace Commerce.Controllers
 
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
             ViewBag.IsAuthenticated = true;
+            ViewBag.UserName = ticket.UserData;
+
             ViewBag.UserName = ticket.UserData;*/
             var productrepository = new ProductRepository();
             var products = productrepository.FindIndexProducts();
@@ -75,11 +77,35 @@ namespace Commerce.Controllers
 
         public ActionResult ProductDetail()
         {
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                ViewBag.IsAuthenticated = false;
+                return View();
+            }
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            ViewBag.IsAuthenticated = true;
+            ViewBag.UserName = ticket.UserData;
+
             return View();
         }
 
         public ActionResult Contact()
         {
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                ViewBag.IsAuthenticated = false;
+                return View();
+            }
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            ViewBag.IsAuthenticated = true;
+            ViewBag.UserName = ticket.UserData;
+
             ViewBag.Title = "聯絡我們";
 
             return View();
