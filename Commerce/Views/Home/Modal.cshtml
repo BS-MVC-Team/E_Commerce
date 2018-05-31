@@ -151,7 +151,7 @@
         <p id="productid" hidden>@ViewData["ProductID"]</p>
     </div>
 </div>
-<script src="/vendor/slick/slick.min.js"></script>
+
 <script>
     /*==================================================================
         [ Slick3 ]*/
@@ -181,7 +181,12 @@
                 //$('.js-modal1').addClass('show-modal1');
                 //$("#modalform").remove();
                 console.log(typeof (result))
-                if (result == "True") {
+                if (result == "1") {
+                    alert("please login ");
+                }
+                else if (result == "2")
+                {
+                    alert("加入成功!!");
                     $("#Close").click();
                 }
                 else

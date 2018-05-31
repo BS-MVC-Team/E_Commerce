@@ -24,7 +24,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             //    });
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=Commerce; integrated security=true");
-            var sql = "INSERT INTO ShoppingCart VALUES ( @MemberID, @ProductID, @ProductFormatID, @ProductName, @UnitPrice, @Color, @Size, @Image, @Quantity)";
+            var sql = "INSERT INTO ShoppingCart VALUES ( @MemberID, @ProductID, @ProductFormatID, @Quantity)";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -32,11 +32,6 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             command.Parameters.AddWithValue("@MemberID", model.MemberID);
             command.Parameters.AddWithValue("@ProductID", model.ProductID);
             command.Parameters.AddWithValue("@ProductFormatID", model.ProductFormatID);
-            command.Parameters.AddWithValue("@ProductName", model.ProductName);
-            command.Parameters.AddWithValue("@UnitPrice", model.UnitPrice);
-            command.Parameters.AddWithValue("@Color", model.Color);
-            command.Parameters.AddWithValue("@Size", model.Size);
-            command.Parameters.AddWithValue("@Image", model.Image);
             command.Parameters.AddWithValue("@Quantity", model.Quantity);
 
 
@@ -44,25 +39,25 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             command.ExecuteNonQuery();
             connection.Close();
         }
-            connection.Execute("INSERT INTO ShoppingCart VALUES ( @MemberID, @ProductFormatID, @Quantity, @UnitPrice )",
-                new
-                {
-                    model.MemberID,
-                    model.ProductFormatID,
-                    model.Quantity,
-                    model.UnitPrice
-                });
-        }*/
+        //    connection.Execute("INSERT INTO ShoppingCart VALUES ( @MemberID, @ProductFormatID, @Quantity, @UnitPrice )",
+        //            new
+        //            {
+        //                model.MemberID,
+        //                model.ProductFormatID,
+        //                model.Quantity,
+        //                model.UnitPrice
+        //});}
 
 
-        public void Update(int ShoppingCartID,int Quantity)
+
+        public void Update(int ShoppingCartID, int Quantity)
         {
             IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
             connection.Execute("UPDATE ShoppingCart SET Quantity = @Quantity WHERE ShoppingCartID = @ShoppingCartID",
                 new
                 {
-                   Quantity,
-                   ShoppingCartID,
+                    Quantity,
+                    ShoppingCartID,
                 });
         }
 

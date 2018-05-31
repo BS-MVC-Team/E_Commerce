@@ -20,7 +20,12 @@ namespace Commerce.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "首頁";
-            /*var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            
+
+            var productrepository = new ProductRepository();
+            var products = productrepository.FindIndexProducts();
+            ViewData["products"] = products;
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
             if (cookie == null)
             {
@@ -31,12 +36,6 @@ namespace Commerce.Controllers
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
             ViewBag.IsAuthenticated = true;
             ViewBag.UserName = ticket.UserData;
-
-            ViewBag.UserName = ticket.UserData;*/
-            var productrepository = new ProductRepository();
-            var products = productrepository.FindIndexProducts();
-            ViewData["products"] = products;
-            
 
 
             return View();
@@ -293,11 +292,20 @@ namespace Commerce.Controllers
         private string productName;
         private decimal unitPrice;
         [HttpPost]
-        public bool ModaltoCart(string productid, string size,string color,string quantity)
+        public int ModaltoCart(string productid, string size,string color,string quantity)
         {
-            
-            
-            
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                ViewBag.IsAuthenticated = false;
+                return 1;
+            }
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            ViewBag.IsAuthenticated = true;
+            ViewData["UserName"] = ticket.UserData;
+
             Procedure.Procedure procedure = new Procedure.Procedure();
             var ProductFormat = procedure.GetFormatIDByProductIDCS(int.Parse(productid), size, color);
             foreach (var item in ProductFormat)
@@ -311,24 +319,19 @@ namespace Commerce.Controllers
             if (int.Parse(quantity)< stock)
             {
                 ShoppingCart shoppingCart = new ShoppingCart {
-                    MemberID = "123",
+                    MemberID = ticket.UserData,
                     ProductFormatID = productformatid,
-                    Image = image,
-                    Size = size,
-                    Color = color,
                     ProductID = int.Parse(productid),
-                    ProductName = productName,
                     Quantity = int.Parse(quantity),
-                    UnitPrice = unitPrice
                 };
                 var repository = new ShoppingCartRepository();
                 repository.Create(shoppingCart);
-                var isempty = true;
+                var isempty = 2;
                 return isempty;
             }
             else
             {
-                var isempty = false;
+                var isempty = 3;
                 return isempty;
             }
             
