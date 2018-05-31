@@ -20,7 +20,7 @@ namespace Commerce.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "首頁";
-            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            /*var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
             if (cookie == null)
             {
@@ -282,13 +282,56 @@ namespace Commerce.Controllers
             ViewData["Color"] = Color;
             var Size = ProductFormat.Select((x) => x.Size).Distinct();
             ViewData["Size"] = Size;
+            ViewData["ProductID"] = productid;
             return PartialView();
         }
 
-        [HttpPost]
-        public void ModaltoCart()
-        {
 
+        private int stock;
+        private int productformatid;
+        private string image;
+        private string productName;
+        private decimal unitPrice;
+        [HttpPost]
+        public bool ModaltoCart(string productid, string size,string color,string quantity)
+        {
+            
+            
+            
+            Procedure.Procedure procedure = new Procedure.Procedure();
+            var ProductFormat = procedure.GetFormatIDByProductIDCS(int.Parse(productid), size, color);
+            foreach (var item in ProductFormat)
+            {
+                productformatid = item.ProductFormatID;
+                stock = item.StockQuantity;
+                image = item.Image;
+                productName = item.ProductName;
+                unitPrice = item.UnitPrice;
+            }
+            if (int.Parse(quantity)< stock)
+            {
+                ShoppingCart shoppingCart = new ShoppingCart {
+                    MemberID = "123",
+                    ProductFormatID = productformatid,
+                    Image = image,
+                    Size = size,
+                    Color = color,
+                    ProductID = int.Parse(productid),
+                    ProductName = productName,
+                    Quantity = int.Parse(quantity),
+                    UnitPrice = unitPrice
+                };
+                var repository = new ShoppingCartRepository();
+                repository.Create(shoppingCart);
+                var isempty = true;
+                return isempty;
+            }
+            else
+            {
+                var isempty = false;
+                return isempty;
+            }
+            
         }
     }
 }

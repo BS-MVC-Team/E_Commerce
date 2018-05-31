@@ -8,10 +8,15 @@ namespace BuildSchool.MvcSolution.OnlineStore.Models
 {
     public class ShoppingCart
     {
-        public int ShoppingCartID { get; set; }
         public string MemberID { get; set; }
+        public int ProductID { get; set; }
         public int ProductFormatID { get; set; }
-        public int Quantity { get; set; }
+        public string ProductName { get; set; }
         public decimal UnitPrice { get; set; }
+        public string Color { get; set; }
+        public string Size { get; set; }
+        public string Image { get; set; }
+        public int Quantity { get; set; }
+        
     }
 }

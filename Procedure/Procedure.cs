@@ -69,6 +69,15 @@ namespace Procedure
         public int ProductFormatID { get; set; }
     }
 
+    public class FindFormatIDByProductIDCS
+    {
+        public int ProductFormatID { get; set; }
+        public string Image { get; set; }
+        public int StockQuantity { get; set; }
+        public string ProductName { get; set; }
+        public decimal UnitPrice { get; set; }
+    } 
+
     public class Procedure
     {
         public IEnumerable<GetBuyerOrderModel> GetBuyerOrder(string memberID)
@@ -168,6 +177,25 @@ namespace Procedure
             }
             command.Connection.Close();
             return GetFormatByProductID;
+        }
+
+        public IEnumerable<FindFormatIDByProductIDCS> GetFormatIDByProductIDCS(int productid, string size, string color)
+        {
+            var command = Command("dbo.FindFormatIDByProductIDCS");
+            command.Parameters.Add(new SqlParameter("@productid", productid));
+            command.Parameters.Add(new SqlParameter("@color", color));
+            command.Parameters.Add(new SqlParameter("@size", size));
+            command.Connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            var GetFormatIDByProductIDCS = new List<FindFormatIDByProductIDCS>();
+            while (reader.Read())
+            {
+                var GetProductFormatID = new FindFormatIDByProductIDCS();
+                GetProductFormatID = DbReaderModelBinder<FindFormatIDByProductIDCS>.Bind(reader);
+                GetFormatIDByProductIDCS.Add(GetProductFormatID);
+            }
+            command.Connection.Close();
+            return GetFormatIDByProductIDCS;
         }
 
         public SqlCommand Command(string CommandText)

@@ -37,7 +37,10 @@
                     }
                 </ul>
             </div>
-            <div class="wrap-slick3-arrows flex-sb-m flex-w"><button class="arrow-slick3 prev-slick3 slick-arrow" style=""><i class="fa fa-angle-left" aria-hidden="true"></i></button><button class="arrow-slick3 next-slick3 slick-arrow" style=""><i class="fa fa-angle-right" aria-hidden="true"></i></button></div>
+            <div class="wrap-slick3-arrows flex-sb-m flex-w">
+                <button class="arrow-slick3 prev-slick3 slick-arrow" style=""><i class="fa fa-angle-left" aria-hidden="true"></i></button>
+                <button class="arrow-slick3 next-slick3 slick-arrow" style=""><i class="fa fa-angle-right" aria-hidden="true"></i></button>
+            </div>
 
             <div class="slick3 gallery-lb slick-initialized slick-slider slick-dotted">
                 <div class="slick-list draggable">
@@ -61,7 +64,7 @@
 
 <div class="col-md-6 col-lg-5 p-b-30">
     <div class="p-r-50 p-t-5 p-lr-0-lg">
-        <h4 class="mtext-105 cl2 js-name-detail p-b-14">
+        <h4 class="mtext-105 cl2 js-name-detail p-b-14" id="productName">
             @foreach (var item in @ViewData["ProductName"] as IEnumerable<string>)
             {
                 @item
@@ -92,8 +95,8 @@
 
                 <div class="size-204 respon6-next">
                     <div class="rs1-select2 bor8 bg0">
-                        <select class="js-select2" name="time">
-                            
+                        <select class="js-select2" name="time" id="size">
+
                             @foreach (var item in @ViewData["Size"] as IEnumerable<string>)
                             {
                                 <option>@item</option>
@@ -112,8 +115,8 @@
 
                 <div class="size-204 respon6-next">
                     <div class="rs1-select2 bor8 bg0">
-                        <select class="js-select2" name="time" width="50%">
-                            
+                        <select class="js-select2" name="time" id="color">
+
                             @foreach (var item in @ViewData["Color"] as IEnumerable<string>)
                             {
                                 <option>@item</option>
@@ -131,7 +134,7 @@
                             <i class="fs-16 zmdi zmdi-minus"></i>
                         </div>
 
-                        <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+                        <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1" id="quantity">
 
                         <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m" id="plus_b">
                             <i class="fs-16 zmdi zmdi-plus"></i>
@@ -145,10 +148,10 @@
             </div>
         </div>
 
-
+        <p id="productid" hidden>@ViewData["ProductID"]</p>
     </div>
 </div>
-
+<script src="/vendor/slick/slick.min.js"></script>
 <script>
     /*==================================================================
         [ Slick3 ]*/
@@ -165,18 +168,33 @@
     });
     $("#AddCart").on("click", function () {
         $.ajax({
-            url: "/Home/Modal",
+            type: "Post",
+            url: "/Home/ModaltoCart",
             data: {
-                productid: this.id
+                productid: $("#productid").text(),
+                size: $("#size").val(),
+                color: $("#color").val(),
+                quantity: $("#quantity").val(),
+
             },
             success: function (result) {
-                $('.js-modal1').addClass('show-modal1');
+                //$('.js-modal1').addClass('show-modal1');
                 //$("#modalform").remove();
-                $("#modalform").html(result);
+                console.log(typeof (result))
+                if (result == "True") {
+                    $("#Close").click();
+                }
+                else
+                {
+                    alert("此商品正在進貨中~");
+                }
+                
 
             }
         });
     });
+
+    
 
 
 </script>
