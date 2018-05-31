@@ -1,5 +1,6 @@
 ﻿using BuildSchool.MvcSolution.OnlineStore.Models;
 using BuildSchool.MvcSolution.OnlineStore.Repository;
+using Procedure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,66 +28,62 @@ namespace Commerce.Controllers
             ViewBag.IsAuthenticated = true;
             ViewBag.UserName = ticket.UserData;
 
+            ShoppingCartRepository repository = new ShoppingCartRepository();
+            var Data = repository.FindByMemberID(ticket.UserData);
+
+            List<ShoppingCartInformation> shoppingCarts = new List<ShoppingCartInformation>();
+            decimal TotalPrice = 0;
+            foreach(var item in Data)
+            {
+                ProductRepository productRepository = new ProductRepository();
+                var productInformation = productRepository.FindById(item.ProductID);
+
+                ProductFormatRepository productFormatRepository = new ProductFormatRepository();
+                var productFormatInformation = productFormatRepository.FindById(item.ProductFormatID);
+
+                ShoppingCartInformation shoppingCart = new ShoppingCartInformation()
+                {
+                    ShoppingCartID = item.ShoppingCartID,
+                    ProductFormatID = item.ProductFormatID,
+                    ProductName = productInformation.ProductName,
+                    UnitPrice = productInformation.UnitPrice,
+                    Color = productFormatInformation.Color,
+                    Image = productFormatInformation.image,
+                    Size = productFormatInformation.Size,
+                    Quantity = item.Quantity
+                };
+                TotalPrice += productInformation.UnitPrice * item.Quantity;
+                shoppingCarts.Add(shoppingCart);
+            }
+
+            ViewBag.ShoppingCart = shoppingCarts;
+            ViewBag.TotalPrice = TotalPrice;
+
             return View();
         }
 
         [HttpPost]
-        public JsonResult ShoppingCart(string productid, string color, string size, string Quantity)
+        public JsonResult ShoppingCart(int ProductFormatID)
         {
-            JavaScriptSerializer JSONSerializer = new JavaScriptSerializer();
-            var cookieName = "shoppingcar";
-            var productrepository = new ProductRepository();
-            var product = productrepository.FindProductFormatByProductID(int.Parse(productid));
-            var quantity = product.FirstOrDefault((x) => x.Color == color && x.Size == size);
-            var s = new Shopping()
-            {
-                ProductID = quantity.ProductID,
-                ProductName = quantity.ProductName,
-                ProductImage = quantity.ProductImage,
-                UnitPrice = quantity.UnitPrice,
-                Description = quantity.Description,
-                StockQuantity = quantity.StockQuantity,
-                Size = quantity.Size,
-                Color = quantity.Color,
-                Quantity = int.Parse(Quantity),
-                ProductFormatID = quantity.ProductFormatID,
-            };
-            if (quantity.StockQuantity == 0)
-            {
-                return Json("NoProductQuantity");
-            }
-            else
-            {
-                if (Request.Cookies["shoppingcar"] == null)
-                {
-                    var token = Guid.NewGuid().ToString();
-                    var shopping = new List<Shopping>();
-                    shopping.Add(s);
-                    //HttpContext.Application[token] = DateTime.UtcNow.AddHours(12);
-                    string json = JSONSerializer.Serialize(shopping);
-                    var hc = new HttpCookie(cookieName, HttpUtility.UrlEncode(json))
-                    {
-                        Expires = DateTime.Now.AddMinutes(30),
-                        HttpOnly = true
-                    };
-                    Response.Cookies.Add(hc);
-                }
-                else
-                {
-                    string json = HttpUtility.UrlDecode(Request.Cookies["shoppingcar"].Value);
-                    var shopping = JSONSerializer.Deserialize<List<Shopping>>(json);
-                    shopping.Add(s);
-                    //HttpContext.Application[token] = DateTime.UtcNow.AddHours(12);
-                    string jsons = JSONSerializer.Serialize(shopping);
-                    var hc = new HttpCookie(cookieName, HttpUtility.UrlEncode(jsons))
-                    {
-                        Expires = DateTime.Now.AddMinutes(30),
-                        HttpOnly = true
-                    };
-                    Response.Cookies.Add(hc);
-                }
-            }
-            return Json("Add Success");
+            ProductFormatRepository repository = new ProductFormatRepository();
+            var result = repository.FindById(ProductFormatID);
+            return Json(result);
+        }
+
+        [HttpPost]
+        public JsonResult UpdateCartItem(int ShoppingCartID,int Quantity)
+        {
+            ShoppingCartRepository repository = new ShoppingCartRepository();
+            repository.Update(ShoppingCartID,Quantity);
+            return Json("修改成功");
+        }
+
+        [HttpPost]
+        public JsonResult DeleteCartItem(int ShoppingCartID)
+        {
+            ShoppingCartRepository repository = new ShoppingCartRepository();
+            repository.Delete(ShoppingCartID);
+            return Json("刪除成功");
         }
 
         public ActionResult NavBar()

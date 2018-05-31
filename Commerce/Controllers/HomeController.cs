@@ -99,7 +99,7 @@ namespace Commerce.Controllers
                 if (memberpassword == member.Password)
                 {
                     FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
-                        1, "MemberId", DateTime.Now, DateTime.Now.AddMinutes(1), false, memberid);
+                        1, "MemberId", DateTime.Now, DateTime.Now.AddMinutes(5), false, memberid);
 
                     var ticketData = FormsAuthentication.Encrypt(ticket);
 
