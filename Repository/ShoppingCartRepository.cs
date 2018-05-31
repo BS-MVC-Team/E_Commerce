@@ -44,11 +44,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             command.ExecuteNonQuery();
             connection.Close();
         }
-
-
-        public void Update(ShoppingCart model, IDbConnection connection)
-        {
-            connection.Execute("UPDATE ShoppingCart SET MemberID = @MemberID, ProductFormatID = @ProductFormatID, Quantity = @Quantity, UnitPrice = @UnitPrice WHERE ShoppingCartID = @ShoppingCartID",
+            connection.Execute("INSERT INTO ShoppingCart VALUES ( @MemberID, @ProductFormatID, @Quantity, @UnitPrice )",
                 new
                 {
                     model.MemberID,
@@ -56,15 +52,28 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
                     model.Quantity,
                     model.UnitPrice
                 });
+        }*/
+
+
+        public void Update(int ShoppingCartID,int Quantity)
+        {
+            IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            connection.Execute("UPDATE ShoppingCart SET Quantity = @Quantity WHERE ShoppingCartID = @ShoppingCartID",
+                new
+                {
+                   Quantity,
+                   ShoppingCartID,
+                });
         }
 
-        public void Delete(ShoppingCart model, IDbConnection connection)
+        public void Delete(int ShoppingCartID)
         {
-            //connection.Execute("DELETE FROM ShoppingCart WHERE ShoppingCartID = @ShoppingCartID",
-            //    new
-            //    {
-            //        model.ShoppingCartID
-            //    });
+            IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            connection.Execute("DELETE FROM ShoppingCart WHERE ShoppingCartID = @ShoppingCartID",
+                new
+                {
+                    ShoppingCartID
+                });
         }
 
         public ShoppingCart FindById(int CategoryID, IDbConnection connection)
@@ -84,6 +93,13 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public IEnumerable<ShoppingCart> GetAll(IDbConnection connection)
         {
             return connection.Query<ShoppingCart>("SELECT * FROM ShoppingCart");
+        }
+
+        public IEnumerable<ShoppingCart> FindByMemberID(string MemberID)
+        {
+            IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            var result = connection.Query<ShoppingCart>("SELECT * FROM ShoppingCart WHERE MemberID = @MemberID", new { MemberID });
+            return result;
         }
     }
 }

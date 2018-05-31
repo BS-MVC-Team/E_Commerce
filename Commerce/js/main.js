@@ -212,7 +212,85 @@
         $('.js-sidebar').removeClass('show-sidebar');
     });
 
-    
+    /*==================================================================
+    [ +/- num product ]*/
+    $('.btn-num-product-down').on('click', function (e) {
+        var itemCartName = "#item" + this.tabIndex;
+        $("#Checkout").prop("disabled", true);
+        var numProduct = Number($(this).next().val());
+        var value = $(this).next();
+        var ProductFormatId = Number(this.id);
+        var UnitPrice = Number(this.title);
+        var TabIndex = this.tabIndex;
+        var result = "#result" + TabIndex;
+        $.ajax({
+            type: "POST",
+            url: "/Shopping/ShoppingCart",
+            data: '{ProductFormatID: "' + ProductFormatId + '"}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                if (numProduct > response.StockQuantity) {
+                    alert("StockQuantity:" + response.StockQuantity);
+                    value.val(response.StockQuantity);
+                    $(result).text((UnitPrice * response.StockQuantity));
+                    $(itemCartName).attr("tabindex", response.StockQuantity);
+                }
+                else
+                {
+                    if (numProduct > 1) {
+                        value.val(numProduct - 1);
+                        $(result).text((UnitPrice * (numProduct - 1)));
+                        $(itemCartName).attr("tabindex", numProduct - 1);
+                    } 
+                }
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        });        
+    });
+
+    $('.btn-num-product-up').on('click', function () {
+        var itemCartName = "#item" + this.tabIndex;
+        $("#Checkout").prop("disabled", true);
+        var numProduct = Number($(this).prev().val());
+        var value = $(this).prev();
+        var ProductFormatId = Number(this.id);
+        var UnitPrice = Number(this.title);
+        var TabIndex = this.tabIndex;
+        var result = "#result" + TabIndex;
+        $.ajax({
+            type: "POST",
+            url: "/Shopping/ShoppingCart",
+            data: '{ProductFormatID: "' + ProductFormatId + '"}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                if (numProduct >= response.StockQuantity) {
+                    alert("StockQuantity:" + response.StockQuantity);
+                    value.val(response.StockQuantity);
+                    $(result).text((UnitPrice * response.StockQuantity));
+                    $(itemCartName).attr("tabindex", response.StockQuantity);
+                }
+                else {
+                    value.val(numProduct + 1);
+                    $(result).text((UnitPrice * (numProduct + 1)));
+                    $(itemCartName).attr("tabindex", numProduct + 1);
+                }
+            },
+            failure: function (response) {
+                alert(response.responseText);
+            },
+            error: function (response) {
+                alert(response.responseText);
+            }
+        }); 
+    });
+
     /*==================================================================
     [ Rating ]*/
     $('.wrap-rating').each(function(){
