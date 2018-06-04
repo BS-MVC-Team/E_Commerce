@@ -42,24 +42,25 @@
                 <nav class="limiter-menu-desktop container">
 
                     <!-- Logo desktop -->
-                    <a href="#" class="logo">
-                        <img src="/images/icons/logo-01.png" alt="IMG-LOGO">
+                    <a href='@Url.Action("Index","Home")' class="logo">
+                        <img src="https://github.com/hungyunhsuan/JS/blob/master/readmeimage/logo.png?raw=true" alt="IMG-LOGO">
+                        <h5 id="logoword">Today</h5>
                     </a>
 
                     <!-- Menu desktop -->
                     <div class="menu-desktop">
                         <ul class="main-menu">
                             <li>
-                                <a href="index.html">Home</a>
+                                <a href='@Url.Action("Index","Home")'>Home</a>
 
                             </li>
 
                             <li class="label1" data-label1="hot">
-                                <a href="shoping-cart.html">Cart</a>
+                                <a href='@Url.Action("ShoppingCart","Shopping")'>Cart</a>
                             </li>
 
                             <li class="active-menu">
-                                <a href="contact.html">Contact</a>
+                                <a href='@Url.Action("Contact","Home")'>Contact</a>
                             </li>
                         </ul>
                     </div>
@@ -75,16 +76,16 @@
                         </div>
 
                         @{
-                            if (@ViewBag.IsAuthenticated == false)
-                            {
-                                <a href='@Url.Action("SignIn","Home")' class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
-                                    <i class="far fa-user-circle"></i>
-                                </a>
-                            }
-                            else
-                            {
-                                <p>歡迎 @ViewBag.UserName 回來</p>
-                            }
+                        if (@ViewBag.IsAuthenticated == false)
+                        {
+                            <a href='@Url.Action("SignIn","Home")' class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
+                                <i class="far fa-user-circle"></i>
+                            </a>
+                    }
+                    else
+                    {
+                        <p>歡迎 @ViewBag.UserName 回來</p>
+                }
                         }
                     </div>
                 </nav>
@@ -95,7 +96,9 @@
         <div class="wrap-header-mobile">
             <!-- Logo moblie -->
             <div class="logo-mobile">
-                <a href="index.html"><img src="/images/icons/logo-01.png" alt="IMG-LOGO"></a>
+                <a href='@Url.Action("Index","Home")' class="logo">
+                    <img src="https://github.com/hungyunhsuan/JS/blob/master/readmeimage/logo.png?raw=true" alt="IMG-LOGO" />
+                </a>
             </div>
 
             <!-- Icon header -->
@@ -109,16 +112,16 @@
                 </div>
 
                 @{
-                    if (@ViewBag.IsAuthenticated == false)
-                    {
-                        <a href='@Url.Action("SignIn","Home")' class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
-                            <i class="far fa-user-circle"></i>
-                        </a>
-                    }
-                    else
-                    {
-                        <p>歡迎 @ViewBag.UserName 回來</p>
-                    }
+                if (@ViewBag.IsAuthenticated == false)
+                {
+                    <a href='@Url.Action("SignIn","Home")' class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
+                        <i class="far fa-user-circle"></i>
+                    </a>
+            }
+            else
+            {
+                <p>歡迎 @ViewBag.UserName 回來</p>
+        }
                 }
             </div>
 
@@ -132,6 +135,23 @@
 
 
         <!-- Menu Mobile -->
+        <div class="menu-mobile">
+
+            <ul class="main-menu-m">
+                <li>
+                    <a href='@Url.Action("Index","Home")'>Home</a>
+
+                </li>
+
+                <li>
+                    <a href='@Url.Action("ShoppingCart","Shopping")' class="label1 rs1" data-label1="hot">Cart</a>
+                </li>
+
+                <li>
+                    <a href='@Url.Action("Contact","Home")'>Contact</a>
+                </li>
+            </ul>
+        </div>
         <!-- Modal Search -->
         <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
             <div class="container-search-header">
