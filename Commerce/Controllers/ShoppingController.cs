@@ -124,7 +124,7 @@ namespace Commerce.Controllers
 
                         ordersRepository.Create(orders);
                         Procedure.Procedure procedure = new Procedure.Procedure();
-                        var orderTempID = procedure.FindOrderID();
+                        var orderTempID = procedure.FindOrderID(memberID);
 
                         var shoppingCart = shoppingCartRepository.FindByMemberID(memberID);
                         Stack<OrderDetails> orderData = new Stack<OrderDetails>();
