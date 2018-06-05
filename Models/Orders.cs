@@ -18,6 +18,6 @@ namespace BuildSchool.MvcSolution.OnlineStore.Models
         public DateTime OrderDate { get; set; }
         public DateTime? ReceiptedDate { get; set; }
         public string Status { get; set; }
-        public decimal Discount { get; set; }
+        public decimal TotalPrice { get; set; }
     }
 }

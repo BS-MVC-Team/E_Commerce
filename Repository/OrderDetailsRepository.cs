@@ -21,24 +21,19 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
             var request = new ProductFormatRepository();
             var product = request.FindById(model.ProductFormatID);
-            if ((product.StockQuantity - model.Quantity) >= 0)
-            {
-                sql = sql + "UPDATE ProductFormat SET StockQuantity = StockQuantity - @Quantity WHERE ProductFormatID = @ProductFormatID";
-                SqlCommand command = new SqlCommand(sql, connection);
 
-                command.Parameters.AddWithValue("@OrderID", model.OrderID);
-                command.Parameters.AddWithValue("@ProductFormatID", model.ProductFormatID);
-                command.Parameters.AddWithValue("@Quantity", model.Quantity);
-                command.Parameters.AddWithValue("@UnitPrice", model.UnitPrice);
+            sql = sql + "UPDATE ProductFormat SET StockQuantity = StockQuantity - @Quantity WHERE ProductFormatID = @ProductFormatID";
+            SqlCommand command = new SqlCommand(sql, connection);
 
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
-            else
-            {
+            command.Parameters.AddWithValue("@OrderID", model.OrderID);
+            command.Parameters.AddWithValue("@ProductFormatID", model.ProductFormatID);
+            command.Parameters.AddWithValue("@Quantity", model.Quantity);
+            command.Parameters.AddWithValue("@UnitPrice", model.UnitPrice);
 
-            }
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+
         }
 
         public void Update(OrderDetails model) //修改
@@ -68,7 +63,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             SqlCommand command = new SqlCommand(sql, connection);
 
             command.Parameters.AddWithValue("@OrderID", model.OrderID);
-            
+
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
@@ -78,7 +73,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public OrderDetails FindById(int OrderID) //單查一筆資料
         {
             IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
-            var result = connection.Query<OrderDetails>("SELECT * FROM OrderDetails WHERE OrderID = @OrderID", new {  OrderID });
+            var result = connection.Query<OrderDetails>("SELECT * FROM OrderDetails WHERE OrderID = @OrderID", new { OrderID });
             OrderDetails orderDetail = null;
             foreach (var item in result)
             {
