@@ -25,6 +25,7 @@ namespace Commerce.Controllers
             var productrepository = new ProductRepository();
             var products = productrepository.FindIndexProducts();
             ViewData["products"] = products;
+
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
             if (cookie == null)
@@ -36,35 +37,13 @@ namespace Commerce.Controllers
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
             ViewBag.IsAuthenticated = true;
             ViewBag.UserName = ticket.UserData;
-
-
+            var repository = new ShoppingCartRepository();
+            var Data = repository.FindByMemberID(ticket.UserData);
+            ViewData["count"] = Data.Count();
             return View();
         }
 
-        /*[HttpPost]
-        public JsonResult Index(string id)
-        {
-            ViewBag.Title = "首頁";
-            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-
-            if (cookie == null)
-            {
-                ViewBag.IsAuthenticated = false;
-                return View();
-            }
-
-            var ticket = FormsAuthentication.Decrypt(cookie.Value);
-            ViewBag.IsAuthenticated = true;
-            ViewBag.UserName = ticket.UserData;
-           
-                Procedure.Procedure procedure = new Procedure.Procedure();
-                var ProductFormat = procedure.GetFormatByProductID(int.Parse(id));
-                ViewData["ProductFormat"] = ProductFormat;
-            return Json(ProductFormat);
-            
-         
-            
-        }*/
+        
 
         public ActionResult SignIn()
         {
@@ -305,7 +284,7 @@ namespace Commerce.Controllers
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
             ViewBag.IsAuthenticated = true;
             ViewData["UserName"] = ticket.UserData;
-
+            
             Procedure.Procedure procedure = new Procedure.Procedure();
             var ProductFormat = procedure.GetFormatIDByProductIDCS(int.Parse(productid), size, color);
             foreach (var item in ProductFormat)
@@ -327,6 +306,7 @@ namespace Commerce.Controllers
                 var repository = new ShoppingCartRepository();
                 repository.Create(shoppingCart);
                 var isempty = 2;
+                CartIconNumber();
                 return isempty;
             }
             else
@@ -336,5 +316,47 @@ namespace Commerce.Controllers
             }
             
         }
+
+
+        public ActionResult Quantity(string color, string size, string productid)
+        {
+            int quantitynumber = 0;
+            Procedure.Procedure procedure = new Procedure.Procedure();
+            var ProductFormat = procedure.GetFormatIDByProductIDCS(int.Parse(productid), size, color);
+            foreach (var item in ProductFormat)
+            {
+                quantitynumber = item.StockQuantity;
+            };
+            if (ProductFormat == null)
+            {
+                ViewData["quantity"] = "0";
+            }
+            else
+            {
+                ViewData["quantity"] = quantitynumber.ToString();
+            }
+            return PartialView();
+        }
+
+        public ActionResult CartIconNumber()
+        {
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                ViewBag.IsAuthenticated = false;
+                ViewData["iconcount"] = "0";
+                return PartialView();
+            }
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            ViewBag.IsAuthenticated = true;
+            ViewBag.UserName = ticket.UserData;
+            var repository = new ShoppingCartRepository();
+            var Data = repository.FindByMemberID(ticket.UserData);
+            ViewData["iconcount"] = Data.Count().ToString();
+            return PartialView();
+        }
+        
     }
 }
