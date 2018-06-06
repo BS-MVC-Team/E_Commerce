@@ -17,7 +17,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=Commerce; integrated security=true");
-            var sql = "INSERT INTO Orders VALUES ( @EmployeeID, @MemberID, @ShipName, @ShipAddress, @ShipPhone, @ShippedDate, @OrderDate, @ReceiptedDate, @Discount, @Status)";
+            var sql = "INSERT INTO Orders VALUES ( @EmployeeID, @MemberID, @ShipName, @ShipAddress, @ShipPhone, @ShippedDate, @OrderDate, @ReceiptedDate, @Status, @TotalPrice)";
             
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -44,8 +44,8 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             {
                 command.Parameters.AddWithValue("@ReceiptedDate", DBNull.Value);
             }
-            command.Parameters.AddWithValue("@Discount", model.Discount);
             command.Parameters.AddWithValue("@Status", model.Status);
+            command.Parameters.AddWithValue("@TotalPrice", model.TotalPrice);
 
             connection.Open();
             command.ExecuteNonQuery();
@@ -56,7 +56,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=Commerce; integrated security=true");
-            var sql = "UPDATE Orders SET EmployeeID = @EmployeeID, MemberID = @MemberID, ShipName = @ShipName, ShipAddress = @ShipAddress, ShipPhone = @ShipPhone, ShippedDate = @ShippedDate, OrderDate=@OrderDate, ReceiptedDate=@ReceiptedDate, Discount=@Discount, Status = @Status WHERE OrderID=@OrderID ";
+            var sql = "UPDATE Orders SET EmployeeID = @EmployeeID, MemberID = @MemberID, ShipName = @ShipName, ShipAddress = @ShipAddress, ShipPhone = @ShipPhone, ShippedDate = @ShippedDate, OrderDate=@OrderDate, ReceiptedDate=@ReceiptedDate, Discount=@Discount, Status = @Status , TotalPrice = @TotalPrice, WHERE OrderID=@OrderID ";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
@@ -83,8 +83,8 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             {
                 command.Parameters.AddWithValue("@ReceiptedDate", DBNull.Value);
             }
-            command.Parameters.AddWithValue("@Discount", model.Discount);
             command.Parameters.AddWithValue("@Status", model.Status);
+            command.Parameters.AddWithValue("@TotalPrice", model.TotalPrice);
 
             connection.Open();
             command.ExecuteNonQuery();

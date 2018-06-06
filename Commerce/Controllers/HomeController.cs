@@ -49,6 +49,18 @@ namespace Commerce.Controllers
         {
             ViewBag.Title = "登入";
 
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                ViewBag.IsAuthenticated = false;
+                return View();
+            }
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            ViewBag.IsAuthenticated = true;
+            ViewBag.UserName = ticket.UserData;
+
             return View();
         }
 
@@ -129,6 +141,18 @@ namespace Commerce.Controllers
         public ActionResult SignUp()
         {
             ViewBag.Title = "註冊會員";
+
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                ViewBag.IsAuthenticated = false;
+                return View();
+            }
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            ViewBag.IsAuthenticated = true;
+            ViewBag.UserName = ticket.UserData;
 
             return View();
         }

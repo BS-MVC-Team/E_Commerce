@@ -210,6 +210,19 @@ namespace Procedure
             return GetFormatIDByProductIDCS;
         }
 
+        public Orders FindOrderID(string MemberID)
+        {
+            var command = Command("dbo.FindOrderID");
+            command.Parameters.Add(new SqlParameter("@MemberID",MemberID));
+            command.Connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            while(reader.Read())
+            {
+                return DbReaderModelBinder<Orders>.Bind(reader);
+            }
+            return null;
+        }
+
         public SqlCommand Command(string CommandText)
         {
             SqlConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");

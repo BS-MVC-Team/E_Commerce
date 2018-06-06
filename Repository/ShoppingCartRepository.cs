@@ -96,5 +96,20 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             var result = connection.Query<ShoppingCart>("SELECT * FROM ShoppingCart WHERE MemberID = @MemberID", new { MemberID });
             return result;
         }
+
+        public void DeleteByMemberId(string MemberID)
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=.; database=Commerce; integrated security=true");
+            var sql = "DELETE ShoppingCart WHERE MemberID = @MemberID";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("@MemberID", MemberID);
+
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
     }
 }
