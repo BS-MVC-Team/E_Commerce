@@ -168,7 +168,6 @@
         </div>
 
         <p id="productid" hidden>@ViewData["ProductID"]</p>
-
     </div>
 </div>
 <!--===============================================================================================-->
@@ -237,11 +236,16 @@
                     alert("加入成功!!");
                     $("#Close").click();
                 }
-                else {
+                else if (result == "3") {
                     alert("此商品正在進貨中~");
                 }
-
-
+                else
+                {
+                    if (confirm("此商品已存在於購物車中,是否前往購物車界面修改該商品")) {
+                        location.href = "Shopping/ShoppingCart";
+                    } else {
+                    }
+                }
             }
         });
     });

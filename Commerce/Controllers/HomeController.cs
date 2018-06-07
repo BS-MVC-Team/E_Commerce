@@ -39,7 +39,7 @@ namespace Commerce.Controllers
             ViewBag.UserName = ticket.UserData;
             var repository = new ShoppingCartRepository();
             var Data = repository.FindByMemberID(ticket.UserData);
-            ViewData["count"] = Data.Count();
+            ViewData["count"] = Data.Count().ToString();
             return View();
         }
 
@@ -310,6 +310,7 @@ namespace Commerce.Controllers
             ViewData["UserName"] = ticket.UserData;
             
             Procedure.Procedure procedure = new Procedure.Procedure();
+
             var ProductFormat = procedure.GetFormatIDByProductIDCS(int.Parse(productid), size, color);
             foreach (var item in ProductFormat)
             {
@@ -319,25 +320,37 @@ namespace Commerce.Controllers
                 productName = item.ProductName;
                 unitPrice = item.UnitPrice;
             }
-            if (int.Parse(quantity)< stock)
+
+            var repeat = procedure.SearchRepeatCart(ticket.UserData, productformatid);
+            if (repeat != null)
             {
-                ShoppingCart shoppingCart = new ShoppingCart {
-                    MemberID = ticket.UserData,
-                    ProductFormatID = productformatid,
-                    ProductID = int.Parse(productid),
-                    Quantity = int.Parse(quantity),
-                };
-                var repository = new ShoppingCartRepository();
-                repository.Create(shoppingCart);
-                var isempty = 2;
-                CartIconNumber();
+                var isempty = 4;
                 return isempty;
             }
             else
             {
-                var isempty = 3;
-                return isempty;
+                if (int.Parse(quantity) < stock)
+                {
+                    ShoppingCart shoppingCart = new ShoppingCart
+                    {
+                        MemberID = ticket.UserData,
+                        ProductFormatID = productformatid,
+                        ProductID = int.Parse(productid),
+                        Quantity = int.Parse(quantity),
+                    };
+                    var repository = new ShoppingCartRepository();
+                    repository.Create(shoppingCart);
+                    var isempty = 2;
+                    CartIconNumber();
+                    return isempty;
+                }
+                else
+                {
+                    var isempty = 3;
+                    return isempty;
+                }
             }
+            
             
         }
 
