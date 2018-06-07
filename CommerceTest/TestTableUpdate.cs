@@ -34,7 +34,6 @@ namespace CommerceTest
                     UnitPrice = 470,
                     Description = "如對商品尺寸有任何疑問，請先私訊我詢問，以免造成彼此困擾~感謝~",
                     CategoryID = 1,
-                    ProductImage = "test1"
                 };
                 repository.Update(product);
                 var products = repository.FindById(1);
