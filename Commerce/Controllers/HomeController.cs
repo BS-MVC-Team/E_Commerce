@@ -37,8 +37,30 @@ namespace Commerce.Controllers
             ViewBag.IsAuthenticated = true;
             ViewBag.UserName = ticket.UserData;
 
-
             return View();
+        }
+
+        public ActionResult NewProduct()
+        {
+
+            ViewBag.Title = "新商品";
+
+            var productrepository = new ProductRepository();
+            var newProducts = productrepository.NewProduct();
+            ViewData["newProducts"] = newProducts;
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                ViewBag.IsAuthenticated = false;
+                return View();
+            }
+
+            var tickets = FormsAuthentication.Decrypt(cookie.Value);
+            ViewBag.IsAuthenticated = true;
+            ViewBag.UserName = tickets.UserData;
+
+            return PartialView();
         }
 
         /*[HttpPost]

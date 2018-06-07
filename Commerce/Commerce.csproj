@@ -508,6 +508,7 @@
     <None Include="Views\Administrator\Categories.cshtml" />
     <None Include="Views\Administrator\Analysis.cshtml" />
     <Content Include="Views\Home\Modal.cshtml" />
+    <Content Include="Views\Home\NewProduct.cshtml" />
     <None Include="Views\Home\ProductDetail.cshtml" />
     <None Include="Views\Home\SignIn.cshtml" />
     <None Include="Views\Home\SignUp.cshtml" />

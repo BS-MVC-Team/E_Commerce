@@ -432,8 +432,8 @@
                                 </li>
 
                                 <li class="p-b-6">
-                                    <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-                                        Newness
+                                    <a href="@Url.Action("NewProduct","Home")" class="filter-link stext-106 trans-04 filter-link-active time-filter">
+                                       NewProduct
                                     </a>
                                 </li>
 
@@ -1248,6 +1248,27 @@
 
         $('.js-hide-sidebar').on('click', function () {
             $('.js-sidebar').removeClass('show-sidebar');
+        });
+    </script>
+
+    <script>
+        $(".time-filter").on("click", function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: "/Home/NewProduct",
+                success: function (response) {
+                    $(".isotope-grid").empty();
+                    $(".isotope-grid").html(response);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+
+            
         });
     </script>
 
