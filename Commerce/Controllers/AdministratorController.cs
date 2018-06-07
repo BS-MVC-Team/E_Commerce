@@ -12,7 +12,6 @@ namespace Commerce.Controllers
         public ActionResult ManageIndex()
         {
             return View();
-
         }
 
         public ActionResult Order()
