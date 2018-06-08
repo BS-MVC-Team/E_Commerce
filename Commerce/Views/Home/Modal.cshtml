@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Modal";
-
+    Layout = "";
 }
 @{
     var i = 0;
@@ -9,54 +9,24 @@
     {
         i++;
     }
+    var j = 0;
 }
 <div class="col-md-6 col-lg-7 p-b-30">
 
     <div class="p-l-25 p-r-30 p-lr-0-lg">
         <div class="wrap-slick3 flex-sb flex-w">
-            <div class="wrap-slick3-dots">
-                <ul class="slick3-dots" style="" role="tablist">
-
-                    @foreach (var item in @ViewData["ImageGroup"] as IEnumerable<string>)
-                    {
-
-                        if (i == 1)
-                        {
-                            <li class="slick-active" role="presentation">
-                                <img src=" @item ">
-                                <div class="slick3-dot-overlay"></div>
-                            </li>
-                        }
-                        else
-                        {
-                            <li role="presentation">
-                                <img src=" @item ">
-                                <div class="slick3-dot-overlay"></div>
-                            </li>
-                        }
-                    }
-                </ul>
-            </div>
-            <div class="wrap-slick3-arrows flex-sb-m flex-w">
-                <button class="arrow-slick3 prev-slick3 slick-arrow" style=""><i class="fa fa-angle-left" aria-hidden="true"></i></button>
-                <button class="arrow-slick3 next-slick3 slick-arrow" style=""><i class="fa fa-angle-right" aria-hidden="true"></i></button>
-            </div>
-
-            <div class="slick3 gallery-lb slick-initialized slick-slider slick-dotted">
-                <div class="slick-list draggable">
-                    <div class="slick-track" style="opacity: 1; width: 1539px;">
-                        @foreach (var item in @ViewData["ImageGroup"] as IEnumerable<string>)
-                        {
-                            <div class="item-slick3 slick-slide slick-current slick-active" data-thumb="@item" data-slick-index="0" aria-hidden="false" style="width: 513px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;" tabindex="0" role="tabpanel" id="slick-slide10" aria-describedby="slick-slide-control10">
-                                <div class="wrap-pic-w pos-relative">
-                                    <img src="@item" alt="IMG-PRODUCT">
-                                </div>
-                            </div>
-                        }
-
-
+            <div class="wrap-slick3-dots"></div>
+            <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+            <div class="slick3 gallery-lb">
+                @foreach (var item in @ViewData["ImageGroup"] as IEnumerable<string>)
+                {
+                    <div class="item-slick3" data-thumb="@item">
+                        <div class="wrap-pic-w pos-relative">
+                            <img src="@item" alt="IMG-PRODUCT">
+                        </div>
                     </div>
-                </div>
+                }
+
             </div>
         </div>
     </div>
@@ -94,8 +64,8 @@
                 </div>
 
                 <div class="size-204 respon6-next">
-                    <div class="rs1-select2 bor8 bg0">
-                        <select class="js-select2" name="time" id="size">
+                    <div class="rs1-select2 bg0">
+                        <select class="js-select2" name="time" id="size" style="width:100%">
 
                             @foreach (var item in @ViewData["Size"] as IEnumerable<string>)
                             {
@@ -114,8 +84,8 @@
                 </div>
 
                 <div class="size-204 respon6-next">
-                    <div class="rs1-select2 bor8 bg0">
-                        <select class="js-select2" name="time" id="color">
+                    <div class="rs1-select2 bg0">
+                        <select class="js-select2" name="time" id="color" style="width:100%">
 
                             @foreach (var item in @ViewData["Color"] as IEnumerable<string>)
                             {
@@ -140,7 +110,9 @@
                             <i class="fs-16 zmdi zmdi-plus"></i>
                         </div>
                     </div>
-
+                    <div>
+                        <label class="quantry">剩餘數量 : 0</label>
+                    </div>
                     <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" id="AddCart">
                         Add to cart
                     </button>
@@ -151,7 +123,36 @@
         <p id="productid" hidden>@ViewData["ProductID"]</p>
     </div>
 </div>
+<!--===============================================================================================-->
+<script src="/vendor/slick/slick.min.js"></script>
+<script src="/js/slick-custom.js"></script>
+<script>
+    /*==================================================================
+    [ Slick3 ]*/
+    $('.wrap-slick3').each(function () {
+        $(this).find('.slick3').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            fade: true,
+            infinite: true,
+            autoplay: false,
+            autoplaySpeed: 6000,
 
+            arrows: true,
+            appendArrows: $(this).find('.wrap-slick3-arrows'),
+            prevArrow: '<button class="arrow-slick3 prev-slick3"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
+            nextArrow: '<button class="arrow-slick3 next-slick3"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
+
+            dots: true,
+            appendDots: $(this).find('.wrap-slick3-dots'),
+            dotsClass: 'slick3-dots',
+            customPaging: function (slick, index) {
+                var portrait = $(slick.$slides[index]).data('thumb');
+                return '<img src=" ' + portrait + ' "/><div class="slick3-dot-overlay"></div>';
+            },
+        });
+    });
+</script>
 <script>
     /*==================================================================
         [ Slick3 ]*/
@@ -183,23 +184,49 @@
                 console.log(typeof (result))
                 if (result == "1") {
                     alert("please login ");
+                    location.href = "/Home/SignIn";
                 }
-                else if (result == "2")
-                {
+                else if (result == "2") {
                     alert("加入成功!!");
                     $("#Close").click();
                 }
-                else
-                {
+                else if (result == "3") {
                     alert("此商品正在進貨中~");
                 }
-                
-
+                else
+                {
+                    if (confirm("此商品已存在於購物車中,是否前往購物車界面修改該商品")) {
+                        location.href = "Shopping/ShoppingCart";
+                    } else {
+                    }
+                }
             }
         });
     });
 
-    
+    var quantity = function () {
+        $(".quantry").text("");
+        $.ajax({
+            url: "/Home/Quantity",
+            data: {
+                color: $("#color").val(),
+                size: $("#size").val(),
+                productid: $("#productid").text(),
+            },
+            success: function (result) {
+                $(".quantry").html(result);
+            }
+        });
+    }
+    $(document).on("change", "#color", function (e) {
+        console.log(e);
+        quantity();
+    })
+    $(document).on("change", "#size", function (e) {
+        console.log(e);
+        quantity();
+    })
+
 
 
 </script>

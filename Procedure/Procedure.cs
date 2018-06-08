@@ -88,7 +88,8 @@ namespace Procedure
         public int StockQuantity { get; set; }
         public string ProductName { get; set; }
         public decimal UnitPrice { get; set; }
-    } 
+    }
+
 
     public class Procedure
     {
@@ -219,6 +220,20 @@ namespace Procedure
             while(reader.Read())
             {
                 return DbReaderModelBinder<Orders>.Bind(reader);
+            }
+            return null;
+        }
+
+        public ShoppingCart SearchRepeatCart(string memberID,int formatID)
+        {
+            var command = Command("dbo.SearchRepeatInCart");
+            command.Parameters.Add(new SqlParameter("@memberID", memberID));
+            command.Parameters.Add(new SqlParameter("@formatID", formatID));
+            command.Connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                return DbReaderModelBinder<ShoppingCart>.Bind(reader);
             }
             return null;
         }

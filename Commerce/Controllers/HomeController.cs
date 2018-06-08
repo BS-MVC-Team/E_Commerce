@@ -18,7 +18,6 @@ namespace Commerce.Controllers
     public class HomeController : Controller
     {
         [NoCache]
-        [Authorize]
         public ActionResult Index()
         {
             ViewBag.Title = "首頁";
@@ -27,6 +26,7 @@ namespace Commerce.Controllers
             var productrepository = new ProductRepository();
             var products = productrepository.FindIndexProducts();
             ViewData["products"] = products;
+
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
             if (cookie == null)
@@ -38,35 +38,13 @@ namespace Commerce.Controllers
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
             ViewBag.IsAuthenticated = true;
             ViewBag.UserName = ticket.UserData;
-
-
+            var repository = new ShoppingCartRepository();
+            var Data = repository.FindByMemberID(ticket.UserData);
+            ViewData["count"] = Data.Count().ToString();
             return View();
         }
 
-        /*[HttpPost]
-        public JsonResult Index(string id)
-        {
-            ViewBag.Title = "首頁";
-            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-
-            if (cookie == null)
-            {
-                ViewBag.IsAuthenticated = false;
-                return View();
-            }
-
-            var ticket = FormsAuthentication.Decrypt(cookie.Value);
-            ViewBag.IsAuthenticated = true;
-            ViewBag.UserName = ticket.UserData;
-           
-                Procedure.Procedure procedure = new Procedure.Procedure();
-                var ProductFormat = procedure.GetFormatByProductID(int.Parse(id));
-                ViewData["ProductFormat"] = ProductFormat;
-            return Json(ProductFormat);
-            
-         
-            
-        }*/
+        
 
         public ActionResult SignIn()
         {
@@ -244,14 +222,14 @@ namespace Commerce.Controllers
         }
 
         [Route("Logout")]
-        public ActionResult Logout()
+        public void Logout()
         {
             FormsAuthentication.SignOut();
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             cookie.Expires = DateTime.Now;
             Response.Cookies.Add(cookie);
 
-            return RedirectToAction("Index");
+
         }
 
         bool IsValidEmail(string email)
@@ -331,8 +309,9 @@ namespace Commerce.Controllers
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
             ViewBag.IsAuthenticated = true;
             ViewData["UserName"] = ticket.UserData;
-
+            
             Procedure.Procedure procedure = new Procedure.Procedure();
+
             var ProductFormat = procedure.GetFormatIDByProductIDCS(int.Parse(productid), size, color);
             foreach (var item in ProductFormat)
             {
@@ -342,25 +321,80 @@ namespace Commerce.Controllers
                 productName = item.ProductName;
                 unitPrice = item.UnitPrice;
             }
-            if (int.Parse(quantity)< stock)
+
+            var repeat = procedure.SearchRepeatCart(ticket.UserData, productformatid);
+            if (repeat != null)
             {
-                ShoppingCart shoppingCart = new ShoppingCart {
-                    MemberID = ticket.UserData,
-                    ProductFormatID = productformatid,
-                    ProductID = int.Parse(productid),
-                    Quantity = int.Parse(quantity),
-                };
-                var repository = new ShoppingCartRepository();
-                repository.Create(shoppingCart);
-                var isempty = 2;
+                var isempty = 4;
                 return isempty;
             }
             else
             {
-                var isempty = 3;
-                return isempty;
+                if (int.Parse(quantity) < stock)
+                {
+                    ShoppingCart shoppingCart = new ShoppingCart
+                    {
+                        MemberID = ticket.UserData,
+                        ProductFormatID = productformatid,
+                        ProductID = int.Parse(productid),
+                        Quantity = int.Parse(quantity),
+                    };
+                    var repository = new ShoppingCartRepository();
+                    repository.Create(shoppingCart);
+                    var isempty = 2;
+                    CartIconNumber();
+                    return isempty;
+                }
+                else
+                {
+                    var isempty = 3;
+                    return isempty;
+                }
             }
             
+            
         }
+
+
+        public ActionResult Quantity(string color, string size, string productid)
+        {
+            int quantitynumber = 0;
+            Procedure.Procedure procedure = new Procedure.Procedure();
+            var ProductFormat = procedure.GetFormatIDByProductIDCS(int.Parse(productid), size, color);
+            foreach (var item in ProductFormat)
+            {
+                quantitynumber = item.StockQuantity;
+            };
+            if (ProductFormat == null)
+            {
+                ViewData["quantity"] = "0";
+            }
+            else
+            {
+                ViewData["quantity"] = quantitynumber.ToString();
+            }
+            return PartialView();
+        }
+
+        public ActionResult CartIconNumber()
+        {
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                ViewBag.IsAuthenticated = false;
+                ViewData["iconcount"] = "0";
+                return PartialView();
+            }
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            ViewBag.IsAuthenticated = true;
+            ViewBag.UserName = ticket.UserData;
+            var repository = new ShoppingCartRepository();
+            var Data = repository.FindByMemberID(ticket.UserData);
+            ViewData["iconcount"] = Data.Count().ToString();
+            return PartialView();
+        }
+        
     }
 }
