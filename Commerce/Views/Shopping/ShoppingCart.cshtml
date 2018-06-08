@@ -125,6 +125,14 @@
                                 <input type="text" style="border: 1px solid ;" id="address">
                             </div>
                         </div>
+
+                        <div class="row mt-5">
+                            <div class="col">
+                                <button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" id="GetPersonalInformation">
+                                    Same Personal Information
+                                </button>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="flex-w flex-t p-t-27 p-b-33">
@@ -285,6 +293,31 @@
                     alert(response.responseText);
                 }
             });
+        });
+</script>
+
+<script>
+        $("#GetPersonalInformation").on("click", function (e) {
+            e.preventDefault();
+            var memberID = "@ViewBag.UserName";
+            $.ajax({
+                type: "POST",
+                url: "/Shopping/GetPersonalInformation",
+                data: '{MemberID: "' + memberID + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    $("#name").val(response.Name);
+                    $("#phone").val(response.Phone);
+                    $("#address").val(response.Address);
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });        
         });
 </script>
 

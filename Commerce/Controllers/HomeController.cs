@@ -44,8 +44,8 @@ namespace Commerce.Controllers
             return View();
         }
 
-        
 
+        [NoCache]
         public ActionResult SignIn()
         {
             ViewBag.Title = "登入";
@@ -65,7 +65,7 @@ namespace Commerce.Controllers
             return View();
         }
 
-
+        [NoCache]
         public ActionResult ProductDetail()
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
@@ -83,6 +83,7 @@ namespace Commerce.Controllers
             return View();
         }
 
+        [NoCache]
         public ActionResult Contact()
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
@@ -102,6 +103,7 @@ namespace Commerce.Controllers
             return View();
         }
 
+        [NoCache]
         [HttpPost]
         public JsonResult SignIn(string memberid, string memberpassword)
         {
@@ -139,6 +141,7 @@ namespace Commerce.Controllers
 
         }
 
+        [NoCache]
         public ActionResult SignUp()
         {
             ViewBag.Title = "註冊會員";
@@ -158,6 +161,7 @@ namespace Commerce.Controllers
             return View();
         }
 
+        [NoCache]
         [HttpPost]
         public JsonResult SignUp(string MemberId,string MemberPassword, string MemberCheckPassword, string Name,string Phone,string Email,string Address)
         {
@@ -221,6 +225,7 @@ namespace Commerce.Controllers
             }           
         }
 
+        [NoCache]
         [Route("Logout")]
         public void Logout()
         {
@@ -228,8 +233,6 @@ namespace Commerce.Controllers
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             cookie.Expires = DateTime.Now;
             Response.Cookies.Add(cookie);
-
-
         }
 
         bool IsValidEmail(string email)
@@ -244,6 +247,8 @@ namespace Commerce.Controllers
                 return false;
             }
         }
+
+        [NoCache]
         public ActionResult ProductInterface(string productid)
         {
             ViewBag.Title = "產品介面";
@@ -268,6 +273,7 @@ namespace Commerce.Controllers
             return View();
         }
 
+        [NoCache]
         public ActionResult Modal(string productid)
         {
             Procedure.Procedure procedure = new Procedure.Procedure();
@@ -295,6 +301,7 @@ namespace Commerce.Controllers
         private string image;
         private string productName;
         private decimal unitPrice;
+        [NoCache]
         [HttpPost]
         public int ModaltoCart(string productid, string size,string color,string quantity)
         {
@@ -355,7 +362,7 @@ namespace Commerce.Controllers
             
         }
 
-
+        [NoCache]
         public ActionResult Quantity(string color, string size, string productid)
         {
             int quantitynumber = 0;
@@ -376,6 +383,7 @@ namespace Commerce.Controllers
             return PartialView();
         }
 
+        [NoCache]
         public ActionResult CartIconNumber()
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
