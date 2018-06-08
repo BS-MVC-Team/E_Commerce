@@ -17,6 +17,7 @@ namespace Commerce.Controllers
 {
     public class HomeController : Controller
     {
+        [NoCache]
         public ActionResult Index()
         {
             ViewBag.Title = "首頁";
@@ -221,14 +222,14 @@ namespace Commerce.Controllers
         }
 
         [Route("Logout")]
-        public ActionResult Logout()
+        public void Logout()
         {
             FormsAuthentication.SignOut();
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             cookie.Expires = DateTime.Now;
             Response.Cookies.Add(cookie);
 
-            return RedirectToAction("Index");
+
         }
 
         bool IsValidEmail(string email)
