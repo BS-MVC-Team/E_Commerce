@@ -1,7 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Modal";
-
+    Layout = "";
 }
 @{
     var i = 0;
@@ -27,54 +27,7 @@
                     </div>
                 }
 
-
-
             </div>
-            @*<div class="wrap-slick3-dots">
-                    <ul class="slick3-dots" style="" role="tablist">
-
-                        @foreach (var item in @ViewData["ImageGroup"] as IEnumerable<string>)
-                        {
-
-                            if (j == 0)
-                            {
-                                <li class="slick-active" role="presentation">
-                                    <img src=" @item ">
-                                    <div class="slick3-dot-overlay"></div>
-                                </li>
-                            }
-                            else
-                            {
-                                <li role="presentation">
-                                    <img src=" @item ">
-                                    <div class="slick3-dot-overlay"></div>
-                                </li>
-                            }
-                            j++;
-                        }
-                    </ul>
-                </div>
-                <div class="wrap-slick3-arrows flex-sb-m flex-w">
-                    <button class="arrow-slick3 prev-slick3 slick-arrow" style=""><i class="fa fa-angle-left" aria-hidden="true"></i></button>
-                    <button class="arrow-slick3 next-slick3 slick-arrow" style=""><i class="fa fa-angle-right" aria-hidden="true"></i></button>
-                </div>
-
-                <div class="slick3 gallery-lb slick-initialized slick-slider slick-dotted">
-                    <div class="slick-list draggable">
-                        <div class="slick-track" style="opacity: 1; width: 1400px;">
-                            @foreach (var item in @ViewData["ImageGroup"] as IEnumerable<string>)
-                            {
-                                <div class="item-slick3 slick-slide slick-current slick-active" data-thumb="@item" data-slick-index="0" aria-hidden="false" style="width: 40%; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;" tabindex="0" role="tabpanel" id="slick-slide10" aria-describedby="slick-slide-control10">
-                                    <div class="wrap-pic-w pos-relative">
-                                        <img src="@item" alt="IMG-PRODUCT">
-                                    </div>
-                                </div>
-                            }
-
-
-                        </div>
-                    </div>
-                </div>*@
         </div>
     </div>
 </div>
@@ -231,6 +184,7 @@
                 console.log(typeof (result))
                 if (result == "1") {
                     alert("please login ");
+                    location.href = "/Home/SignIn";
                 }
                 else if (result == "2") {
                     alert("加入成功!!");
