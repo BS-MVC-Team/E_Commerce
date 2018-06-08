@@ -394,6 +394,42 @@ namespace Commerce.Controllers
             ViewData["iconcount"] = Data.Count().ToString();
             return PartialView();
         }
-        
+
+        public ActionResult PopualityIndex()
+        {
+            ViewBag.Title = "熱銷產品介面";
+            var Popuality = new ProductRepository();
+            var FindPopualityProduct = Popuality.PopularityProduct();
+
+
+            //new list
+            List<string> productcolor = new List<string>();
+            List<string> productsize = new List<string>();
+            ViewBag.FindPopualityProduct = FindPopualityProduct;
+            // ViewData["FindPopualityProduct"] = FindPopualityProduct;
+
+            var popualitylist = new List<PopualityProduct>();
+            foreach (var item in FindPopualityProduct)
+            {
+                PopualityProduct popuality = new PopualityProduct()
+                {
+                    image = item.image,
+                    ProductID = item.ProductID,
+                    ProductName = item.ProductName,
+                    Color = item.Color,
+                    StockQuantity = item.StockQuantity,
+                    Description = item.Description,
+                    UnitPrice = item.UnitPrice
+                };
+                popualitylist.Add(popuality);
+            }
+            //ViewData.Add();
+            ViewData["popualitylist"] = popualitylist;
+            ViewData["count"] = popualitylist.Count();
+            ViewData["productcolor"] = productcolor.Distinct();
+            ViewData["productsize"] = productsize.Distinct();
+            return PartialView();
+        }
+
     }
 }

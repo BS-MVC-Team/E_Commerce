@@ -154,7 +154,7 @@
             });
         });
     });
-
+    
     var isotopeButton = $('.filter-tope-group button');
 
     $(isotopeButton).each(function(){

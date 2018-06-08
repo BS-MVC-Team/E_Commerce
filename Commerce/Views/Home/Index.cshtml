@@ -363,7 +363,7 @@
                                 </li>
 
                                 <li class="p-b-6">
-                                    <a href="#" class="filter-link stext-106 trans-04">
+                                    <a href="#" class="filter-link stext-106 trans-04" id="Popularity">
                                         Popularity
                                     </a>
                                 </li>
@@ -537,7 +537,7 @@
                 </div>
             </div>
 
-            <div class="row isotope-grid">
+            <div class="row isotope-grid" id="test">
                 @foreach (var item in @ViewData["products"] as List<FindIndexProducts>)
                 {
                     <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item @item.CategoryName">
@@ -628,6 +628,7 @@
     <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
     <!--===============================================================================================-->
     <script src="/vendor/select2/select2.min.js"></script>
+
     <script>
         $(".js-select2").each(function () {
             $(this).select2({
@@ -794,8 +795,39 @@
             $('.js-sidebar').removeClass('show-sidebar');
         });
     </script>
-    
+    <script>
+        $('#Popularity').on('click', function () {
+            console.log(this.id);
+            $.ajax({
+                url: "/Home/PopualityIndex",
+                data: {
+                    productid: this.id
+                },
+                success: function (result) {
+                    //$(".test").empty();
+                    $("#test").html(result);
+                }
+            });
 
+
+        });
+    </script>
+    <script>
+        // init Isotope
+        $('.isotope-grid').on('change', function () {
+            var $grid = $('.isotope-grid').each(function () {
+                $(this).isotope({
+                    itemSelector: '.isotope-item',
+                    layoutMode: 'fitRows',
+                    percentPosition: true,
+                    animationEngine: 'best-available',
+                    masonry: {
+                        columnWidth: '.isotope-item'
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
