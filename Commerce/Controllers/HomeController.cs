@@ -17,6 +17,8 @@ namespace Commerce.Controllers
 {
     public class HomeController : Controller
     {
+        [NoCache]
+        [Authorize]
         public ActionResult Index()
         {
             ViewBag.Title = "首頁";
