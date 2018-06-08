@@ -1,12 +1,11 @@
-﻿@{ 
+﻿@{
     ViewBag.Title = "Index";
 }
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-
-
-
-
-
+@Styles.Render("~/vendor/css")
+@Styles.Render("~/fonts/css")
+@Styles.Render("~/css/css")
 
 <!-- Slider -->
 <section class="section-slide">
@@ -152,11 +151,11 @@
                                 </a>
                             </li>
 
-                                <li class="p-b-6">
-                                    <a href="#" class="filter-link stext-106 trans-04" id="Popularity">
-                                        Popularity
-                                    </a>
-                                </li>
+                            <li class="p-b-6">
+                                <a href="#" class="filter-link stext-106 trans-04" id="Popularity">
+                                    Popularity
+                                </a>
+                            </li>
 
                             <li class="p-b-6">
                                 <a href="#" class="filter-link stext-106 trans-04">
@@ -327,13 +326,13 @@
             </div>
         </div>
 
-            <div class="row isotope-grid" id="test">
-                @foreach (var item in @ViewData["products"] as List<FindIndexProducts>)
-                {
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item @item.CategoryName">
-                        <div class="block2">
-                            <div class="block2-pic hov-img0">
-                                <img src="@item.image" alt="IMG-PRODUCT">
+        <div class="row isotope-grid" id="test">
+            @foreach (var item in @ViewData["products"] as List<FindIndexProducts>)
+            {
+                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item @item.CategoryName">
+                    <div class="block2">
+                        <div class="block2-pic hov-img0">
+                            <img src="@item.image" alt="IMG-PRODUCT">
 
                             <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1" id="@item.ProductID">
                                 Quick View
@@ -467,7 +466,7 @@
         }
     });
 
-    $('.js-show-search').click( function () {
+    $('.js-show-search').click(function () {
         $(this).toggleClass('show-search');
         $('.panel-search').slideToggle(400);
 
@@ -477,4 +476,21 @@
         }
     });
 
+</script>
+<script>
+    $('#Popularity').on('click', function () {
+        console.log(this.id);
+        $.ajax({
+            url: "/Home/PopualityIndex",
+            data: {
+                productid: this.id
+            },
+            success: function (result) {
+                //$(".test").empty();
+                $("#test").html(result);
+            }
+        });
+
+
+    });
 </script>
