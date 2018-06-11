@@ -237,5 +237,72 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
         }
 
+        public void UpdateShippedDateAndStatus(int OrderID)
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=.; database=Commerce; integrated security=true");
+            var sql = "UPDATE Orders SET ShippedDate = @ShippedDate, Status = @Status WHERE OrderID=@OrderID ";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("@ShippedDate", DateTime.Now);
+            command.Parameters.AddWithValue("@Status", "送貨中");
+            command.Parameters.AddWithValue("@OrderID", OrderID);
+
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public void DeleteShippedDateAndStatus(int OrderID)
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=.; database=Commerce; integrated security=true");
+            var sql = "UPDATE Orders SET ShippedDate = @ShippedDate, Status = @Status WHERE OrderID=@OrderID ";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("@ShippedDate", DBNull.Value);
+            command.Parameters.AddWithValue("@Status", "未送貨");
+            command.Parameters.AddWithValue("@OrderID", OrderID);
+
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public void UpdateReceiptedDateAndStatus(int OrderID)
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=.; database=Commerce; integrated security=true");
+            var sql = "UPDATE Orders SET ReceiptedDate = @ReceiptedDate, Status = @Status WHERE OrderID=@OrderID ";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("@ReceiptedDate", DateTime.Now);
+            command.Parameters.AddWithValue("@Status", "已送達");
+            command.Parameters.AddWithValue("@OrderID", OrderID);
+
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public void DeleteReceiptedDateAndStatus(int OrderID)
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=.; database=Commerce; integrated security=true");
+            var sql = "UPDATE Orders SET ReceiptedDate = @ReceiptedDate, Status = @Status WHERE OrderID=@OrderID ";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("@ReceiptedDate", DBNull.Value);
+            command.Parameters.AddWithValue("@Status", "送貨中");
+            command.Parameters.AddWithValue("@OrderID", OrderID);
+
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
     }
 }

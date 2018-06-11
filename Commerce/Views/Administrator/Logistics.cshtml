@@ -372,9 +372,9 @@
                                                     <th>@item.ShipName</th>
                                                     <th>@item.ShipAddress</th>
                                                     <th>@item.ShipPhone</th>
-                                                    <th>@item.ShippedDate</th>
+                                                    <th>@item.ShippedDate<button class="btn-primary ShippedDateFix" id="@item.OrderID">更改時間</button><button class="btn-danger ShippedDateDelete" id="@item.OrderID">刪除</button></th>
                                                     <th>@item.OrderDate</th>
-                                                    <th>@item.ReceiptedDate</th>
+                                                    <th>@item.ReceiptedDate<button class="btn-primary ReceiptedDateFix" id="@item.OrderID">更改時間</button><button class="btn-danger ReceiptedDateDelete" id="@item.OrderID">刪除</button></th>
                                                     @if (item.Status == "未送貨")
                                                     {
                                                         <td><i class="far fa-clock"></i> @item.Status</td>
@@ -431,6 +431,105 @@
     <script src="/assets/js/common-scripts.js"></script>
     <script type="text/javascript" src="/assets/js/gritter/js/jquery.gritter.js"></script>
     <script type="text/javascript" src="/assets/js/gritter-conf.js"></script>
+
+    <script>
+        $(".ShippedDateFix").on("click", function (e) {
+            $.ajax({
+                type: "POST",
+                url: "/Administrator/UpdateShippedDate",
+                data: '{OrderID: "' + Number(e.target.id) + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response == "") {
+                        location.reload();
+                    }
+                    else {
+                        alert(response);
+                    }       
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });        
+        });
+
+        $(".ShippedDateDelete").on("click", function (e) {
+            $.ajax({
+                type: "POST",
+                url: "/Administrator/DeleteShippedDate",
+                data: '{OrderID: "' + Number(e.target.id) + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response == "") {
+                        location.reload();
+                    }
+                    else {
+                        alert(response);
+                    }       
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+
+        $(".ReceiptedDateFix").on("click", function (e) {
+            $.ajax({
+                type: "POST",
+                url: "/Administrator/UpdateReceiptedDate",
+                data: '{OrderID: "' + Number(e.target.id) + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response == "") {
+                        location.reload();
+                    }
+                    else
+                    {
+                        alert(response);
+                    }                   
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+
+        $(".ReceiptedDateDelete").on("click", function (e) {
+            $.ajax({
+                type: "POST",
+                url: "/Administrator/DeleteReceiptedDate",
+                data: '{OrderID: "' + Number(e.target.id) + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response == "") {
+                        location.reload();
+                    }
+                    else {
+                        alert(response);
+                    }
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>

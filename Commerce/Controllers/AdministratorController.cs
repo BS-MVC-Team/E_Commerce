@@ -1,5 +1,6 @@
 ﻿using BuildSchool.MvcSolution.OnlineStore.Models;
 using BuildSchool.MvcSolution.OnlineStore.Repository;
+using Commerce.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,6 +79,75 @@ namespace Commerce.Controllers
         public ActionResult Analysis()
         {
             return View();
+        }
+
+        [NoCache]
+        [HttpPost]
+        public JsonResult UpdateShippedDate(int OrderID)
+        {
+            OrdersRepository repository = new OrdersRepository();
+            var order = repository.FindById(OrderID);
+            if(order.Status == "未送貨")
+            {
+                repository.UpdateShippedDateAndStatus(OrderID);
+                return Json("");
+            }
+            else
+            {
+                return Json("點取無效");
+            }           
+        }
+
+        [NoCache]
+        [HttpPost]
+        public JsonResult DeleteShippedDate(int OrderID)
+        {
+            OrdersRepository repository = new OrdersRepository();
+            var order = repository.FindById(OrderID);
+
+            if(order.Status == "送貨中")
+            {
+                repository.DeleteShippedDateAndStatus(OrderID);
+                return Json("");
+            }
+            else
+            {
+                return Json("無效點取");
+            }
+        }
+
+        [NoCache]
+        [HttpPost]
+        public JsonResult UpdateReceiptedDate(int OrderID)
+        {
+            OrdersRepository repository = new OrdersRepository();
+            var order = repository.FindById(OrderID);
+            if(order.Status=="送貨中")
+            {
+                repository.UpdateReceiptedDateAndStatus(OrderID);
+                return Json("");
+            }
+            else
+            {
+                return Json("無效點取");
+            }
+        }
+
+        [NoCache]
+        [HttpPost]
+        public JsonResult DeleteReceiptedDate(int OrderID)
+        {
+            OrdersRepository repository = new OrdersRepository();
+            var order = repository.FindById(OrderID);
+            if (order.Status == "已送達")
+            {
+                repository.DeleteReceiptedDateAndStatus(OrderID);
+                return Json("");
+            }
+            else
+            {
+                return Json("無效點取");
+            }
         }
     }
 }
