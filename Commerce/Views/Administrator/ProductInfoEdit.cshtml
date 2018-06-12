@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     @{
-    Layout = "";
+        Layout = "";
     }
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,17 +34,17 @@
     <![endif]-->
 </head>
 
-  <body>
+<body>
 
-  <section id="container" >
-      <!-- **********************************************************************************************************************************************************
-      TOP BAR CONTENT & NOTIFICATIONS
-      *********************************************************************************************************************************************************** -->
-      <!--header start-->
-      <header class="header black-bg">
-              <div class="sidebar-toggle-box">
-                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-              </div>
+    <section id="container">
+        <!-- **********************************************************************************************************************************************************
+        TOP BAR CONTENT & NOTIFICATIONS
+        *********************************************************************************************************************************************************** -->
+        <!--header start-->
+        <header class="header black-bg">
+            <div class="sidebar-toggle-box">
+                <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+            </div>
             <!--logo start-->
             <a href='@Url.Action("ProductInfoEdit","Administrator")' class="logo"><b>| 後台管理 | </b>商品管理>商品資訊</a>
             <!--logo end-->
@@ -135,12 +135,12 @@
                                 <a href="#">
                                     <span class="photo"><img alt="avatar" src="/assets/img/ui-zac.jpg"></span>
                                     <span class="subject">
-                                    <span class="from">寄件人</span>
-                                    <span class="time">剛剛</span>
+                                        <span class="from">寄件人</span>
+                                        <span class="time">剛剛</span>
                                     </span>
                                     <span class="message">
                                         訊息內容訊息內容訊息內容訊息。
-                                        
+
                                     </span>
                                 </a>
                             </li>
@@ -148,8 +148,8 @@
                                 <a href="#">
                                     <span class="photo"><img alt="avatar" src="/assets/img/ui-divya.jpg"></span>
                                     <span class="subject">
-                                    <span class="from">寄件人</span>
-                                    <span class="time">000 分前</span>
+                                        <span class="from">寄件人</span>
+                                        <span class="time">000 分前</span>
                                     </span>
                                     <span class="message">
                                         訊息內容訊息內容訊息內容訊息。
@@ -160,8 +160,8 @@
                                 <a href="#">
                                     <span class="photo"><img alt="avatar" src="/assets/img/ui-danro.jpg"></span>
                                     <span class="subject">
-                                    <span class="from">寄件人</span>
-                                    <span class="time">000 分前</span>
+                                        <span class="from">寄件人</span>
+                                        <span class="time">000 分前</span>
                                     </span>
                                     <span class="message">
                                         訊息內容訊息內容訊息內容訊息。
@@ -172,8 +172,8 @@
                                 <a href="#">
                                     <span class="photo"><img alt="avatar" src="/assets/img/ui-sherman.jpg"></span>
                                     <span class="subject">
-                                    <span class="from">寄件人</span>
-                                    <span class="time">000 分前</span>
+                                        <span class="from">寄件人</span>
+                                        <span class="time">000 分前</span>
                                     </span>
                                     <span class="message">
                                         訊息內容訊息內容訊息內容訊息。
@@ -190,237 +190,229 @@
                 <!--  notification end -->
             </div>
             <div class="top-menu">
-            	<ul class="nav pull-right top-menu">
+                <ul class="nav pull-right top-menu">
                     <li><a class="logout" href="login.html">Logout</a></li>
-            	</ul>
+                </ul>
             </div>
         </header>
-      <!--header end-->
-      
-      <!-- **********************************************************************************************************************************************************
-      左側bar      MAIN SIDEBAR MENU
-      *********************************************************************************************************************************************************** -->
-      <!--sidebar start-->
-      <aside>
-          <div id="sidebar"  class="nav-collapse ">
-              <!-- sidebar menu start-->
-              <ul class="sidebar-menu" id="nav-accordion">
-              
-              	  <p class="centered"><img src="https://i.pinimg.com/originals/03/7e/79/037e79b2fb52127537be79110891ae3f.png" class="img-circle" width="60"></p>
-              	  <h5 class="centered">歡迎進入後台!</h5>
-                    
-                <li class="mt">
-                    <a href='@Url.Action("ManageIndex","Administrator")'>
-                        <i class="fas fa-store"></i>
-                        <span>店鋪總覽</span>
-                    </a>
-                </li>
+        <!--header end-->
+        <!-- **********************************************************************************************************************************************************
+        左側bar      MAIN SIDEBAR MENU
+        *********************************************************************************************************************************************************** -->
+        <!--sidebar start-->
+        <aside>
+            <div id="sidebar" class="nav-collapse ">
+                <!-- sidebar menu start-->
+                <ul class="sidebar-menu" id="nav-accordion">
 
-                <li class="sub-menu">
-                    <a class="active" href="javascript:;" >
-                        <i class="fas fa-sitemap"></i>
-                        <span>商品管理</span>
-                    </a>
-                    <ul class="sub">
-                        <li>
-                            <a href='@Url.Action("ProductsInfo","Administrator")' >
-                                <i class="fas fa-info"></i>
-                                <span>商品資訊</span>
-                            </a>
-                        </li>     
-                        <li>
-                            <a href='@Url.Action("Categories","Administrator")' >
-                                <i class="fas fa-th-list"></i> 
-                                <span>分類管理</span>
-                            </a>
-                        </li>   
-                        <li>
-                            <a href='@Url.Action("Analysis","Administrator")' >
-                                <i class="fas fa-sort-numeric-down"></i>
-                                <span>數據統計</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                    <p class="centered"><img src="https://i.pinimg.com/originals/03/7e/79/037e79b2fb52127537be79110891ae3f.png" class="img-circle" width="60"></p>
+                    <h5 class="centered">歡迎進入後台!</h5>
 
-                <li class="sub-menu">
-                    <a href="javascript:;" >
-                        <i class="fas fa-sitemap"></i>
-                        <span>訂單與物流</span>
-                    </a>
-                    <ul class="sub">
-                        <li>
-                            <a href='@Url.Action("Order","Administrator")' >
-                                <i class="fas fa-list-ol"></i>
-                                <span>訂單管理</span>
-                            </a>
-                        </li>  
-                        <li>
-                            <a href='@Url.Action("Logistics","Administrator")' >
-                                <i class="fas fa-truck"></i>
-                                <span>物流管理</span>
-                            </a>
-                        </li>                     
-                    </ul>
-                </li>
+                    <li class="mt">
+                        <a href='@Url.Action("ManageIndex","Administrator")'>
+                            <i class="fas fa-store"></i>
+                            <span>店鋪總覽</span>
+                        </a>
+                    </li>
 
-                <li class="sub-menu">
-                    <a href="javascript:;" >
-                        <i class="fas fa-users"></i>
-                        <span>會員管理</span>
-                    </a>
-                    <ul class="sub">
-                        <li>
-                            <a  href="member_check.html">
-                                <i class="fas fa-user-check"></i>
-                                <span>檢視會員</span>
-                            </a>
+                    <li class="sub-menu">
+                        <a class="active" href="javascript:;">
+                            <i class="fas fa-sitemap"></i>
+                            <span>商品管理</span>
+                        </a>
+                        <ul class="sub">
+                            <li>
+                                <a href='@Url.Action("ProductsInfo","Administrator")'>
+                                    <i class="fas fa-info"></i>
+                                    <span>商品資訊</span>
+                                </a>
                             </li>
-                        <li>
-                            <a  href="member_setting.html">
-                                <i class="fas fa-user-edit"></i>
-                                <span>管理會員</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a  href="member_blacklist.html">
-                                <i class="fas fa-user-times"></i>
-                                <span>黑名單管理</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;" >
-                        <i class="fas fa-chart-line"></i>
-                        <span>營銷與財務管理</span>
-                    </a>
-                    <ul class="sub">
-                        <li>
-                            <a  href="marketing.html">
-                                <i class="fas fa-audio-description"></i>
-                                <span>廣告與官方帳號</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a  href="financial.html">
-                                <i class="fas fa-chart-bar"></i>
-                                <span>財務報表</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;" >
-                        <i class="far fa-question-circle"></i>
-                        <span>幫助中心</span>
-                    </a>
-                    <ul class="sub">
-                        <li>
-                            <a  href="help_newfunction.html">
-                                <i class="fas fa-exclamation"></i>
-                                <span>新功能介紹</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a  href="help_faq.html">
-                                <i class="fas fa-question"></i>
-                                <span>常見問題</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-              </ul>
-              <!-- sidebar menu end-->
-          </div>
-      </aside>
-      <!--sidebar end-->
-      
-      <!-- **********************************************************************************************************************************************************
-      MAIN CONTENT
-      *********************************************************************************************************************************************************** -->
-      <!--main content start-->
-      <section id="main-content">
-          <section class="wrapper">
-            
-          	<h3><i class="fa fa-angle-right"></i> 編輯商品資訊</h3>
-          	
-          	<!-- BASIC FORM ELELEMNTS -->
-          	<div class="row mt">
-          		<div class="col-lg-12">
-                      
-                  <div class="form-panel">
-                    <form class="form-horizontal style-form" method="get">
-                        <div class="input-group mb-5">
-                            <label class="col-lg-2 col-sm-2 control-label">圖片</label>
-                            <div class="input-group-prepend">
-                                <button class="btn btn-outline-secondary" type="button">Button</button>
-                            </div>  
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="inputGroupFile03">
-                                <label class="custom-file-label" for="inputGroupFile03">Choose file</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-2 col-sm-2 control-label">商品編號</label>
-                            <div class="col-lg-10">
-                                <p class="form-control-static">ABC0001</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">商品名稱</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">定價/售價</label>
-                            <div class="col-sm-10">
-                                <input class="form-control" id="focusedInput" type="text" placeholder="售價不得為空">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 col-sm-2 control-label">分類</label>
-                            <div class="col-sm-10">
-                                <select class="form-control">
-                                    <option>分類1</option>
-                                    <option>分類2</option>
-                                    <option>分類3</option>
-                                </select>
-                             </div>
-                        </div>
-                        <div class="row mt">
-                            <label class="col-sm-2 col-sm-2 control-label">上架狀態</label>
-                            <div class="col-sm-10 text-left">
-                                <input type="checkbox" checked="" data-toggle="switch" />
-                            </div>
-                        </div>
-                      </form>
-                      <br>
-                      <br>
-                      <hr>
-                      <button type="button" class="btn btn-theme04"><i class="fa fa-check"></i>  確認更改</button>
-                      <button type="button" class="btn btn-dark"><i class="fas fa-times"></i> 取消</button>
-                      <br>
-                      <br>
-                  </div>
-          		</div><!-- col-lg-12--> 
-            </div><!-- /row -->
-          </section>
-      </section>
+                            <li>
+                                <a href='@Url.Action("Categories","Administrator")'>
+                                    <i class="fas fa-th-list"></i>
+                                    <span>分類管理</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href='@Url.Action("Analysis","Administrator")'>
+                                    <i class="fas fa-sort-numeric-down"></i>
+                                    <span>數據統計</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
-      <!--main content end-->
-      <!--footer start-->
-      <footer class="site-footer">
-          <div class="text-center">
-              2018 - buildschoolMVC4group.com
-              <a href="#" class="go-top">
-                  <i class="fa fa-angle-up"></i>
-              </a>
-          </div>
-      </footer>
-      <!--footer end-->
-  </section>
+                    <li class="sub-menu">
+                        <a href="javascript:;">
+                            <i class="fas fa-sitemap"></i>
+                            <span>訂單與物流</span>
+                        </a>
+                        <ul class="sub">
+                            <li>
+                                <a href='@Url.Action("Order","Administrator")'>
+                                    <i class="fas fa-list-ol"></i>
+                                    <span>訂單管理</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href='@Url.Action("Logistics","Administrator")'>
+                                    <i class="fas fa-truck"></i>
+                                    <span>物流管理</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="sub-menu">
+                        <a href="javascript:;">
+                            <i class="fas fa-users"></i>
+                            <span>會員管理</span>
+                        </a>
+                        <ul class="sub">
+                            <li>
+                                <a href="member_check.html">
+                                    <i class="fas fa-user-check"></i>
+                                    <span>檢視會員</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="member_setting.html">
+                                    <i class="fas fa-user-edit"></i>
+                                    <span>管理會員</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="member_blacklist.html">
+                                    <i class="fas fa-user-times"></i>
+                                    <span>黑名單管理</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;">
+                            <i class="fas fa-chart-line"></i>
+                            <span>營銷與財務管理</span>
+                        </a>
+                        <ul class="sub">
+                            <li>
+                                <a href="marketing.html">
+                                    <i class="fas fa-audio-description"></i>
+                                    <span>廣告與官方帳號</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="financial.html">
+                                    <i class="fas fa-chart-bar"></i>
+                                    <span>財務報表</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;">
+                            <i class="far fa-question-circle"></i>
+                            <span>幫助中心</span>
+                        </a>
+                        <ul class="sub">
+                            <li>
+                                <a href="help_newfunction.html">
+                                    <i class="fas fa-exclamation"></i>
+                                    <span>新功能介紹</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="help_faq.html">
+                                    <i class="fas fa-question"></i>
+                                    <span>常見問題</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--sidebar end-->
+        <!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
+
+                <h3><i class="fa fa-angle-right"></i> 編輯商品資訊</h3>
+
+                <!-- BASIC FORM ELELEMNTS -->
+                <div class="row mt">
+                    <div class="col-lg-12">
+
+                        <div class="form-panel">
+                            <form class="form-horizontal style-form" method="get">
+                                <!-- <div class="form-group">
+                                    <label class="col-lg-2 col-sm-2 control-label">圖片網址</label>
+                                    <div class="col-sm-10">
+                                        <input type="url" class="form-control">
+                                    </div>
+                                </div>-->
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">商品名稱</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control ProductName">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">定價/售價</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control UnitPrice" type="number" min="0">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">描述</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control Description">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">分類</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control SelectCategory">
+                                            @foreach (var item in ViewBag.Categories as List<Category>)
+                                            {
+                                                <option id="@item.CategoryID">@item.CategoryID. @item.CategoryName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--<div class="row mt">
+                                    <label class="col-sm-2 col-sm-2 control-label">上架狀態</label>
+                                    <div class="col-sm-10 text-left">
+                                        <input type="checkbox" checked="" data-toggle="switch" />
+                                    </div>
+                                </div>-->
+                            </form>
+                            <br>
+                            <button type="button" class="btn btn-theme04 Create"><i class="fa fa-check"></i>  新增</button>
+                            <button type="button" class="btn btn-dark Cancel"><i class="fas fa-times"></i> 取消</button>
+                            <br>
+                        </div>
+                    </div><!-- col-lg-12-->
+                </div><!-- /row -->
+            </section>
+        </section>
+
+        <!--main content end-->
+        <!--footer start-->
+        <footer class="site-footer">
+            <div class="text-center">
+                2018 - buildschoolMVC4group.com
+                <a href="#" class="go-top">
+                    <i class="fa fa-angle-up"></i>
+                </a>
+            </div>
+        </footer>
+        <!--footer end-->
+    </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="/assets/js/jquery.js"></script>
@@ -437,34 +429,60 @@
     <script type="text/javascript" src="/assets/js/gritter/js/jquery.gritter.js"></script>
     <script type="text/javascript" src="/assets/js/gritter-conf.js"></script>
 
-    
+
     <script src="/assets/js/jquery-ui-1.9.2.custom.min.js"></script>
 
-	<!--custom switch-->
-	<script src="/assets/js/bootstrap-switch.js"></script>
-	
-	<!--custom tagsinput-->
-	<script src="/assets/js/jquery.tagsinput.js"></script>
-	
-	<!--custom checkbox & radio-->
-	
-	<script type="text/javascript" src="/assets/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-	<script type="text/javascript" src="/assets/js/bootstrap-daterangepicker/date.js"></script>
-	<script type="text/javascript" src="/assets/js/bootstrap-daterangepicker/daterangepicker.js"></script>
-	
-	<script type="text/javascript" src="/assets/js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
-	
-	
-	<script src="/assets/js/form-component.js"></script>    
-    
-    
-  <script>
-      //custom select box
+    <!--custom switch-->
+    <script src="/assets/js/bootstrap-switch.js"></script>
 
-      $(function(){
-          $('select.styled').customSelect();
-      });
+    <!--custom tagsinput-->
+    <script src="/assets/js/jquery.tagsinput.js"></script>
 
-  </script>
-  </body>
+    <!--custom checkbox & radio-->
+
+    <script type="text/javascript" src="/assets/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="/assets/js/bootstrap-daterangepicker/date.js"></script>
+    <script type="text/javascript" src="/assets/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <script type="text/javascript" src="/assets/js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
+
+
+    <script src="/assets/js/form-component.js"></script>
+
+    <script>
+        $(".Create").on("click", function () {
+            var ProductName = $(".ProductName").val();
+            var UnitPrice = Number($(".UnitPrice").val());
+            var Description = $(".Description").val();
+            var SelectCategory = Number($(".SelectCategory option:selected").attr("id"));
+
+            $.ajax({
+                type: "POST",
+                url: "/Administrator/CreateNewProduct",
+                data: '{ProductName: "' + ProductName + '", UnitPrice: "' + UnitPrice + '", Description: "' + Description + '", SelectCategory: "' + SelectCategory + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response == "") {
+                        alert("新增成功");
+                        $(".ProductName").val("");
+                        $(".UnitPrice").val("");
+                        $(".Description").val("");
+                    }
+                    else {
+                        alert(response);
+                    }                  
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });        
+        });
+        
+    </script>
+
+</body>
 </html>

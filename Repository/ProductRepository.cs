@@ -19,11 +19,10 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection(
                 "data source=.; database=Commerce; integrated security=true");
-            var sql = "INSERT INTO Products VALUES ( @ProductID, @ProductName, @UnitPrice, @Description, @CategoryID, @ShelfDate)";
+            var sql = "INSERT INTO Products VALUES (@ProductName, @UnitPrice, @Description, @CategoryID, @ShelfDate)";
 
             SqlCommand command = new SqlCommand(sql, connection);
 
-            command.Parameters.AddWithValue("@ProductID", model.ProductID);
             command.Parameters.AddWithValue("@ProductName", model.ProductName);
             command.Parameters.AddWithValue("@UnitPrice", model.UnitPrice);
             command.Parameters.AddWithValue("@Description", model.Description);
@@ -155,6 +154,14 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
             return connection.Query<FindIndexProducts>("SELECT * FROM IndexProduct");
+        }
+
+        public Products FindNextProductID()
+        {
+            SqlConnection connection = new SqlConnection(
+                "data source=.; database=Commerce; integrated security=true");
+            var sql = "SELECT TOP 1 * FROM Products ORDER BY ProductID DESC";
+            return connection.Query<Products>(sql).FirstOrDefault();
         }
     }
 }

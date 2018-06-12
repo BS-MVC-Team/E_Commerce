@@ -1,15 +1,15 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
-      @{
-      Layout = "";
-      }
+<head>
+    @{
+        Layout = "";
+    }
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="MVC Group 4">
     <meta name="keyword" content="Chung-Hua-University, CHU, Build-School, MVC, Group4">
-    
+
     <title> | 後台管理 | 商品管理>商品資訊</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -18,32 +18,32 @@
     <link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/assets/css/zabuto_calendar.css">
     <link rel="stylesheet" type="text/css" href="/assets/js/gritter/css/jquery.gritter.css" />
-    <link rel="stylesheet" type="text/css" href="/assets/lineicons/style.css">    
-    
+    <link rel="stylesheet" type="text/css" href="/assets/lineicons/style.css">
+
     <!-- Custom styles for this template -->
     <link href="/assets/css/style.css" rel="stylesheet">
     <link href="/assets/css/style-responsive.css" rel="stylesheet">
 
     <script src="/assets/js/chart-master/Chart.js"></script>
-    
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
+</head>
 
-  <body>
+<body>
 
-  <section id="container" >
-      <!-- **********************************************************************************************************************************************************
-      TOP BAR CONTENT & NOTIFICATIONS
-      *********************************************************************************************************************************************************** -->
-      <!--header start-->
-      <header class="header black-bg">
-              <div class="sidebar-toggle-box">
-                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-              </div>
+    <section id="container">
+        <!-- **********************************************************************************************************************************************************
+        TOP BAR CONTENT & NOTIFICATIONS
+        *********************************************************************************************************************************************************** -->
+        <!--header start-->
+        <header class="header black-bg">
+            <div class="sidebar-toggle-box">
+                <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+            </div>
             <!--logo start-->
             <a href='@Url.Action("ProductsInfo","Administrator")' class="logo"><b>| 後台管理 | </b>商品管理>商品資訊</a>
             <!--logo end-->
@@ -134,12 +134,12 @@
                                 <a href="#">
                                     <span class="photo"><img alt="avatar" src="/assets/img/ui-zac.jpg"></span>
                                     <span class="subject">
-                                    <span class="from">寄件人</span>
-                                    <span class="time">剛剛</span>
+                                        <span class="from">寄件人</span>
+                                        <span class="time">剛剛</span>
                                     </span>
                                     <span class="message">
                                         訊息內容訊息內容訊息內容訊息。
-                                        
+
                                     </span>
                                 </a>
                             </li>
@@ -147,8 +147,8 @@
                                 <a href="#">
                                     <span class="photo"><img alt="avatar" src="/assets/img/ui-divya.jpg"></span>
                                     <span class="subject">
-                                    <span class="from">寄件人</span>
-                                    <span class="time">000 分前</span>
+                                        <span class="from">寄件人</span>
+                                        <span class="time">000 分前</span>
                                     </span>
                                     <span class="message">
                                         訊息內容訊息內容訊息內容訊息。
@@ -159,8 +159,8 @@
                                 <a href="#">
                                     <span class="photo"><img alt="avatar" src="/assets/img/ui-danro.jpg"></span>
                                     <span class="subject">
-                                    <span class="from">寄件人</span>
-                                    <span class="time">000 分前</span>
+                                        <span class="from">寄件人</span>
+                                        <span class="time">000 分前</span>
                                     </span>
                                     <span class="message">
                                         訊息內容訊息內容訊息內容訊息。
@@ -171,8 +171,8 @@
                                 <a href="#">
                                     <span class="photo"><img alt="avatar" src="/assets/img/ui-sherman.jpg"></span>
                                     <span class="subject">
-                                    <span class="from">寄件人</span>
-                                    <span class="time">000 分前</span>
+                                        <span class="from">寄件人</span>
+                                        <span class="time">000 分前</span>
                                     </span>
                                     <span class="message">
                                         訊息內容訊息內容訊息內容訊息。
@@ -189,82 +189,81 @@
                 <!--  notification end -->
             </div>
             <div class="top-menu">
-            	<ul class="nav pull-right top-menu">
+                <ul class="nav pull-right top-menu">
                     <li><a class="logout" href="login.html">Logout</a></li>
-            	</ul>
+                </ul>
             </div>
         </header>
-      <!--header end-->
-      
-      <!-- **********************************************************************************************************************************************************
-      左側bar      MAIN SIDEBAR MENU
-      *********************************************************************************************************************************************************** -->
-      <!--sidebar start-->
-      <aside>
-          <div id="sidebar"  class="nav-collapse ">
-              <!-- sidebar menu start-->
-              <ul class="sidebar-menu" id="nav-accordion">
-              
-              	  <p class="centered"><img src="https://i.pinimg.com/originals/03/7e/79/037e79b2fb52127537be79110891ae3f.png" class="img-circle" width="60"></p>
-              	  <h5 class="centered">歡迎進入後台!</h5>
-              	  	
+        <!--header end-->
+        <!-- **********************************************************************************************************************************************************
+        左側bar      MAIN SIDEBAR MENU
+        *********************************************************************************************************************************************************** -->
+        <!--sidebar start-->
+        <aside>
+            <div id="sidebar" class="nav-collapse ">
+                <!-- sidebar menu start-->
+                <ul class="sidebar-menu" id="nav-accordion">
+
+                    <p class="centered"><img src="https://i.pinimg.com/originals/03/7e/79/037e79b2fb52127537be79110891ae3f.png" class="img-circle" width="60"></p>
+                    <h5 class="centered">歡迎進入後台!</h5>
+
                     <li class="mt">
                         <a href='@Url.Action("ManageIndex","Administrator")'>
                             <i class="fas fa-store"></i>
                             <span>店鋪總覽</span>
                         </a>
                     </li>
-    
+
                     <li class="sub-menu">
-                        <a class="active" href="javascript:;" >
+                        <a class="active" href="javascript:;">
                             <i class="fas fa-sitemap"></i>
                             <span>商品管理</span>
                         </a>
                         <ul class="sub">
                             <li>
-                                <a href='@Url.Action("ProductsInfo","Administrator")' >
+                                <a href='@Url.Action("ProductsInfo","Administrator")'>
                                     <i class="fas fa-info"></i>
                                     <span>商品資訊</span>
                                 </a>
-                            </li>     
+                            </li>
                             <li>
-                                <a href='@Url.Action("Categories","Administrator")' >
-                                    <i class="fas fa-th-list"></i> 
+                                <a href='@Url.Action("Categories","Administrator")'>
+                                    <i class="fas fa-th-list"></i>
                                     <span>分類管理</span>
                                 </a>
-                            </li>   
+                            </li>
                             <li>
-                                <a href='@Url.Action("Analysis","Administrator")' >
+                                <a href='@Url.Action("Analysis","Administrator")'>
                                     <i class="fas fa-sort-numeric-down"></i>
                                     <span>數據統計</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
-    
+
                     <li class="sub-menu">
-                        <a href="javascript:;" >
+                        <a href="javascript:;">
                             <i class="fas fa-sitemap"></i>
                             <span>訂單與物流</span>
                         </a>
                         <ul class="sub">
                             <li>
-                                <a href='@Url.Action("Order","Administrator")' >
+                                <a href='@Url.Action("Order","Administrator")'>
                                     <i class="fas fa-list-ol"></i>
                                     <span>訂單管理</span>
                                 </a>
-                            </li>  
+                            </li>
                             <li>
-                                <a href='@Url.Action("Logistics","Administrator")' >
+                                <a href='@Url.Action("Logistics","Administrator")'>
                                     <i class="fas fa-truck"></i>
                                     <span>物流管理</span>
                                 </a>
-                            </li>                     
+                            </li>
                         </ul>
                     </li>
-    
+
                     <li class="sub-menu">
-                        <a href="javascript:;" >
+                        <a href="javascript:;">
                             <i class="fas fa-users"></i>
                             <span>會員管理</span>
                         </a>
@@ -274,7 +273,7 @@
                                     <i class="fas fa-user-check"></i>
                                     <span>檢視會員</span>
                                 </a>
-                                </li>
+                            </li>
                             <li>
                                 <a href="member_setting.html">
                                     <i class="fas fa-user-edit"></i>
@@ -290,7 +289,7 @@
                         </ul>
                     </li>
                     <li class="sub-menu">
-                        <a href="javascript:;" >
+                        <a href="javascript:;">
                             <i class="fas fa-chart-line"></i>
                             <span>營銷與財務管理</span>
                         </a>
@@ -310,7 +309,7 @@
                         </ul>
                     </li>
                     <li class="sub-menu">
-                        <a href="javascript:;" >
+                        <a href="javascript:;">
                             <i class="far fa-question-circle"></i>
                             <span>幫助中心</span>
                         </a>
@@ -329,157 +328,119 @@
                             </li>
                         </ul>
                     </li>
-              </ul>
-              <!-- sidebar menu end-->
-          </div>
-      </aside>
-      <!--sidebar end-->
-      
-      <!-- **********************************************************************************************************************************************************
-      MAIN CONTENT
-      *********************************************************************************************************************************************************** -->
-      <!--main content start-->
-      <section id="main-content">
-          <section class="wrapper">
+                </ul>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--sidebar end-->
+        <!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
 
                 <h3><i class="fa fa-angle-right"></i>商品資訊</h3>
-				<div class="row">
+                <div class="row">
                     <div class="col-md-12 mt">
-	                  	<div class="content-panel">
-	                          <table class="table table-hover">
-	                  	  	  <h4><i class="fa fa-angle-right"></i>新進商品</h4>
-	                  	  	  <hr>
+                        <div class="content-panel">
+                            <table class="table table-hover">
+                                <h4><i class="fa fa-angle-right"></i>新進商品</h4>
+                                <hr>
                                 <thead>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>ABC0001</td>
-                                            <td>商品名稱商品名稱商品名稱</td>
-                                            <td>99</td>
-                                            <td><a href="product_info_edit.html"> 編輯<i class="fas fa-edit"></i></a> | <a href="#">商品頁<i class="fas fa-sign-out-alt"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>ABC0002</td>
-                                            <td>商品名稱商品名稱商品名稱</td>
-                                            <td>99</td>
-                                            <td><a href="product_info_edit.html"> 編輯<i class="fas fa-edit"></i></a> | <a href="#">商品頁<i class="fas fa-sign-out-alt"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>ABC0003</td>
-                                            <td>商品名稱商品名稱商品名稱</td>
-                                            <td>99</td>
-                                            <td><a href="product_info_edit.html"> 編輯<i class="fas fa-edit"></i></a> | <a href="#">商品頁<i class="fas fa-sign-out-alt"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>ABC0004</td>
-                                            <td>商品名稱商品名稱商品名稱</td>
-                                            <td>99</td>
-                                            <td><a href="product_info_edit.html"> 編輯<i class="fas fa-edit"></i></a> | <a href="#">商品頁<i class="fas fa-sign-out-alt"></i></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>ABC0005</td>
-                                            <td>商品名稱商品名稱商品名稱</td>
-                                            <td>99</td>
-                                            <td><a href="product_info_edit.html"> 編輯<i class="fas fa-edit"></i></a> | <a href="#">商品頁<i class="fas fa-sign-out-alt"></i></i></a></td>
-                                        </tr>
-                                </tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>ABC0001</td>
+                                        <td>商品名稱商品名稱商品名稱</td>
+                                        <td>99</td>
+                                        <td><a href="product_info_edit.html"> 編輯<i class="fas fa-edit"></i></a> | <a href="#">商品頁<i class="fas fa-sign-out-alt"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>ABC0002</td>
+                                        <td>商品名稱商品名稱商品名稱</td>
+                                        <td>99</td>
+                                        <td><a href="product_info_edit.html"> 編輯<i class="fas fa-edit"></i></a> | <a href="#">商品頁<i class="fas fa-sign-out-alt"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>ABC0003</td>
+                                        <td>商品名稱商品名稱商品名稱</td>
+                                        <td>99</td>
+                                        <td><a href="product_info_edit.html"> 編輯<i class="fas fa-edit"></i></a> | <a href="#">商品頁<i class="fas fa-sign-out-alt"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>ABC0004</td>
+                                        <td>商品名稱商品名稱商品名稱</td>
+                                        <td>99</td>
+                                        <td><a href="product_info_edit.html"> 編輯<i class="fas fa-edit"></i></a> | <a href="#">商品頁<i class="fas fa-sign-out-alt"></i></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>ABC0005</td>
+                                        <td>商品名稱商品名稱商品名稱</td>
+                                        <td>99</td>
+                                        <td><a href="product_info_edit.html"> 編輯<i class="fas fa-edit"></i></a> | <a href="#">商品頁<i class="fas fa-sign-out-alt"></i></i></a></td>
+                                    </tr>
+                                    </tbody>
                             </table>
                         </div><!--/content-panel-->
                     </div><!-- /col-md-12 -->
-				</div><!-- row -->
-                
-		  	<div class="row mt">
+                </div><!-- row -->
+
+                <div class="row mt">
                     <div class="col-lg-12">
-                            <div style="height:400px;overflow-y:auto" class="content-panel">
-                                <h4><i class="fa fa-angle-right"></i>所有商品</h4>
-                                <section id="no-more-tables">
-                                    <table class="table table-bordered table-striped table-condensed cf">
-                                        <thead class="cf">
+                        <div style="height:400px;overflow-y:auto" class="content-panel">
+                            <h4><i class="fa fa-angle-right"></i>所有商品</h4>
+                            <section id="no-more-tables">
+                                <table class="table table-bordered table-striped table-condensed cf">
+                                    <thead class="cf">
                                         <tr>
-                                            <th>#</th>
                                             <th>商品id</th>
                                             <th>商品名稱</th>
                                             <th>售價</th>
                                             <th>商品詳情</th>
+                                            <th>分類編號</th>
+                                            <th>上架時間</th>
                                         </tr>
-                                        </thead>
-                                        <tbody>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in ViewBag.Products as List<Products>)
+                                        {
                                             <tr>
-                                                <td>1</td>
-                                                <td>ABC0001</td>
-                                                <td>商品名稱商品名稱商品名稱</td>
-                                                <td>99</td>
-                                                <td><a href="product_info_edit.html"> 編輯<i class="fas fa-edit"></i></a> | <a href="#">商品頁<i class="fas fa-sign-out-alt"></i></a></td>
+                                                <th>@item.ProductID</th>
+                                                <th>@item.ProductName</th>
+                                                <th>@item.UnitPrice</th>
+                                                <th>@item.Description</th>
+                                                <th>@item.CategoryID</th>
+                                                <th>@item.ShelfDate</th>
                                             </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>ABC0002</td>
-                                                <td>商品名稱商品名稱商品名稱</td>
-                                                <td>99</td>
-                                                <td><a href="product_info_edit.html"> 編輯<i class="fas fa-edit"></i></a> | <a href="#">商品頁<i class="fas fa-sign-out-alt"></i></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>ABC0003</td>
-                                                <td>商品名稱商品名稱商品名稱</td>
-                                                <td>99</td>
-                                                <td><a href="product_info_edit.html"> 編輯<i class="fas fa-edit"></i></a> | <a href="#">商品頁<i class="fas fa-sign-out-alt"></i></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>ABC0004</td>
-                                                <td>商品名稱商品名稱商品名稱</td>
-                                                <td>99</td>
-                                                <td><a href="product_info_edit.html"> 編輯<i class="fas fa-edit"></i></a> | <a href="#">商品頁<i class="fas fa-sign-out-alt"></i></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>ABC0005</td>
-                                                <td>商品名稱商品名稱商品名稱</td>
-                                                <td>99</td>
-                                                <td><a href="product_info_edit.html"> 編輯<i class="fas fa-edit"></i></a> | <a href="#">商品頁<i class="fas fa-sign-out-alt"></i></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>ABC0006</td>
-                                                <td>商品名稱商品名稱商品名稱</td>
-                                                <td>99</td>
-                                                <td><a href="product_info_edit.html"> 編輯<i class="fas fa-edit"></i></a> | <a href="#">商品頁<i class="fas fa-sign-out-alt"></i></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>7</td>
-                                                <td>ABC0007</td>
-                                                <td>商品名稱商品名稱商品名稱</td>
-                                                <td>99</td>
-                                                <td><a href="product_info_edit.html"> 編輯<i class="fas fa-edit"></i></a> | <a href="#">商品頁<i class="fas fa-sign-out-alt"></i></a></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </section>
-                            </div><!-- /content-panel -->
-                        </div><!-- /col-lg-12 -->
-                    </div><!-- /row -->
-              <div class="row">
-                  <div class="col-lg-9 main-chart">
-                  </div><!-- /col-lg-9 END SECTION MIDDLE -->
-              </div><!--/row -->
-          </section>
-      </section>
-      <!--main content end-->
-      <!--footer start-->
-      <footer class="site-footer">
-          <div class="text-center">
-              2018 - buildschoolMVC4group.com
-              <a href="#" class="go-top">
-                  <i class="fa fa-angle-up"></i>
-              </a>
-          </div>
-      </footer>
-      <!--footer end-->
-  </section>
+                                        }
+                                    </tbody>
+                                </table>
+                            </section>
+                        </div><!-- /content-panel -->
+                    </div><!-- /col-lg-12 -->
+                </div><!-- /row -->
+                <div class="row">
+                    <div class="col-lg-9 main-chart">
+                    </div><!-- /col-lg-9 END SECTION MIDDLE -->
+                </div><!--/row -->
+            </section>
+        </section>
+        <!--main content end-->
+        <!--footer start-->
+        <footer class="site-footer">
+            <div class="text-center">
+                2018 - buildschoolMVC4group.com
+                <a href="#" class="go-top">
+                    <i class="fa fa-angle-up"></i>
+                </a>
+            </div>
+        </footer>
+        <!--footer end-->
+    </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="/assets/js/jquery.js"></script>
@@ -493,43 +454,43 @@
 
     <!--common script for all pages-->
     <script src="/assets/js/common-scripts.js"></script>
-    
+
     <script type="text/javascript" src="/assets/js/gritter/js/jquery.gritter.js"></script>
     <script type="text/javascript" src="/assets/js/gritter-conf.js"></script>
 
     <!--script for this page-->
-    <script src="/assets/js/sparkline-chart.js"></script>    
-	<script src="/assets/js/zabuto_calendar.js"></script>	
-	
-	<script type="text/javascript">
-        $(document).ready(function () {
-        var unique_id = $.gritter.add({
-            // title必填
-            title: '歡迎來到後台！',
-            // text必填
-            text: '這裡是管理層專屬後台。<br>如需回到首頁請按<a href="#" target="_blank" style="color:#ffd777">回到網站首頁</a>.',
-            // 左側顯示照片(自定義)
-            image: 'https://i.pinimg.com/originals/03/7e/79/037e79b2fb52127537be79110891ae3f.png',
-            // 淡入 (bool | optional) if you want it to fade out on its own or just sit there
-            sticky: true,
-            // 淡出時間 (int | optional) the time you want it to be alive for before fading out
-            time: '3s',
-            // 設定class Name (string | optional) the class name you want to apply to that specific message
-            class_name: 'my-sticky-class'
-        });
+    <script src="/assets/js/sparkline-chart.js"></script>
+    <script src="/assets/js/zabuto_calendar.js"></script>
 
-        return false;
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var unique_id = $.gritter.add({
+                // title必填
+                title: '歡迎來到後台！',
+                // text必填
+                text: '這裡是管理層專屬後台。<br>如需回到首頁請按<a href="#" target="_blank" style="color:#ffd777">回到網站首頁</a>.',
+                // 左側顯示照片(自定義)
+                image: 'https://i.pinimg.com/originals/03/7e/79/037e79b2fb52127537be79110891ae3f.png',
+                // 淡入 (bool | optional) if you want it to fade out on its own or just sit there
+                sticky: true,
+                // 淡出時間 (int | optional) the time you want it to be alive for before fading out
+                time: '3s',
+                // 設定class Name (string | optional) the class name you want to apply to that specific message
+                class_name: 'my-sticky-class'
+            });
+
+            return false;
         });
-	</script>
-	
-	<script type="application/javascript">
+    </script>
+
+    <script type="application/javascript">
         $(document).ready(function () {
             $("#date-popover").popover({html: true, trigger: "manual"});
             $("#date-popover").hide();
             $("#date-popover").click(function (e) {
                 $(this).hide();
             });
-        
+
             $("#my-calendar").zabuto_calendar({
                 action: function () {
                     return myDateFunction(this.id, false);
@@ -547,8 +508,8 @@
                 ]
             });
         });
-        
-        
+
+
         function myNavFunction(id) {
             $("#date-popover").hide();
             var nav = $("#" + id).data("navigation");
@@ -556,7 +517,7 @@
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
     </script>
-  
 
-  </body>
+
+</body>
 </html>
