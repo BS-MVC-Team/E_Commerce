@@ -221,6 +221,12 @@
                         </a>
                         <ul class="sub">
                             <li>
+                                <a href='@Url.Action("ProductCreate","Administrator")'>
+                                    <i class="fas fa-cart-plus"></i>
+                                    <span>新增商品</span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href='@Url.Action("ProductsInfo","Administrator")'>
                                     <i class="fas fa-info"></i>
                                     <span>商品資訊</span>
@@ -409,7 +415,7 @@
                                         @foreach (var item in ViewBag.Products as List<Products>)
                                         {
                                             <tr>
-                                                <th>@item.ProductID</th>
+                                                <th><a href='@Url.Action("ProductFormatEdit","Administrator",new { ProductID = item.ProductID})'>@item.ProductID</a></th>
                                                 <th>@item.ProductName</th>
                                                 <th>@item.UnitPrice</th>
                                                 <th>@item.Description</th>

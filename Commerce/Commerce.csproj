@@ -498,11 +498,12 @@
     <Content Include="vendor\slick\slick.less" />
     <Content Include="vendor\slick\slick.scss" />
     <Content Include="Views\Home\CartIconNumber.cshtml" />
+    <Content Include="Views\Administrator\ProductFormatEdit.cshtml" />
     <None Include="Views\Home\Contact.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Administrator\ManageIndex.cshtml" />
     <None Include="Views\Administrator\Order.cshtml" />
-    <None Include="Views\Administrator\ProductInfoEdit.cshtml" />
+    <None Include="Views\Administrator\ProductCreate.cshtml" />
     <None Include="Views\Administrator\ProductsInfo.cshtml" />
     <None Include="Views\Administrator\Tasks.cshtml" />
     <None Include="Views\Administrator\Logistics.cshtml" />

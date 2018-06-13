@@ -48,7 +48,7 @@ namespace Commerce.Controllers
             return View();
         }
 
-        public ActionResult ProductInfoEdit()
+        public ActionResult ProductCreate()
         {
             CategoryRepository categoryRepository = new CategoryRepository();
             ViewBag.Categories = categoryRepository.GetAll();
@@ -88,6 +88,15 @@ namespace Commerce.Controllers
 
         public ActionResult Analysis()
         {
+            return View();
+        }
+
+        public ActionResult ProductFormatEdit(int ProductID)
+        {
+            ProductFormatRepository repository = new ProductFormatRepository();
+            ViewBag.ProductFormat = repository.FindByProductID(ProductID);
+            ViewBag.NowProductID = ProductID;
+
             return View();
         }
 
@@ -203,6 +212,39 @@ namespace Commerce.Controllers
                 else
                 {
                     return Json("不符合價錢格式");
+                }
+            }
+        }
+
+        [NoCache]
+        [HttpPost]
+        public JsonResult CreateProductFormat(int ProductID, string Size, string Color, string StockQuantity, string Image)
+        {
+            if(string.IsNullOrWhiteSpace(Size) || string.IsNullOrWhiteSpace(Color) 
+                || string.IsNullOrWhiteSpace(StockQuantity) || string.IsNullOrWhiteSpace(Image))
+            {
+                return Json("填空區不可為空白");
+            }
+            else
+            {
+                if(Regex.Match(StockQuantity, @"^\+?[1-9][0-9]*$").Success)
+                {
+                    ProductFormatRepository repository = new ProductFormatRepository();
+                    ProductFormat productFormat = new ProductFormat()
+                    {
+                        ProductID = ProductID,
+                        Size = Size,
+                        Color = Color,
+                        StockQuantity = int.Parse(StockQuantity),
+                        image = Image
+                    };
+
+                    repository.Create(productFormat);
+                    return Json("");
+                }
+                else
+                {
+                    return Json("庫存填寫無效");
                 }
             }
         }
