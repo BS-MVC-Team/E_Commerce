@@ -1,5 +1,6 @@
 ﻿using BuildSchool.MvcSolution.OnlineStore.Models;
 using Dapper;
+using Procedure;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,7 +17,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Create(Orders model)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "INSERT INTO Orders VALUES ( @EmployeeID, @MemberID, @ShipName, @ShipAddress, @ShipPhone, @ShippedDate, @OrderDate, @ReceiptedDate, @Status, @TotalPrice)";
             
 
@@ -55,7 +56,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Update(Orders model)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "UPDATE Orders SET EmployeeID = @EmployeeID, MemberID = @MemberID, ShipName = @ShipName, ShipAddress = @ShipAddress, ShipPhone = @ShipPhone, ShippedDate = @ShippedDate, OrderDate=@OrderDate, ReceiptedDate=@ReceiptedDate, Discount=@Discount, Status = @Status , TotalPrice = @TotalPrice, WHERE OrderID=@OrderID ";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -93,7 +94,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Delete(Orders model)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "DELETE FROM Orders WHERE OrderID = @OrderID ";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -107,7 +108,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
         public Orders FindById(int OrderID)
         {
-            IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            IDbConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
             var result = connection.Query<Orders>("select * FROM Orders WHERE OrderID = @OrderID", new { @OrderID = OrderID });
             Orders order = null;
             foreach (var item in result)
@@ -116,7 +117,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             }
             return order;
             //SqlConnection connection = new SqlConnection(
-            //    "data source=.; database=Commerce; integrated security=true");
+            //    SqlConnectionString.ConnectionString());
             //var sql = "SELECT * FROM Orders WHERE OrderID = @OrderID";
 
             //SqlCommand command = new SqlCommand(sql, connection);
@@ -155,10 +156,10 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
         public IEnumerable<Orders> GetStatus(string Status)
         {
-            IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            IDbConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
             return connection.Query<Orders>("select * FROM Orders WHERE Status = @Status", new { Status });
         //SqlConnection connection = new SqlConnection(
-        //    "data source=.; database=Commerce; integrated security=true");
+        //    SqlConnectionString.ConnectionString());
         //var sql = "SELECT * FROM Orders WHERE Status = @Status";
 
         //SqlCommand command = new SqlCommand(sql, connection);
@@ -187,7 +188,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public IEnumerable<Orders> GetOrderDate(string OrderDate)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "select * FROM Orders WHERE CONVERT(VARCHAR(25), OrderDate, 126) LIKE @OrderDate";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -213,7 +214,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public IEnumerable<Orders> GetAll() //查尋全部資料
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "SELECT * FROM Orders";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -240,7 +241,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void UpdateShippedDateAndStatus(int OrderID)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "UPDATE Orders SET ShippedDate = @ShippedDate, Status = @Status WHERE OrderID=@OrderID ";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -257,7 +258,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void DeleteShippedDateAndStatus(int OrderID)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "UPDATE Orders SET ShippedDate = @ShippedDate, Status = @Status WHERE OrderID=@OrderID ";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -274,7 +275,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void UpdateReceiptedDateAndStatus(int OrderID)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "UPDATE Orders SET ReceiptedDate = @ReceiptedDate, Status = @Status WHERE OrderID=@OrderID ";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -291,7 +292,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void DeleteReceiptedDateAndStatus(int OrderID)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "UPDATE Orders SET ReceiptedDate = @ReceiptedDate, Status = @Status WHERE OrderID=@OrderID ";
 
             SqlCommand command = new SqlCommand(sql, connection);

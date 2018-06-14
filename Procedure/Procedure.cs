@@ -240,7 +240,7 @@ namespace Procedure
 
         public SqlCommand Command(string CommandText)
         {
-            SqlConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            SqlConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
             SqlCommand command = new SqlCommand();
 
             command.CommandText = CommandText;

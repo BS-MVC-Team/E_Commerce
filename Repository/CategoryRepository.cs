@@ -1,5 +1,6 @@
 ﻿using BuildSchool.MvcSolution.OnlineStore.Models;
 using Dapper;
+using Procedure;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,7 +18,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Create(Category model)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "INSERT INTO Category VALUES (@CategoryName)";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -33,7 +34,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Update(Category model)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "UPDATE Category SET CategoryName = @CategoryName WHERE CategoryID = @CategoryID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -49,7 +50,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Delete(Category model)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "DELETE FROM Category WHERE CategoryID = @CategoryID ";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -63,7 +64,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
         public Category FindById(int CategoryID)
         {
-            IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            IDbConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
             var result = connection.Query<Category>("SELECT * FROM Category WHERE CategoryID = @CategoryID", new { CategoryID = CategoryID });
             Category category = null;
             foreach (var item in result)
@@ -75,7 +76,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         //public Category FindCategoryName(string CategoryName)
         //{
         //    SqlConnection connection = new SqlConnection(
-        //        "data source=.; database=Commerce; integrated security=true");
+        //        SqlConnectionString.ConnectionString());
         //    var sql = "SELECT * FROM Category WHERE CategoryName = @CategoryName";
 
         //    SqlCommand command = new SqlCommand(sql, connection);
@@ -100,7 +101,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         //}
         public IEnumerable<Category> GetAll()
         {
-            IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            IDbConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
             return connection.Query<Category>("SELECT * FROM Category");
         }
 
