@@ -124,7 +124,7 @@ namespace Commerce.Controllers
                 if (memberpassword == member.Password)
                 {
                     FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
-                        1, "MemberId", DateTime.Now, DateTime.Now.AddMinutes(5), false, memberid);
+                        1, "MemberId", DateTime.Now, DateTime.Now.AddMinutes(30), false, memberid);
 
                     var ticketData = FormsAuthentication.Encrypt(ticket);
 
@@ -337,7 +337,7 @@ namespace Commerce.Controllers
             }
             else
             {
-                if (int.Parse(quantity) < stock)
+                if (int.Parse(quantity) <= stock)
                 {
                     ShoppingCart shoppingCart = new ShoppingCart
                     {
@@ -403,6 +403,31 @@ namespace Commerce.Controllers
             ViewData["iconcount"] = Data.Count().ToString();
             return PartialView();
         }
-        
+
+
+        [NoCache]
+        public ActionResult PriceBetween(string lower,string higher,int active)
+        {
+            ViewData["active"] = active;
+            var procedure = new Procedure.Procedure();
+            var priceproducts = procedure.FindMoneyBetween(decimal.Parse(lower), decimal.Parse(higher));
+            ViewData["priceproducts"] = priceproducts;
+
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                ViewBag.IsAuthenticated = false;
+                return View();
+            }
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            ViewBag.IsAuthenticated = true;
+            ViewBag.UserName = ticket.UserData;
+            var repository = new ShoppingCartRepository();
+            var Data = repository.FindByMemberID(ticket.UserData);
+            ViewData["count"] = Data.Count().ToString();
+            return View();
+        }
     }
 }

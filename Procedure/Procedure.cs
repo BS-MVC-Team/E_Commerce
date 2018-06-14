@@ -249,5 +249,23 @@ namespace Procedure
 
             return command;
         }
+
+        public IEnumerable<FindIndexProducts> FindMoneyBetween(decimal lower,decimal higher)
+        {
+            var command = Command("dbo.FindMoneyBetween");
+            command.Parameters.Add(new SqlParameter("@lower", lower));
+            command.Parameters.Add(new SqlParameter("@higher", higher));
+            command.Connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            var FindMoneyBetween = new List<FindIndexProducts>();
+            while (reader.Read())
+            {
+                var GetBetween = new FindIndexProducts();
+                GetBetween = DbReaderModelBinder<FindIndexProducts>.Bind(reader);
+                FindMoneyBetween.Add(GetBetween);
+            }
+            command.Connection.Close();
+            return FindMoneyBetween;
+        }
     }
 }

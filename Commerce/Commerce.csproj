@@ -510,6 +510,7 @@
     <None Include="Views\Administrator\Categories.cshtml" />
     <None Include="Views\Administrator\Analysis.cshtml" />
     <Content Include="Views\Home\Modal.cshtml" />
+    <Content Include="Views\Home\PriceBetween.cshtml" />
     <None Include="Views\Home\ProductDetail.cshtml" />
     <Content Include="Views\Home\Quantity.cshtml" />
     <None Include="Views\Home\SignIn.cshtml" />

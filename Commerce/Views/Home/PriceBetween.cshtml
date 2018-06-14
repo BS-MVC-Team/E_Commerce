@@ -1,5 +1,6 @@
-﻿@{ 
+﻿@{
     ViewBag.Title = "Index";
+    var i = 0;
 }
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
@@ -322,31 +323,36 @@
         </div>
 
         <div class="row isotope-grid">
-            @foreach (var item in @ViewData["products"] as List<FindIndexProducts>)
+            @foreach (var item in @ViewData["priceproducts"] as List<FindIndexProducts>)
             {
-                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item @item.CategoryName">
-                    <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <img src="@item.Image" alt="IMG-PRODUCT">
+                if (@item.ProductID != i)
+                {
+                    i = @item.ProductID;
+                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item @item.CategoryName">
+                        <div class="block2">
+                            <div class="block2-pic hov-img0">
+                                <img src="@item.Image" alt="IMG-PRODUCT">
 
-                            <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1" id="@item.ProductID">
-                                Quick View
-                            </a>
-                        </div>
-
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                            <div class="block2-txt-child1 flex-col-l ">
-                                <a href="ProductDetail.cshtml" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                    @item.ProductName
+                                <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1" id="@item.ProductID">
+                                    Quick View
                                 </a>
+                            </div>
 
-                                <span class="stext-105 cl3">
-                                    $@item.UnitPrice
-                                </span>
+                            <div class="block2-txt flex-w flex-t p-t-14">
+                                <div class="block2-txt-child1 flex-col-l ">
+                                    <a href="ProductDetail.cshtml" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                        @item.ProductName
+                                    </a>
+
+                                    <span class="stext-105 cl3">
+                                        $@item.UnitPrice
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                }
+
             }
 
 
@@ -401,23 +407,13 @@
     </div>
 </div>
 
+<p id="activestatus" hidden>@ViewData["active"]</p>
 
 @Scripts.Render("~/vendor/js1")
 @Scripts.Render("~/js/js")
 
-<script>
-    var priceitem = $('#priceitem a');
 
-    $(priceitem).each(function () {
-        $(this).on('click', function () {
-            for (var i = 0; i < priceitem.length; i++) {
-                $(priceitem[i]).removeClass('filter-link-active');
-            }
 
-            $(this).addClass('filter-link-active');
-        });
-    });
-</script>
 <script>
     $('.js-show-modal1').on('click', function (e) {
         e.preventDefault();
@@ -471,7 +467,7 @@
         }
     });
 
-    $('.js-show-search').click( function () {
+    $('.js-show-search').click(function () {
         $(this).toggleClass('show-search');
         $('.panel-search').slideToggle(400);
 
@@ -480,5 +476,23 @@
             $('.panel-filter').slideUp(400);
         }
     });
+
+</script>
+
+<script>
+    var status = $("#activestatus").text();
+    var priceitem = $('#priceitem a');
+    console.log(priceitem);
+    $(window).on('load', function () {
+        for (var i = 0; i < priceitem.length; i++) {
+            if (status == (i + 1)) {
+                $(priceitem[i]).addClass('filter-link-active');
+            }
+            else {
+                $(priceitem[i]).removeClass('filter-link-active');
+            }
+
+        }
+    }
 
 </script>
