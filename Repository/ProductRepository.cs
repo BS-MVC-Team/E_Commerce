@@ -18,7 +18,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Create(Products model)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "INSERT INTO Products VALUES (@ProductName, @UnitPrice, @Description, @CategoryID, @ShelfDate)";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -38,7 +38,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Update(Products model)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "UPDATE Products SET ProductName = @ProductName, UnitPrice = @UnitPrice, Description = @Description, CategoryID = @CategoryID, ShelfDate = @ShelfDate WHERE ProductID = @ProductID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -59,7 +59,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Delete(Products model)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "DELETE FROM Products WHERE ProductID = @ProductID ";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -73,7 +73,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
         public Products FindById(int ProductID)
         {
-            IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            IDbConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
             var result = connection.Query<Products>("SELECT * FROM Products WHERE ProductID = @ProductID", new { ProductID });
             Products product = null;
             foreach (var item in result)
@@ -82,7 +82,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             }
             return product;
             //SqlConnection connection = new SqlConnection(
-            //    "data source=.; database=Commerce; integrated security=true");
+            //    SqlConnectionString.ConnectionString());
             //var sql = "SELECT * FROM Products WHERE ProductID = @ProductID";
 
             //SqlCommand command = new SqlCommand(sql, connection);
@@ -107,10 +107,10 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
         public IEnumerable<Products> GetAll()
         {
-            IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            IDbConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
             return connection.Query<Products>("SELECT * FROM Products ");
             //SqlConnection connection = new SqlConnection(
-            //    "data source=.; database=Commerce; integrated security=true");
+            //    SqlConnectionString.ConnectionString());
             //var sql = "SELECT * FROM Products";
 
             //SqlCommand command = new SqlCommand(sql, connection);
@@ -136,30 +136,30 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
         public IEnumerable<Products> FindProductByUnitPrice(decimal lower, decimal upper)
         {
-            SqlConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            SqlConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
             return connection.Query<Products>("FindProductByUnitPrice", new { lower, upper }, commandType: CommandType.StoredProcedure);
         }
         public IEnumerable<FindProductFormatByProductID> FindProductFormatByProductID(int productid)
         {
-            SqlConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            SqlConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
             return connection.Query<FindProductFormatByProductID>("FindProductFormatByProductID", new { productid }, commandType: CommandType.StoredProcedure);
         }
         public IEnumerable<Products> FindByProductName(string ProductName)
         {
-            IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            IDbConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
             return connection.Query<Products>("SELECT * FROM Products WHERE ProductName = @ProductName", new {ProductName });
         }
 
         public IEnumerable<FindIndexProducts> FindIndexProducts()
         {
-            SqlConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            SqlConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
             return connection.Query<FindIndexProducts>("SELECT * FROM IndexProduct");
         }
 
         public Products FindNextProductID()
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "SELECT TOP 1 * FROM Products ORDER BY ProductID DESC";
             return connection.Query<Products>(sql).FirstOrDefault();
         }

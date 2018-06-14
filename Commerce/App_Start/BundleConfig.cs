@@ -37,18 +37,17 @@ namespace Commerce
                 "~/vendor/MagnificPopup/magnific-popup.css",
                 "~/vendor/perfect-scrollbar/perfect-scrollbar.css"
                 ));
-            bundles.Add(new StyleBundle("~/fonts/css").Include(
-                "~/fonts/font-awesome-4.7.0/css/font-awesome.min.css",
+            bundles.Add(new StyleBundle("~/fonts/css").Include(               
                 "~/fonts/iconic/css/material-design-iconic-font.min.css",
                 "~/fonts/linearicons-v1.0.0/icon-font.min.css"
-                ));
+                ).Include("~/Content/fonts/font-awesome-4.7.0/css/font-awesome.min.css", new CssRewriteUrlTransform()));
             bundles.Add(new StyleBundle("~/images/icons").Include(
                 "~/images/icons/favicon.png"));
             bundles.Add(new StyleBundle("~/css/css").Include(
                 "~/css/util.css",
                 "~/css/main.css"
                 ));
-            bundles.Add(new StyleBundle("~/vendor/js1").Include(
+            bundles.Add(new ScriptBundle("~/vendor/js1").Include(
                 "~/vendor/daterangepicker/moment.min.js",
                 "~/vendor/daterangepicker/daterangepicker.js",
                 "~/vendor/jquery/jquery-3.2.1.min.js",
@@ -63,7 +62,7 @@ namespace Commerce
                 ,
                 "~/vendor/bootstrap/js/bootstrap.min.js",
                 "~/vendor/select2/select2.min.js"));
-            bundles.Add(new StyleBundle("~/js/js").Include(
+            bundles.Add(new ScriptBundle("~/js/js").Include(
                 "~/js/slick-custom.js",
                 "~/js/main.js"));
 

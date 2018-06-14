@@ -1,5 +1,6 @@
 ﻿using BuildSchool.MvcSolution.OnlineStore.Models;
 using Dapper;
+using Procedure;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,7 +17,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Create(OrderDetails model) //新增
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "INSERT INTO OrderDetails VALUES (@OrderID, @ProductFormatID, @Quantity, @UnitPrice) ";
 
             var request = new ProductFormatRepository();
@@ -39,7 +40,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Update(OrderDetails model) //修改
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "UPDATE OrderDetails SET OrderID = @OrderID, ProductFormatID = @ProductFormatID, Quantity = @Quantity, UnitPrice = @UnitPrice WHERE OrderID = @OrderID AND ProductFormatID = @ProductFormatID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -57,7 +58,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Delete(OrderDetails model) //刪除
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "DELETE FROM OrderDetails WHERE OrderID = @OrderID AND ProductFormatID = @ProductFormatID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -72,7 +73,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
         public OrderDetails FindById(int OrderID) //單查一筆資料
         {
-            IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            IDbConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
             var result = connection.Query<OrderDetails>("SELECT * FROM OrderDetails WHERE OrderID = @OrderID", new { OrderID });
             OrderDetails orderDetail = null;
             foreach (var item in result)
@@ -81,7 +82,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             }
             return orderDetail;
             //SqlConnection connection = new SqlConnection(
-            //    "data source=.; database=Commerce; integrated security=true");
+            //    SqlConnectionString.ConnectionString());
             //var sql = "SELECT * FROM OrderDetails WHERE OrderID = @OrderID";
 
             //SqlCommand command = new SqlCommand(sql, connection);
@@ -117,10 +118,10 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
         public IEnumerable<OrderDetails> GetAll() //查尋全部資料
         {
-            IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            IDbConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
             return connection.Query<OrderDetails>("SELECT * FROM OrderDetails ");
             //SqlConnection connection = new SqlConnection(
-            //    "data source=.; database=Commerce; integrated security=true");
+            //    SqlConnectionString.ConnectionString());
             //var sql = "SELECT * FROM OrderDetails";
 
             //SqlCommand command = new SqlCommand(sql, connection);
