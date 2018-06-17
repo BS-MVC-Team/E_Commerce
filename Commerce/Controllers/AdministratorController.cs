@@ -48,18 +48,20 @@ namespace Commerce.Controllers
             return View();
         }
 
-        public ActionResult ProductCreate()
+        /*public ActionResult ProductCreate()
         {
             CategoryRepository categoryRepository = new CategoryRepository();
             ViewBag.Categories = categoryRepository.GetAll();
 
             return View();
-        }
+        }*/
 
         public ActionResult ProductsInfo()
         {
             ProductRepository repository = new ProductRepository();
             ViewBag.Products = repository.GetAll();
+            CategoryRepository categoryRepository = new CategoryRepository();
+            ViewBag.Categories = categoryRepository.GetAll();
 
             return View();
         }
