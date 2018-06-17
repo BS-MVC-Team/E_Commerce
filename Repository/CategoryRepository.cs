@@ -105,6 +105,5 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             return connection.Query<Category>("SELECT * FROM Category");
         }
 
-
     }
 }

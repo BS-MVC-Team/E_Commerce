@@ -80,10 +80,19 @@ namespace Commerce.Controllers
             return View();
         }
 
-        public ActionResult Categories()
+        public ActionResult Categories(string CategoryID)
         {
             CategoryRepository repository = new CategoryRepository();
+            Procedure.Procedure procedure = new Procedure.Procedure();
             ViewBag.Categories = repository.GetAll();
+            if(CategoryID == null)
+            {
+                ViewBag.Products = procedure.FindProductsByCategoryID(1);
+            }
+            else
+            {
+                ViewBag.Products = procedure.FindProductsByCategoryID(int.Parse(CategoryID));
+            }
 
             return View();
         }

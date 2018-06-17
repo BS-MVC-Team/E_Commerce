@@ -1,4 +1,5 @@
 ﻿using BuildSchool.MvcSolution.OnlineStore.Models;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -266,6 +267,12 @@ namespace Procedure
             }
             command.Connection.Close();
             return FindMoneyBetween;
+        }
+
+        public IEnumerable<Products> FindProductsByCategoryID(int CategoryID)
+        {
+            IDbConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
+            return connection.Query<Products>("dbo.FindProductsByCategoryID",new { @CategoryID = CategoryID}, commandType: CommandType.StoredProcedure);
         }
     }
 }
