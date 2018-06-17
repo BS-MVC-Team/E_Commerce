@@ -316,6 +316,11 @@
     <Content Include="images\item-cart-03.jpg" />
     <Content Include="images\item-cart-04.jpg" />
     <Content Include="images\item-cart-05.jpg" />
+    <Content Include="images\OurTeam\Nana.jpg" />
+    <Content Include="images\OurTeam\思源.jpg" />
+    <Content Include="images\OurTeam\愷佑.png" />
+    <Content Include="images\OurTeam\臆玄.jpg" />
+    <Content Include="images\OurTeam\芸璇.jpg" />
     <Content Include="images\product-01.jpg" />
     <Content Include="images\product-02.jpg" />
     <Content Include="images\product-03.jpg" />
@@ -470,6 +475,7 @@
     <Content Include="assets\lineicons\fonts\linecons.eot" />
     <Content Include="assets\lineicons\fonts\linecons.ttf" />
     <Content Include="assets\lineicons\fonts\linecons.woff" />
+    <None Include="Properties\PublishProfiles\CommerceFinal - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\E-CommerceMVC5 - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\ECommerceMVC5 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
