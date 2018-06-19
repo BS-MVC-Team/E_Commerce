@@ -48,13 +48,13 @@
                         },
                         success: function (result) {
                             $(".quantry").html(result);
-                            $.ajax({
-                                url: "/Home/CartIconNumber",
-                                success: function (result) {
-                                    $("#datacount").html(result);
-                                    $("#carticon").attr("data-notify", $("#datacount").text());
-                                }
-                            });
+                            //$.ajax({
+                            //    url: "/Home/CartIconNumber",
+                            //    success: function (result) {
+                            //        $("#datacount").html(result);
+                            //        $("#carticon").attr("data-notify", $("#datacount").text());
+                            //    }
+                            //});
                         }
                     });
                 }

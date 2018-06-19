@@ -162,5 +162,6 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             return connection.Query<PopualityProduct>("select p.ProductID,p.ProductName,pf.Color,pf.size,p.UnitPrice,p.Description,pf.StockQuantity,pf.image from Products p inner join ProductFormat pf on pf.ProductID = p.ProductID inner join OrderDetails od on od.ProductFormatID = pf.ProductFormatID order by od.Quantity desc");
 
         }
+       
     }
 }

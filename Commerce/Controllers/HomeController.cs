@@ -21,7 +21,7 @@ namespace Commerce.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "首頁";
-            
+
 
             var productrepository = new ProductRepository();
             var products = productrepository.FindIndexProducts();
@@ -44,7 +44,7 @@ namespace Commerce.Controllers
             return View();
         }
 
-        
+
 
         public ActionResult SignIn()
         {
@@ -159,9 +159,9 @@ namespace Commerce.Controllers
         }
 
         [HttpPost]
-        public JsonResult SignUp(string MemberId,string MemberPassword, string MemberCheckPassword, string Name,string Phone,string Email,string Address)
+        public JsonResult SignUp(string MemberId, string MemberPassword, string MemberCheckPassword, string Name, string Phone, string Email, string Address)
         {
-            if(string.IsNullOrWhiteSpace(MemberId) || string.IsNullOrWhiteSpace(MemberPassword) || string.IsNullOrWhiteSpace(MemberCheckPassword) ||
+            if (string.IsNullOrWhiteSpace(MemberId) || string.IsNullOrWhiteSpace(MemberPassword) || string.IsNullOrWhiteSpace(MemberCheckPassword) ||
                 string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Phone) || string.IsNullOrWhiteSpace(Email) ||
                 string.IsNullOrWhiteSpace(Address))
             {
@@ -169,9 +169,9 @@ namespace Commerce.Controllers
             }
             else
             {
-                if(Regex.Match(Name, @"[\u3000-\u9FA5\x20]{2,4}").Success && Regex.Match(MemberId, @"[\w\-]{8,12}").Success)
+                if (Regex.Match(Name, @"[\u3000-\u9FA5\x20]{2,4}").Success && Regex.Match(MemberId, @"[\w\-]{8,12}").Success)
                 {
-                    if(Regex.Match(MemberPassword, @"[\x21-\x7E]{8,12}").Success)
+                    if (Regex.Match(MemberPassword, @"[\x21-\x7E]{8,12}").Success)
                     {
                         if (MemberPassword != MemberCheckPassword)
                         {
@@ -212,13 +212,13 @@ namespace Commerce.Controllers
                     else
                     {
                         return Json("密碼需8~12碼或是格式不符合");
-                    }                   
+                    }
                 }
                 else
                 {
                     return Json("姓名不符合格式或是帳戶需8~12碼");
-                }                
-            }           
+                }
+            }
         }
 
         [Route("Logout")]
@@ -264,7 +264,7 @@ namespace Commerce.Controllers
             ViewData["productcolor"] = productcolor.Distinct();
             ViewData["productsize"] = productsize.Distinct();
             ViewData["product"] = JSONSerializer.Serialize(product);
-            
+
             return View();
         }
 
@@ -273,7 +273,7 @@ namespace Commerce.Controllers
             Procedure.Procedure procedure = new Procedure.Procedure();
             var ProductFormat = procedure.GetFormatByProductID(int.Parse(productid));
             ViewData["ProductFormat"] = ProductFormat;
-            var imagegroup = ProductFormat.Select((x)=>x.Image).Distinct();
+            var imagegroup = ProductFormat.Select((x) => x.Image).Distinct();
             ViewData["ImageGroup"] = imagegroup;
             var productName = ProductFormat.Select((x) => x.ProductName).Distinct();
             ViewData["ProductName"] = productName;
@@ -296,7 +296,7 @@ namespace Commerce.Controllers
         private string productName;
         private decimal unitPrice;
         [HttpPost]
-        public int ModaltoCart(string productid, string size,string color,string quantity)
+        public int ModaltoCart(string productid, string size, string color, string quantity)
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
@@ -309,7 +309,7 @@ namespace Commerce.Controllers
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
             ViewBag.IsAuthenticated = true;
             ViewData["UserName"] = ticket.UserData;
-            
+
             Procedure.Procedure procedure = new Procedure.Procedure();
 
             var ProductFormat = procedure.GetFormatIDByProductIDCS(int.Parse(productid), size, color);
@@ -351,8 +351,8 @@ namespace Commerce.Controllers
                     return isempty;
                 }
             }
-            
-            
+
+
         }
 
 
@@ -432,5 +432,20 @@ namespace Commerce.Controllers
             return PartialView();
         }
 
+        [HttpGet]
+        //[Route("Search")]
+        public ActionResult Search(string productname)
+        {
+            
+            Procedure.Procedure procedure = new Procedure.Procedure();
+            var SearchProduct = procedure.Search(productname);
+            ViewData["SearchProduct"] = SearchProduct;
+
+
+
+            return View();
+        }
+
+        
     }
 }

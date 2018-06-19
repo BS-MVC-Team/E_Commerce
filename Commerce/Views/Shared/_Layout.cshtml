@@ -207,21 +207,8 @@
     </div>
 
     @Scripts.Render("~/vendor/js1")
-
+    
     <script src="~/js/main.js"></script>
-    <script>
-        $(".js-select2").each(function () {
-            $(this).select2({
-                minimumResultsForSearch: 20,
-                dropdownParent: $(this).next('.dropDownSelect2')
-            });
-        })
-    </script>
-
-    <script>
-        $('.parallax100').parallax100();
-    </script>
-
     <script>
         $('.gallery-lb').each(function () { // the containers for all your galleries
             $(this).magnificPopup({
@@ -234,7 +221,6 @@
             });
         });
     </script>
-
     <script>
 
         $('.js-show-cart').on('click', function () {

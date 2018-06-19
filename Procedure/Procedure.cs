@@ -39,6 +39,7 @@ namespace Procedure
         public int How_Long { get; set; }
     }
 
+
     public class FindProductsByCategoryModel
     {
         public int CategroyID { get; set; }
@@ -89,7 +90,16 @@ namespace Procedure
         public string ProductName { get; set; }
         public decimal UnitPrice { get; set; }
     }
-
+    public class SearchProductName
+    {
+        public int ProductID { get; set; }
+        public string ProductName { get; set; }
+        public string Color { get; set; }
+        public decimal UnitPrice { get; set; }
+        public string Description { get; set; }
+        public int StockQuantity { get; set; }
+        public string image { get; set; }
+    }
 
     public class Procedure
     {
@@ -238,6 +248,23 @@ namespace Procedure
             return null;
         }
 
+        public IEnumerable<SearchProductName> Search(string productname)
+        {
+            var command = Command("dbo.Search");
+            command.Parameters.Add(new SqlParameter("@productname", productname));
+            command.Connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            var SearchProductName = new List<SearchProductName>();
+            while (reader.Read())
+            {
+                var Search = new SearchProductName();
+                Search = DbReaderModelBinder<SearchProductName>.Bind(reader);
+                SearchProductName.Add(Search);
+            }
+            command.Connection.Close();
+            return SearchProductName;
+        }
+
         public SqlCommand Command(string CommandText)
         {
             SqlConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
@@ -249,5 +276,6 @@ namespace Procedure
 
             return command;
         }
+       
     }
 }

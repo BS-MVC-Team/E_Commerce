@@ -512,6 +512,7 @@
     <Content Include="Views\Home\PopualityIndex.cshtml" />
     <None Include="Views\Home\ProductDetail.cshtml" />
     <Content Include="Views\Home\Quantity.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
     <None Include="Views\Home\SignIn.cshtml" />
     <None Include="Views\Home\SignUp.cshtml" />
     <None Include="Views\Shopping\ShoppingCart.cshtml" />
