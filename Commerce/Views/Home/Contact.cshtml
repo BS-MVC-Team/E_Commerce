@@ -1,419 +1,157 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Contact</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="/images/icons/favicon.png" />
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/fonts/iconic/css/material-design-iconic-font.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/fonts/linearicons-v1.0.0/icon-font.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/vendor/animate/animate.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/vendor/css-hamburgers/hamburgers.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/vendor/animsition/css/animsition.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/vendor/perfect-scrollbar/perfect-scrollbar.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/css/util.css">
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <!--===============================================================================================-->
-</head>
-<body class="animsition">
+﻿
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+@Styles.Render("~/vendor/css")
+@Styles.Render("~/fonts/css")
+@Styles.Render("~/css/css")
 
-    <!-- Header -->
-    <header class="header-v4">
-        <!-- Header desktop -->
-        <div class="container-menu-desktop">
-            <!-- Topbar -->
+<style>
+    
 
-            <div class="wrap-menu-desktop ">
-                <nav class="limiter-menu-desktop container">
+    .ptext {
+        white-space: normal;
+        font-size:large;
+    }
+    a {
+        color:black;
+    }
+</style>
 
-                    <!-- Logo desktop -->
-                    <a href='@Url.Action("Index","Home")' class="logo">
-                        <img src="https://github.com/hungyunhsuan/JS/blob/master/readmeimage/logo.png?raw=true" alt="IMG-LOGO">
-                        <h5 id="logoword">Today</h5>
-                    </a>
 
-                    <!-- Menu desktop -->
-                    <div class="menu-desktop">
-                        <ul class="main-menu">
-                            <li>
-                                <a href='@Url.Action("Index","Home")'>Home</a>
+<!-- Title page -->
+<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('/images/bg-01.jpg');">
+    <h2 class="ltext-105 cl0 txt-center">
+        About
+    </h2>
+</section>
 
-                            </li>
-
-                            <li class="label1" data-label1="hot">
-                                <a href='@Url.Action("ShoppingCart","Shopping")'>Cart</a>
-                            </li>
-
-                            <li class="active-menu">
-                                <a href='@Url.Action("Contact","Home")'>Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Icon header -->
-                    <div class="wrap-icon-header flex-w flex-r-m">
-                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-                            <i class="zmdi zmdi-search"></i>
-                        </div>
-
-                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
-                            <i class="zmdi zmdi-shopping-cart"></i>
-                        </div>
-
-                        @{
-                        if (@ViewBag.IsAuthenticated == false)
-                        {
-                            <a href='@Url.Action("SignIn","Home")' class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
-                                <i class="far fa-user-circle"></i>
-                            </a>
-                    }
-                    else
-                    {
-                        <p>歡迎 @ViewBag.UserName 回來</p>
-                }
-                        }
-                    </div>
-                </nav>
+<div class="container mt-5" style="text-align:center">
+    <div class="row">
+        <div class="col-4">
+            <div>
+                <img style="width:70% ; border-radius: 50%;" src="~/images/OurTeam/Nana.jpg" />
+            </div>
+            <div>
+                <h3 class="mt-3">NANA</h3>
+                <p class="mt-2"> By NANA on June 23 , 2018</p>
+                <h4><a href="https://github.com/h93279" style="color:black"><i class="fab fa-github"></i></a></h4>
+                <p class="ptext mt-2">何都不，假息化動院個學法帶位變遠特說程作臺聯即話好已小現他能說不；林道山球了的……出為關式直者、政於個的高寫參……關一人到平麼那到內式社類引？保會來司：慢日工有到時到活流方在設意風辦，果家前其場指父能對同了然業知系將史一中，立東住力轉麗力生提說！</p>
             </div>
         </div>
-
-        <!-- Header Mobile -->
-        <div class="wrap-header-mobile">
-            <!-- Logo moblie -->
-            <div class="logo-mobile">
-                <a href='@Url.Action("Index","Home")' class="logo">
-                    <img src="https://github.com/hungyunhsuan/JS/blob/master/readmeimage/logo.png?raw=true" alt="IMG-LOGO" />
-                </a>
+        <div class="col-4">
+            <div>
+                <img style="width:70%;border-radius: 50%;" src="~/images/OurTeam/臆玄.jpg" />
             </div>
-
-            <!-- Icon header -->
-            <div class="wrap-icon-header flex-w flex-r-m m-r-15">
-                <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
-                    <i class="zmdi zmdi-search"></i>
-                </div>
-
-                <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
-                    <i class="zmdi zmdi-shopping-cart"></i>
-                </div>
-
-                @{
-                if (@ViewBag.IsAuthenticated == false)
-                {
-                    <a href='@Url.Action("SignIn","Home")' class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 ">
-                        <i class="far fa-user-circle"></i>
-                    </a>
-            }
-            else
-            {
-                <p>歡迎 @ViewBag.UserName 回來</p>
-        }
-                }
-            </div>
-
-            <!-- Button show menu -->
-            <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
-                <span class="hamburger-box">
-                    <span class="hamburger-inner"></span>
-                </span>
+            <div>
+                <a href="https://www.cakeresume.com/s--cve_vxgKcLGqS3PYJiRtkQ--/s9100151028"><h3 class="mt-2">臆玄</h3></a>
+                <p class="mt-3"> By 臆玄 on June 23 , 2018</p>
+                <h4><a href="https://github.com/chenyihusan" style="color:black"><i class="fab fa-github"></i></a></h4>
+                <p class="ptext mt-2">能跟團隊的大家一起合作真的很開心，專題即將結束的現在有點懷念這段日子以來的點點滴滴，很高興可以在這樣的環境下學習，我覺得對我的幫助真的很大，真的多虧了有大家互相協助，謝謝。</p>
             </div>
         </div>
-
-
-        <!-- Menu Mobile -->
-        <div class="menu-mobile">
-
-            <ul class="main-menu-m">
-                <li>
-                    <a href='@Url.Action("Index","Home")'>Home</a>
-
-                </li>
-
-                <li>
-                    <a href='@Url.Action("ShoppingCart","Shopping")' class="label1 rs1" data-label1="hot">Cart</a>
-                </li>
-
-                <li>
-                    <a href='@Url.Action("Contact","Home")'>Contact</a>
-                </li>
-            </ul>
-        </div>
-        <!-- Modal Search -->
-        <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-            <div class="container-search-header">
-                <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-                    <img src="/images/icons/icon-close2.png" alt="CLOSE">
-                </button>
-
-                <form class="wrap-search-header flex-w p-l-15">
-                    <button class="flex-c-m trans-04">
-                        <i class="zmdi zmdi-search"></i>
-                    </button>
-                    <input class="plh3" type="text" name="search" placeholder="Search...">
-                </form>
+        <div class="col-4">
+            <div>
+                <img style="width:70%;border-radius: 50%;" src="~/images/OurTeam/芸璇.jpg" />
             </div>
-        </div>
-    </header>
-
-    <!-- Cart -->
-    <div class="wrap-header-cart js-panel-cart">
-        <div class="s-full js-hide-cart"></div>
-
-        <div class="header-cart flex-col-l p-l-65 p-r-25">
-            <div class="header-cart-title flex-w flex-sb-m p-b-8">
-                <span class="mtext-103 cl2">
-                    Your Cart
-                </span>
-
-                <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
-                    <i class="zmdi zmdi-close"></i>
-                </div>
-            </div>
-
-            <div class="header-cart-content flex-w js-pscroll">
-                <ul class="header-cart-wrapitem w-full">
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img">
-                            <img src="/images/item-cart-01.jpg" alt="IMG">
-                        </div>
-
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                                White Shirt Pleat
-                            </a>
-
-                            <span class="header-cart-item-info">
-                                1 x $19.00
-                            </span>
-                        </div>
-                    </li>
-
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img">
-                            <img src="/images/item-cart-02.jpg" alt="IMG">
-                        </div>
-
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                                Converse All Star
-                            </a>
-
-                            <span class="header-cart-item-info">
-                                1 x $39.00
-                            </span>
-                        </div>
-                    </li>
-
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img">
-                            <img src="/images/item-cart-03.jpg" alt="IMG">
-                        </div>
-
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                                Nixon Porter Leather
-                            </a>
-
-                            <span class="header-cart-item-info">
-                                1 x $17.00
-                            </span>
-                        </div>
-                    </li>
-                </ul>
-
-                <div class="w-full">
-                    <div class="header-cart-total w-full p-tb-40">
-                        Total: $75.00
-                    </div>
-
-                    <div class="header-cart-buttons flex-w w-full">
-                        <a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-                            View Cart
-                        </a>
-
-                        <a href="shoping-cart.html" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-                            Check Out
-                        </a>
-                    </div>
-                </div>
+            <div>
+                <a href="https://www.cakeresume.com/s--4lOJiBr-Qt2C_9bt0TwFwA--/5f218c"><h3 class="mt-2">芸璇</h3></a>
+                <p class="mt-3"> By 芸璇 on June 23 , 2018</p>
+                <h4><a href="https://github.com/hungyunhsuan" style="color:black"><i class="fab fa-github"></i></a></h4>
+                <p class="ptext mt-2">很高興自己認真嘗試去做出這個專題，完成裡面一個個功能，雖然學習速度可能沒有預期中的快速，但多虧了有其他人的從旁協助，使我能順利的完成這項挑戰。</p>
             </div>
         </div>
     </div>
-
-
-    <!-- Title page -->
-    <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('/images/bg-01.jpg');">
-        <h2 class="ltext-105 cl0 txt-center">
-            Contact
-        </h2>
-    </section>
-
-
-    <!-- Content page -->
-    <section class="bg0 p-t-104 p-b-116">
-        <div class="container">
-            <div class="flex-w flex-tr">
-                <div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-                    <form>
-                        <h4 class="mtext-105 cl2 txt-center p-b-30">
-                            Send Us A Message
-                        </h4>
-
-                        <div class="bor8 m-b-20 how-pos4-parent">
-                            <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Your Email Address">
-                            <img class="how-pos4 pointer-none" src="/images/icons/icon-email.png" alt="ICON">
-                        </div>
-
-                        <div class="bor8 m-b-30">
-                            <textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="How Can We Help?"></textarea>
-                        </div>
-
-                        <button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
-                            Submit
-                        </button>
-                    </form>
-                </div>
-
-                <div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md">
-                    <div class="flex-w w-full p-b-42">
-                        <span class="fs-18 cl5 txt-center size-211">
-                            <span class="lnr lnr-map-marker"></span>
-                        </span>
-
-                        <div class="size-212 p-t-2">
-                            <span class="mtext-110 cl2">
-                                Address
-                            </span>
-
-                            <p class="stext-115 cl6 size-213 p-t-18">
-                                Coza Store Center 8th floor, 379 Hudson St, New York, NY 10018 US
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="flex-w w-full p-b-42">
-                        <span class="fs-18 cl5 txt-center size-211">
-                            <span class="lnr lnr-phone-handset"></span>
-                        </span>
-
-                        <div class="size-212 p-t-2">
-                            <span class="mtext-110 cl2">
-                                Lets Talk
-                            </span>
-
-                            <p class="stext-115 cl1 size-213 p-t-18">
-                                +1 800 1236879
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="flex-w w-full">
-                        <span class="fs-18 cl5 txt-center size-211">
-                            <span class="lnr lnr-envelope"></span>
-                        </span>
-
-                        <div class="size-212 p-t-2">
-                            <span class="mtext-110 cl2">
-                                Sale Support
-                            </span>
-
-                            <p class="stext-115 cl1 size-213 p-t-18">
-                                contact@example.com
-                            </p>
-                        </div>
-                    </div>
-                </div>
+    <hr />
+    <div class="row mt-5">
+        <div class="col-2"></div>
+        <div class="col-4">
+            <div>
+                <img style="width:70%;border-radius: 50%;" src="~/images/OurTeam/思源.jpg" />
+            </div>
+            <div>
+                <a href="https://www.cakeresume.com/s--2ChkBuMz8ETJg-nAH_ggwA--/szuyuan-huang"><h3 class="mt-2">思源</h3></a>
+                <p class="mt-3"> By 思源 on June 23 , 2018</p>
+                <h4><a href="https://github.com/SzuYuan-Huang" style="color:black"><i class="fab fa-github"></i></a></h4>
+                <p class="ptext mt-2">不管前端還是後端，身為工程師還是必須都要涉略的，經過這次團隊分工後，讓我知道團隊間的溝通協調是一件艱難的事情，很高興能跟大家合作，也希望大家都能像這次專題一樣勇往直前面對未來的挑戰。</p>
             </div>
         </div>
-    </section>
 
-
-    <!-- Map -->
-    <div class="map">
-        <div class="size-303" id="google_map" data-map-x="40.691446" data-map-y="-73.886787" data-pin="/images/icons/pin.png" data-scrollwhell="0" data-draggable="1" data-zoom="11"></div>
-    </div>
-
-
-
-    <footer class="bg3 p-t-5 p-b-32">
-        <div class="container">
-            <div class="p-t-40">
-                <p class="stext-107 cl6 txt-center">
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;
-                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with
-                    <i class="fa fa-heart-o" aria-hidden="true"></i> by
-                    <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-
-                </p>
+        <div class="col-4">
+            <div>
+                <img style="width:70%;border-radius: 50%;" src="~/images/OurTeam/愷佑.png" />
+            </div>
+            <div>
+                <a href="https://www.cakeresume.com/s--JbKEQDtKkQU3SRCiAgn4lA--/yui852099"><h3 class="mt-2">愷佑</h3></a>
+                <p class="mt-3"> By 愷佑 on June 23 , 2018</p>
+                <h4><a href="https://github.com/KaiYo0129" style="color:black"><i class="fab fa-github"></i></a></h4>
+                <p class="ptext mt-2">能看到團隊間的互助合作，以及成員間對知識與技術的熱忱，我很榮幸能夠成為大家的組長，開發的過程中雖然發生了不少事但都一一克服了，真的很開心能在這裡留下我們一起努力的證明。</p>
             </div>
         </div>
-    </footer>
-
-
-    <!-- Back to top -->
-    <div class="btn-back-to-top" id="myBtn">
-        <span class="symbol-btn-back-to-top">
-            <i class="zmdi zmdi-chevron-up"></i>
-        </span>
     </div>
+    <br>
+    <br>
+    <hr />
 
-    <!--===============================================================================================-->
-    <script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="/vendor/animsition/js/animsition.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="/vendor/bootstrap/js/popper.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="/vendor/select2/select2.min.js"></script>
-    <script>
-        $(".js-select2").each(function () {
-            $(this).select2({
-                minimumResultsForSearch: 20,
-                dropdownParent: $(this).next('.dropDownSelect2')
-            });
-        })
-    </script>
-    <!--===============================================================================================-->
-    <script src="/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script>
-        $('.js-pscroll').each(function () {
-            $(this).css('position', 'relative');
-            $(this).css('overflow', 'hidden');
-            var ps = new PerfectScrollbar(this, {
-                wheelSpeed: 1,
-                scrollingThreshold: 1000,
-                wheelPropagation: false,
-            });
+</div>
 
-            $(window).on('resize', function () {
-                ps.update();
-            })
+
+<!-- Map -->
+<div class="map mt-5" style="text-align:center;">
+    <iframe style="width:70% ;height:500px;" src='https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=5j/300台灣新竹市香山區五福路二段707號&z=16&output=embed&t='></iframe>
+</div>
+
+
+
+<footer class="bg3 p-t-5 p-b-32 mt-5">
+    <div class="container">
+        <div class="p-t-40">
+            <p class="stext-107 cl6 txt-center">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;
+                <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with
+                <i class="fa fa-heart-o" aria-hidden="true"></i> by
+                <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+            </p>
+        </div>
+    </div>
+</footer>
+
+
+<!-- Back to top -->
+<div class="btn-back-to-top" id="myBtn">
+    <span class="symbol-btn-back-to-top">
+        <i class="zmdi zmdi-chevron-up"></i>
+    </span>
+</div>
+@Scripts.Render("~/vendor/js1")
+@Scripts.Render("~/js/js")
+
+<script>
+    $(".js-select2").each(function () {
+        $(this).select2({
+            minimumResultsForSearch: 20,
+            dropdownParent: $(this).next('.dropDownSelect2')
         });
-    </script>
-    <!--===============================================================================================-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
-    <script src="/js/map-custom.js"></script>
-    <!--===============================================================================================-->
-    <script src="/js/main.js"></script>
+    })
+</script>
 
-</body>
-</html>
+<script>
+    $('.js-pscroll').each(function () {
+        $(this).css('position', 'relative');
+        $(this).css('overflow', 'hidden');
+        var ps = new PerfectScrollbar(this, {
+            wheelSpeed: 1,
+            scrollingThreshold: 1000,
+            wheelPropagation: false,
+        });
+
+        $(window).on('resize', function () {
+            ps.update();
+        })
+    });
+</script>
+<!--===============================================================================================-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
+
+

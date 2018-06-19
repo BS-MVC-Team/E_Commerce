@@ -10,10 +10,11 @@
     <meta name="author" content="MVC Group 4">
     <meta name="keyword" content="Chung-Hua-University, CHU, Build-School, MVC, Group4">
 
-    <title> | 後台管理 | 商品管理>分類管理</title>
+    <title> | 後台管理 | 網頁模板 </title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link href="/assets/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--external css-->
     <link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/assets/css/zabuto_calendar.css">
@@ -45,7 +46,7 @@
                 <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
             </div>
             <!--logo start-->
-            <a href='@Url.Action("Categories","Administrator")' class="logo"><b>| 後台管理 | </b>商品管理>分類管理</a>
+            <a href='@Url.Action("ProductInfoEdit","Administrator")' class="logo"><b>| 後台管理 | </b>商品管理>商品資訊</a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
                 <!--  notification start -->
@@ -220,12 +221,12 @@
                             <span>商品管理</span>
                         </a>
                         <ul class="sub">
-                            @*<li>
-                                    <a href='@Url.Action("ProductCreate","Administrator")'>
-                                        <i class="fas fa-cart-plus"></i>
-                                        <span>新增商品</span>
-                                    </a>
-                                </li>*@
+                            <li>
+                                <a href='@Url.Action("ProductCreate","Administrator")'>
+                                    <i class="fas fa-cart-plus"></i>
+                                    <span>新增商品</span>
+                                </a>
+                            </li>
                             <li>
                                 <a href='@Url.Action("ProductsInfo","Administrator")'>
                                     <i class="fas fa-info"></i>
@@ -345,65 +346,64 @@
         <!--main content start-->
         <section id="main-content">
             <section class="wrapper">
-                <div class="showback">
-                    <h4><i class="fa fa-angle-right"></i> 分類管理 </h4>
-                    <div class="btn-group btn-group-justified">
-                        @*<div class="btn-group">
-                                <button type="button" class="btn btn-theme">分類1</button>
-                            </div>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-theme">分類2</button>
-                            </div>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-theme">分類3</button>
-                            </div>*@
-                        @foreach (var item in ViewBag.Categories as List<Category>)
-                        {
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-theme" id="@item.CategoryID" onclick="location.href='@Url.Action("Categories","Administrator",new { CategoryID = item.CategoryID})'">@item.CategoryID @item.CategoryName</button>
-                            </div>
-                        }
-                    </div>
-                </div><!--/showback -->
 
+                <h3><i class="fa fa-angle-right"></i> 編輯商品資訊</h3>
+
+                <!-- BASIC FORM ELELEMNTS -->
                 <div class="row mt">
                     <div class="col-lg-12">
-                        <div style="height:500px;overflow-y:auto" class="content-panel">
-                            <h4><i class="fa fa-angle-right"></i>分類管理</h4>
-                            <section id="no-more-tables">
-                                <table class="table table-bordered table-striped table-condensed cf">
-                                    <thead class="cf">
-                                        <tr>
-                                            <th>商品id</th>
-                                            <th>商品名稱</th>
-                                            <th>售價</th>
-                                            <th>商品詳情</th>
-                                            <th>分類編號</th>
-                                            <th>上架時間</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var item in ViewBag.Products as List<Products>)
-                                        {
-                                            <tr>
-                                                <th><a href='@Url.Action("ProductFormatEdit","Administrator",new { ProductID = item.ProductID})'>@item.ProductID</a></th>
-                                                <th>@item.ProductName</th>
-                                                <th>@item.UnitPrice</th>
-                                                <th>@item.Description</th>
-                                                <th>@item.CategoryID</th>
-                                                <th>@item.ShelfDate</th>
-                                            </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                            </section>
-                        </div><!-- /content-panel -->
-                    </div><!-- /col-lg-12 -->
+
+                        <div class="form-panel">
+                            <form class="form-horizontal style-form" method="get">
+                                <!-- <div class="form-group">
+                                    <label class="col-lg-2 col-sm-2 control-label">圖片網址</label>
+                                    <div class="col-sm-10">
+                                        <input type="url" class="form-control">
+                                    </div>
+                                </div>-->
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">商品名稱</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control ProductName">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">定價/售價</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control UnitPrice" type="number" min="0">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">描述</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control Description">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">分類</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control SelectCategory">
+                                            @foreach (var item in ViewBag.Categories as List<Category>)
+                                            {
+                                                <option id="@item.CategoryID">@item.CategoryID. @item.CategoryName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--<div class="row mt">
+                                    <label class="col-sm-2 col-sm-2 control-label">上架狀態</label>
+                                    <div class="col-sm-10 text-left">
+                                        <input type="checkbox" checked="" data-toggle="switch" />
+                                    </div>
+                                </div>-->
+                            </form>
+                            <br>
+                            <button type="button" class="btn btn-theme04 Create"><i class="fa fa-check"></i>  新增</button>
+                            <button type="button" class="btn btn-dark Cancel"><i class="fas fa-times"></i> 取消</button>
+                            <br>
+                        </div>
+                    </div><!-- col-lg-12-->
                 </div><!-- /row -->
-                <div class="row">
-                    <div class="col-lg-9 main-chart">
-                    </div><!-- /col-lg-9 END SECTION MIDDLE -->
-                </div><!--/row -->
             </section>
         </section>
 
@@ -434,6 +434,61 @@
     <script src="/assets/js/common-scripts.js"></script>
     <script type="text/javascript" src="/assets/js/gritter/js/jquery.gritter.js"></script>
     <script type="text/javascript" src="/assets/js/gritter-conf.js"></script>
+
+
+    <script src="/assets/js/jquery-ui-1.9.2.custom.min.js"></script>
+
+    <!--custom switch-->
+    <script src="/assets/js/bootstrap-switch.js"></script>
+
+    <!--custom tagsinput-->
+    <script src="/assets/js/jquery.tagsinput.js"></script>
+
+    <!--custom checkbox & radio-->
+
+    <script type="text/javascript" src="/assets/js/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="/assets/js/bootstrap-daterangepicker/date.js"></script>
+    <script type="text/javascript" src="/assets/js/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <script type="text/javascript" src="/assets/js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
+
+
+    <script src="/assets/js/form-component.js"></script>
+
+    <script>
+        $(".Create").on("click", function () {
+            var ProductName = $(".ProductName").val();
+            var UnitPrice = Number($(".UnitPrice").val());
+            var Description = $(".Description").val();
+            var SelectCategory = Number($(".SelectCategory option:selected").attr("id"));
+
+            $.ajax({
+                type: "POST",
+                url: "/Administrator/CreateNewProduct",
+                data: '{ProductName: "' + ProductName + '", UnitPrice: "' + UnitPrice + '", Description: "' + Description + '", SelectCategory: "' + SelectCategory + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response == "") {
+                        alert("新增成功");
+                        $(".ProductName").val("");
+                        $(".UnitPrice").val("");
+                        $(".Description").val("");
+                    }
+                    else {
+                        alert(response);
+                    }                  
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });        
+        });
+        
+    </script>
 
 </body>
 </html>

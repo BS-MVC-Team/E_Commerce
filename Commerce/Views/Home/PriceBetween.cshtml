@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Index";
+    var i = 0;
 }
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
@@ -129,11 +130,11 @@
             <!-- Search product -->
             <div class="dis-none panel-search w-full p-t-10 p-b-15">
                 <div class="bor8 dis-flex p-l-15">
-                    <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04 " id="SearchButton">
-                        <i class="zmdi zmdi-search" id="SearchButton"></i>
+                    <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+                        <i class="zmdi zmdi-search"></i>
                     </button>
 
-                    <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search" id="SearchInput">
+                    <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
                 </div>
             </div>
 
@@ -153,7 +154,7 @@
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04" id="Popularity">
+                                <a href="#" class="filter-link stext-106 trans-04">
                                     Popularity
                                 </a>
                             </li>
@@ -164,11 +165,11 @@
                                 </a>
                             </li>
 
-                                <li class="p-b-6">
-                                    <a href="#" class="filter-link stext-106 trans-04 filter-link-active time-filter">
-                                        NewProduct
-                                    </a>
-                                </li>
+                            <li class="p-b-6">
+                                <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+                                    Newness
+                                </a>
+                            </li>
 
                             <li class="p-b-6">
                                 <a href="#" class="filter-link stext-106 trans-04">
@@ -233,62 +234,62 @@
                                     <i class="zmdi zmdi-circle"></i>
                                 </span>
 
-                                    <a href="#" class="filter-link stext-106 trans-04 ColorButton" id="黑">
-                                        Black
-                                    </a>
-                                </li>
+                                <a href="#" class="filter-link stext-106 trans-04">
+                                    Black
+                                </a>
+                            </li>
 
                             <li class="p-b-6">
                                 <span class="fs-15 lh-12 m-r-6" style="color: #4272d7;">
                                     <i class="zmdi zmdi-circle"></i>
                                 </span>
 
-                                    <a href="#" class="filter-link stext-106 trans-04 ColorButton" id="藍">
-                                        Blue
-                                    </a>
-                                </li>
+                                <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+                                    Blue
+                                </a>
+                            </li>
 
                             <li class="p-b-6">
                                 <span class="fs-15 lh-12 m-r-6" style="color: #b3b3b3;">
                                     <i class="zmdi zmdi-circle"></i>
                                 </span>
 
-                                    <a href="#" class="filter-link stext-106 trans-04 ColorButton" id="灰">
-                                        Grey
-                                    </a>
-                                </li>
+                                <a href="#" class="filter-link stext-106 trans-04">
+                                    Grey
+                                </a>
+                            </li>
 
                             <li class="p-b-6">
                                 <span class="fs-15 lh-12 m-r-6" style="color: #00ad5f;">
                                     <i class="zmdi zmdi-circle"></i>
                                 </span>
 
-                                    <a href="#" class="filter-link stext-106 trans-04 ColorButton" id="綠">
-                                        Green
-                                    </a>
-                                </li>
+                                <a href="#" class="filter-link stext-106 trans-04">
+                                    Green
+                                </a>
+                            </li>
 
                             <li class="p-b-6">
                                 <span class="fs-15 lh-12 m-r-6" style="color: #fa4251;">
                                     <i class="zmdi zmdi-circle"></i>
                                 </span>
 
-                                    <a href="#" class="filter-link stext-106 trans-04 ColorButton" id="紅">
-                                        Red
-                                    </a>
-                                </li>
+                                <a href="#" class="filter-link stext-106 trans-04">
+                                    Red
+                                </a>
+                            </li>
 
                             <li class="p-b-6">
                                 <span class="fs-15 lh-12 m-r-6" style="color: #aaa;">
                                     <i class="zmdi zmdi-circle-o"></i>
                                 </span>
 
-                                    <a href="#" class="filter-link stext-106 trans-04 ColorButton" id="白">
-                                        White
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                                <a href="#" class="filter-link stext-106 trans-04">
+                                    White
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
 
                     <div class="filter-col4 p-b-27">
                         <div class="mtext-102 cl2 p-b-15">
@@ -322,39 +323,15 @@
         </div>
 
         <div class="row isotope-grid">
-            @foreach (var item in @ViewData["products"] as List<FindIndexProducts>)
+            @foreach (var item in @ViewData["priceproducts"] as List<FindIndexProducts>)
             {
-                <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item @item.CategoryName">
-                    <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <img src="@item.Image" alt="IMG-PRODUCT">
-
-                            <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1" id="@item.ProductID">
-                                Quick View
-                            </a>
-                        </div>
-
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                            <div class="block2-txt-child1 flex-col-l ">
-                                <a href="#" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 js-show-modal1" id="@item.ProductID">
-                                    @item.ProductName
-                                </a>
-
-                                <span class="stext-105 cl3">
-                                    $@item.UnitPrice
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-
-                @foreach (var item in @ViewData["products"] as List<FindIndexProducts>)
+                if (@item.ProductID != i)
                 {
+                    i = @item.ProductID;
                     <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item @item.CategoryName">
                         <div class="block2">
                             <div class="block2-pic hov-img0">
-                                <img src="@item.image" alt="IMG-PRODUCT">
+                                <img src="@item.Image" alt="IMG-PRODUCT">
 
                                 <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1" id="@item.ProductID">
                                     Quick View
@@ -375,6 +352,9 @@
                         </div>
                     </div>
                 }
+
+            }
+
 
         </div>
         <!-- Load more -->
@@ -427,22 +407,13 @@
     </div>
 </div>
 
+<p id="activestatus" hidden>@ViewData["active"]</p>
+
 @Scripts.Render("~/vendor/js1")
 @Scripts.Render("~/js/js")
 
-@*<script>
-        var priceitem = $('#priceitem a');
 
-        $(priceitem).each(function () {
-            $(this).on('click', function () {
-                for (var i = 0; i < priceitem.length; i++) {
-                    $(priceitem[i]).removeClass('filter-link-active');
-                }
 
-                $(this).addClass('filter-link-active');
-            });
-        });
-    </script>*@
 <script>
     $('.js-show-modal1').on('click', function (e) {
         e.preventDefault();
@@ -508,162 +479,20 @@
 
 </script>
 
-<script>
-    $('#Popularity').on('click', function (e) {
-        e.preventDefault();
-        $.ajax({
-            url: "/Home/PopualityIndex",
-            success: function (result) {
-                $(".isotope-grid").empty();
-                $(".isotope-grid").html(result);
+@*<script>
+    var status = $("#activestatus").text();
+    var priceitem = $('#priceitem a');
+    console.log(priceitem);
+    $(window).on('load', function () {
+        for (var i = 0; i < priceitem.length; i++) {
+            if (status == (i + 1)) {
+                $(priceitem[i]).addClass('filter-link-active');
             }
-        });
-
-
-    });
-</script>
-<script>
-    $("#SearchButton").on('click', function (e) {
-        console.log($("#SearchInput").val());
-        $.ajax({
-            url: "/Home/Search",
-            data: { productname : $("#SearchInput").val()},
-            success: function (result) {
-                $(".isotope-grid").empty();
-                $(".isotope-grid").html(result);
+            else {
+                $(priceitem[i]).removeClass('filter-link-active');
             }
-        });
-    });
-    @*$('#Searchinput').change(function () {
-        $('#SearchButton').attr("href", "@Url.Action("Search","Home")" + "?productname=" + $(this).val());
-    });*@
-</script>
 
-        $('.js-hide-sidebar').on('click', function () {
-            $('.js-sidebar').removeClass('show-sidebar');
-        });
-    </script>
+        }
+    }
 
-
-    <script>
-        $(".time-filter").on("click", function (e) {
-            e.preventDefault();
-            $.ajax({
-                url: "/Home/NewProduct",
-                success: function (response) {
-                    $(".isotope-grid").empty();
-
-                    $.ajax({
-                        type: "POST",
-                        url: "/Home/GetItemCount",
-                        success: function (result) {
-                            console.log(result);
-                            var itemCount = Number(result);
-                            var heightPX = 365 * Math.ceil(itemCount / 4);
-                            $(".isotope-grid").css("height", heightPX + "px");
-                            $(".isotope-grid").html(response);
-                        }
-                    });
-                },
-                failure: function (response) {
-                    alert(response.responseText);
-                },
-                error: function (response) {
-                    alert(response.responseText);
-                }
-            });
-
-
-        });
-    </script>
-
-    <script>
-        $(".price-filter").on("click", function (e) {
-            e.preventDefault();
-            $.ajax({
-                url: "/Home/HighToLowUnitprice",
-                success: function (response) {
-                    $(".isotope-grid").empty();
-
-                    $.ajax({
-                        type: "POST",
-                        url: "/Home/GetItemCount",
-                        success: function (result) {
-                            console.log(result);
-                            var itemCount = Number(result);
-                            var heightPX = 365 * Math.ceil(itemCount / 4);
-                            $(".isotope-grid").css("height", heightPX + "px");
-                            $(".isotope-grid").html(response);
-                        }
-                    });
-                },
-                failure: function (response) {
-                    alert(response.responseText);
-                },
-                error: function (response) {
-                    alert(response.responseText);
-                }
-            });
-
-
-        });
-    </script>
-
-    <script>
-        $(".low-filter").on("click", function (e) {
-            e.preventDefault();
-            $.ajax({
-                url: "/Home/LowToHighUnitprice",
-                success: function (response) {
-                    $(".isotope-grid").empty();
-
-                    $.ajax({
-                        type: "POST",
-                        url: "/Home/GetItemCount",
-                        success: function (result) {
-                            console.log(result);
-                            var itemCount = Number(result);
-                            var heightPX = 365 * Math.ceil(itemCount / 4);
-                            $(".isotope-grid").css("height", heightPX + "px");
-                            $(".isotope-grid").html(response);
-                        }
-                    });
-                },
-                failure: function (response) {
-                    alert(response.responseText);
-                },
-                error: function (response) {
-                    alert(response.responseText);
-                }
-            });
-        });
-    </script>
-
-    <script>
-        $(".ColorButton").on("click", function (e) {
-            e.preventDefault();
-            console.log(e.target.id);
-            $.ajax({
-                url: "/Home/ColorFilter",
-                data: { Colors: e.target.id },
-                success: function (response) {
-                    $(".isotope-grid").empty();
-                    $(".isotope-grid").html(response);
-                },
-                failure: function (response) {
-                    alert(response.responseText);
-                },
-                error: function (response) {
-                    alert(response.responseText);
-                }
-            });
-        });
-    </script>
-
-   
-
-
-
-</body>
-
-</html>
+</script>*@

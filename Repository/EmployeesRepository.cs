@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Utils;
 using Dapper;
+using Procedure;
 
 namespace BuildSchool.MvcSolution.OnlineStore.Repository
 {
@@ -15,8 +16,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
     {
         public void Create(Employees model)
         {
-            SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+            SqlConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
             var sql = "INSERT INTO Employees VALUES ( @Name, @Phone, @HireDate)";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -34,7 +34,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Update(Employees model)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "UPDATE Employees SET Name=@Name, Phone=@Phone, HireDate=@HireDate WHERE EmployeeID = @EmployeeID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -52,7 +52,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Delete(Employees model)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "DELETE FROM Employees WHERE EmployeeID = @EmployeeID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -67,7 +67,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public Employees FindById(int EmployeeID)
         {
             IDbConnection connection = new SqlConnection(
-               "data source=.; database=Commerce; integrated security=true");
+               SqlConnectionString.ConnectionString());
 
             var result = connection.Query<Employees>("SELECT * FROM Employees WHERE EmployeeID = @EmployeeID", new { @EmployeeID = EmployeeID });
             Employees employee = null;
@@ -77,7 +77,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             }
             return employee;
             //SqlConnection connection = new SqlConnection(
-            //    "data source=.; database=Commerce; integrated security=true");
+            //    SqlConnectionString.ConnectionString());
             //var sql = "SELECT * FROM Employees WHERE EmployeeID = @EmployeeID";
 
             //SqlCommand command = new SqlCommand(sql, connection);
@@ -103,7 +103,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public Employees FindByName(string Name)
         {
             IDbConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
 
             var result = connection.Query<Employees>("SELECT * FROM Employees WHERE Name = @Name", new { Name = Name });
             Employees employee = null;
@@ -113,7 +113,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             }
             return employee;
             //SqlConnection connection = new SqlConnection(
-            //    "data source=.; database=Commerce; integrated security=true");
+            //    SqlConnectionString.ConnectionString());
             //var sql = "SELECT * FROM Employees WHERE Name = @Name";
 
             //SqlCommand command = new SqlCommand(sql, connection);
@@ -140,12 +140,12 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public IEnumerable<Employees> FindByHireYear(int startYear, int endYear)
         {
             IDbConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
 
             return connection.Query<Employees>("SELECT * FROM Employees WHERE YEAR(HireDate) BETWEEN @startYear AND @endYear ORDER BY HireDate DESC", new { startYear, endYear });
 
             //SqlConnection connection = new SqlConnection(
-            //    "data source=.; database=Commerce; integrated security=true");
+            //    SqlConnectionString.ConnectionString());
             //var sql = "SELECT * FROM Employees WHERE YEAR(HireDate) BETWEEN @startYear AND @endYear ORDER BY HireDate DESC";
 
             //SqlCommand command = new SqlCommand(sql, connection);
@@ -173,12 +173,12 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public IEnumerable<Employees> GetAll()
         {
             IDbConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
 
             return connection.Query<Employees>("SELECT * FROM employees");
 
             //SqlConnection connection = new SqlConnection(
-            //    "data source=.; database=Commerce; integrated security=true");
+            //    SqlConnectionString.ConnectionString());
             //var sql = "SELECT * FROM employees";
 
             //SqlCommand command = new SqlCommand(sql, connection);

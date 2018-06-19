@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Procedure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,11 @@ namespace Commerce
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        protected void Applicaion_Begin()
+        {
+            SqlConnectionString.ConnectionString(); 
         }
     }
 }

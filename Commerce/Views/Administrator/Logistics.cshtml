@@ -1,15 +1,15 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
-      @{
-      Layout = "";
-      }
+<head>
+    @{
+        Layout = "";
+    }
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="MVC Group 4">
     <meta name="keyword" content="Chung-Hua-University, CHU, Build-School, MVC, Group4">
-    
+
     <title> | 後台管理 | 訂單與物流>物流管理 </title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -18,34 +18,34 @@
     <link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/assets/css/zabuto_calendar.css">
     <link rel="stylesheet" type="text/css" href="/assets/js/gritter/css/jquery.gritter.css" />
-    <link rel="stylesheet" type="text/css" href="/assets/lineicons/style.css">    
-    
+    <link rel="stylesheet" type="text/css" href="/assets/lineicons/style.css">
+
     <!-- Custom styles for this template -->
     <link href="/assets/css/style.css" rel="stylesheet">
     <link href="/assets/css/style-responsive.css" rel="stylesheet">
 
     <script src="/assets/js/chart-master/Chart.js"></script>
-    
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
+</head>
 
-  <body>
+<body>
 
-  <section id="container" >
-      <!-- **********************************************************************************************************************************************************
-      TOP BAR CONTENT & NOTIFICATIONS
-      *********************************************************************************************************************************************************** -->
-      <!--header start-->
-      <header class="header black-bg">
-              <div class="sidebar-toggle-box">
-                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-              </div>
+    <section id="container">
+        <!-- **********************************************************************************************************************************************************
+        TOP BAR CONTENT & NOTIFICATIONS
+        *********************************************************************************************************************************************************** -->
+        <!--header start-->
+        <header class="header black-bg">
+            <div class="sidebar-toggle-box">
+                <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+            </div>
             <!--logo start-->
-            <a href="index.html" class="logo"><b>| 後台管理 | </b>訂單與物流>物流管理</a>
+            <a href='@Url.Action("Logistics","Administrator")' class="logo"><b>| 後台管理 | </b>訂單與物流>物流管理</a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
                 <!--  notification start -->
@@ -114,7 +114,7 @@
                                 </a>
                             </li>
                             <li class="external">
-                                <a href="tasks.html">查看所有代辦與活動</a>
+                                <a href='@Url.Action("Tasks","Administrator")'>查看所有代辦與活動</a>
                             </li>
                         </ul>
                     </li>
@@ -134,12 +134,12 @@
                                 <a href="#">
                                     <span class="photo"><img alt="avatar" src="/assets/img/ui-zac.jpg"></span>
                                     <span class="subject">
-                                    <span class="from">寄件人</span>
-                                    <span class="time">剛剛</span>
+                                        <span class="from">寄件人</span>
+                                        <span class="time">剛剛</span>
                                     </span>
                                     <span class="message">
                                         訊息內容訊息內容訊息內容訊息。
-                                        
+
                                     </span>
                                 </a>
                             </li>
@@ -147,8 +147,8 @@
                                 <a href="#">
                                     <span class="photo"><img alt="avatar" src="/assets/img/ui-divya.jpg"></span>
                                     <span class="subject">
-                                    <span class="from">寄件人</span>
-                                    <span class="time">000 分前</span>
+                                        <span class="from">寄件人</span>
+                                        <span class="time">000 分前</span>
                                     </span>
                                     <span class="message">
                                         訊息內容訊息內容訊息內容訊息。
@@ -159,8 +159,8 @@
                                 <a href="#">
                                     <span class="photo"><img alt="avatar" src="/assets/img/ui-danro.jpg"></span>
                                     <span class="subject">
-                                    <span class="from">寄件人</span>
-                                    <span class="time">000 分前</span>
+                                        <span class="from">寄件人</span>
+                                        <span class="time">000 分前</span>
                                     </span>
                                     <span class="message">
                                         訊息內容訊息內容訊息內容訊息。
@@ -171,8 +171,8 @@
                                 <a href="#">
                                     <span class="photo"><img alt="avatar" src="/assets/img/ui-sherman.jpg"></span>
                                     <span class="subject">
-                                    <span class="from">寄件人</span>
-                                    <span class="time">000 分前</span>
+                                        <span class="from">寄件人</span>
+                                        <span class="time">000 分前</span>
                                     </span>
                                     <span class="message">
                                         訊息內容訊息內容訊息內容訊息。
@@ -189,100 +189,105 @@
                 <!--  notification end -->
             </div>
             <div class="top-menu">
-            	<ul class="nav pull-right top-menu">
+                <ul class="nav pull-right top-menu">
                     <li><a class="logout" href="login.html">Logout</a></li>
-            	</ul>
+                </ul>
             </div>
         </header>
-      <!--header end-->
-      
-      <!-- **********************************************************************************************************************************************************
-      左側bar      MAIN SIDEBAR MENU
-      *********************************************************************************************************************************************************** -->
-      <!--sidebar start-->
-      <aside>
-          <div id="sidebar"  class="nav-collapse ">
-              <!-- sidebar menu start-->
-              <ul class="sidebar-menu" id="nav-accordion">
-              
-              	  <p class="centered"><img src="https://i.pinimg.com/originals/03/7e/79/037e79b2fb52127537be79110891ae3f.png" class="img-circle" width="60"></p>
-              	  <h5 class="centered">歡迎進入後台!</h5>
-              	  	
+        <!--header end-->
+        <!-- **********************************************************************************************************************************************************
+        左側bar      MAIN SIDEBAR MENU
+        *********************************************************************************************************************************************************** -->
+        <!--sidebar start-->
+        <aside>
+            <div id="sidebar" class="nav-collapse ">
+                <!-- sidebar menu start-->
+                <ul class="sidebar-menu" id="nav-accordion">
+
+                    <p class="centered"><img src="https://i.pinimg.com/originals/03/7e/79/037e79b2fb52127537be79110891ae3f.png" class="img-circle" width="60"></p>
+                    <h5 class="centered">歡迎進入後台!</h5>
+
                     <li class="mt">
-                        <a href="managIndex.html">
+                        <a href='@Url.Action("ManageIndex","Administrator")'>
                             <i class="fas fa-store"></i>
                             <span>店鋪總覽</span>
                         </a>
                     </li>
-    
+
                     <li class="sub-menu">
-                        <a href="javascript:;" >
+                        <a href="javascript:;">
                             <i class="fas fa-sitemap"></i>
                             <span>商品管理</span>
                         </a>
                         <ul class="sub">
+                            @*<li>
+                                <a href='@Url.Action("ProductCreate","Administrator")'>
+                                    <i class="fas fa-cart-plus"></i>
+                                    <span>新增商品</span>
+                                </a>
+                            </li>*@
                             <li>
-                                <a href="products_info.html" >
+                                <a href='@Url.Action("ProductsInfo","Administrator")'>
                                     <i class="fas fa-info"></i>
                                     <span>商品資訊</span>
                                 </a>
-                            </li>     
+                            </li>
                             <li>
-                                <a href="categories.html" >
-                                    <i class="fas fa-th-list"></i> 
+                                <a href='@Url.Action("Categories","Administrator")'>
+                                    <i class="fas fa-th-list"></i>
                                     <span>分類管理</span>
                                 </a>
-                            </li>   
+                            </li>
                             <li>
-                                <a href="analysis.html" >
+                                <a href='@Url.Action("Analysis","Administrator")'>
                                     <i class="fas fa-sort-numeric-down"></i>
                                     <span>數據統計</span>
                                 </a>
                             </li>
                         </ul>
                     </li>
-    
+
                     <li class="sub-menu">
-                        <a href="javascript:;" >
+                        <a class="active" href="javascript:;">
                             <i class="fas fa-sitemap"></i>
                             <span>訂單與物流</span>
                         </a>
                         <ul class="sub">
                             <li>
-                                <a href="order.html" >
+                                <a href='@Url.Action("Order","Administrator")'>
                                     <i class="fas fa-list-ol"></i>
                                     <span>訂單管理</span>
                                 </a>
-                            </li>  
+                            </li>
                             <li>
-                                <a class="active" href="logistics.html" >
+                                <a href='@Url.Action("Logistics","Administrator")'>
                                     <i class="fas fa-truck"></i>
                                     <span>物流管理</span>
                                 </a>
-                            </li>                     
+                            </li>
                         </ul>
                     </li>
-    
+
                     <li class="sub-menu">
-                        <a href="javascript:;" >
+                        <a href="javascript:;">
                             <i class="fas fa-users"></i>
                             <span>會員管理</span>
                         </a>
                         <ul class="sub">
                             <li>
-                                <a  href="member_check.html">
+                                <a href="member_check.html">
                                     <i class="fas fa-user-check"></i>
                                     <span>檢視會員</span>
                                 </a>
-                                </li>
+                            </li>
                             <li>
-                                <a  href="member_setting.html">
+                                <a href="member_setting.html">
                                     <i class="fas fa-user-edit"></i>
                                     <span>管理會員</span>
                                 </a>
                             </li>
                             <li>
-                                <a  href="member_blacklist.html">
+                                <a href="member_blacklist.html">
                                     <i class="fas fa-user-times"></i>
                                     <span>黑名單管理</span>
                                 </a>
@@ -290,7 +295,7 @@
                         </ul>
                     </li>
                     <li class="sub-menu">
-                        <a href="javascript:;" >
+                        <a href="javascript:;">
                             <i class="fas fa-chart-line"></i>
                             <span>營銷與財務管理</span>
                         </a>
@@ -310,7 +315,7 @@
                         </ul>
                     </li>
                     <li class="sub-menu">
-                        <a href="javascript:;" >
+                        <a href="javascript:;">
                             <i class="far fa-question-circle"></i>
                             <span>幫助中心</span>
                         </a>
@@ -329,85 +334,94 @@
                             </li>
                         </ul>
                     </li>
-    
-              </ul>
-              <!-- sidebar menu end-->
-          </div>
-      </aside>
-      <!--sidebar end-->
-      
-      <!-- **********************************************************************************************************************************************************
-      MAIN CONTENT
-      *********************************************************************************************************************************************************** -->
-      <!--main content start-->
-      <section id="main-content">
-          <section class="wrapper">
+
+                </ul>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--sidebar end-->
+        <!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
                 <div class="row mt">
                     <div class="col-lg-12">
                         <div style="height:600px; overflow-y: auto;" class="content-panel">
                             <h4><i class="fa fa-angle-right"> </i>物流管理</h4>
                             <section id="no-more-tables">
                                 <table class="table table-bordered table-striped table-condensed cf">
-                                    <thead class="cf"> 
-                                    <tr>
-                                        <th>#</th>
-                                        <th>訂單編號</th>
-                                        <th>物流編號</th>
-                                        <th>物流狀態</th>
-                                        <th>到達時間</th>
-                                        <th>備註</th>
-                                    </tr>
+                                    <thead class="cf">
+                                        <tr>
+                                            <th>訂單序號</th>
+                                            <th>負責人帳號</th>
+                                            <th>買家帳號</th>
+                                            <th>收件人</th>
+                                            <th>運送地址</th>
+                                            <th>電話</th>
+                                            <th>出貨時間</th>
+                                            <th>訂單時間</th>
+                                            <th>送達時間</th>
+                                            <th>送貨狀態</th>
+                                            <th>總金額</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>0001</td>
-                                        <td>01</td>
-                                        <td><i class="fas fa-truck"></i> 貨物運送中</td>
-                                        <th>2018-01-01 12:00</th>
-                                        <th> </th>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>0002</td>
-                                        <td>02</td>
-                                        <td><i class="far fa-check-square"></i> 訂單確認中</td>
-                                        <th> -- </th>
-                                        <th> </th>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>0003</td>
-                                        <td>03</td>
-                                        <td><i class="far fa-clock"></i> 等待取貨</td>
-                                        <th> -- </th>
-                                        <th> </th>
-                                    </tr>
+                                        @{
+                                            foreach (var item in ViewBag.Orders as List<BuildSchool.MvcSolution.OnlineStore.Models.Orders>)
+                                            {
+                                                <tr>
+                                                    <th>@item.OrderID</th>
+                                                    <th>@item.EmployeeID</th>
+                                                    <th>@item.MemberID</th>
+                                                    <th>@item.ShipName</th>
+                                                    <th>@item.ShipAddress</th>
+                                                    <th>@item.ShipPhone</th>
+                                                    <th>@item.ShippedDate<button class="btn-primary ShippedDateFix" id="@item.OrderID">更改時間</button><button class="btn-danger ShippedDateDelete" id="@item.OrderID">刪除</button></th>
+                                                    <th>@item.OrderDate</th>
+                                                    <th>@item.ReceiptedDate<button class="btn-primary ReceiptedDateFix" id="@item.OrderID">更改時間</button><button class="btn-danger ReceiptedDateDelete" id="@item.OrderID">刪除</button></th>
+                                                    @if (item.Status == "未送貨")
+                                                    {
+                                                        <td><i class="far fa-clock"></i> @item.Status</td>
+                                                    }
+                                                    else if (item.Status == "送貨中")
+                                                    {
+                                                        <td><i class="fas fa-truck"></i> @item.Status</td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td><i class="far fa-check-square"></i> @item.Status</td>
+                                                    }
+                                                    <th>@item.TotalPrice</th>
+                                                </tr>
+                                            }
+                                        }
                                     </tbody>
                                 </table>
                             </section>
                         </div><!-- /content-panel -->
                     </div><!-- /col-lg-12 -->
-                </div><!-- /row -->     
-              <div class="row">
-                  <div class="col-lg-9 main-chart">
-                  </div><!-- /col-lg-9 END SECTION MIDDLE -->
-              </div><!--/row -->
-          </section>
-      </section>
+                </div><!-- /row -->
+                <div class="row">
+                    <div class="col-lg-9 main-chart">
+                    </div><!-- /col-lg-9 END SECTION MIDDLE -->
+                </div><!--/row -->
+            </section>
+        </section>
 
-      <!--main content end-->
-      <!--footer start-->
-      <footer class="site-footer">
-          <div class="text-center">
-              2018 - buildschoolMVC4group.com
-              <a href="#" class="go-top">
-                  <i class="fa fa-angle-up"></i>
-              </a>
-          </div>
-      </footer>
-      <!--footer end-->
-  </section>
+        <!--main content end-->
+        <!--footer start-->
+        <footer class="site-footer">
+            <div class="text-center">
+                2018 - buildschoolMVC4group.com
+                <a href="#" class="go-top">
+                    <i class="fa fa-angle-up"></i>
+                </a>
+            </div>
+        </footer>
+        <!--footer end-->
+    </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="/assets/js/jquery.js"></script>
@@ -424,5 +438,104 @@
     <script type="text/javascript" src="/assets/js/gritter/js/jquery.gritter.js"></script>
     <script type="text/javascript" src="/assets/js/gritter-conf.js"></script>
 
-  </body>
+    <script>
+        $(".ShippedDateFix").on("click", function (e) {
+            $.ajax({
+                type: "POST",
+                url: "/Administrator/UpdateShippedDate",
+                data: '{OrderID: "' + Number(e.target.id) + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response == "") {
+                        location.reload();
+                    }
+                    else {
+                        alert(response);
+                    }       
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });        
+        });
+
+        $(".ShippedDateDelete").on("click", function (e) {
+            $.ajax({
+                type: "POST",
+                url: "/Administrator/DeleteShippedDate",
+                data: '{OrderID: "' + Number(e.target.id) + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response == "") {
+                        location.reload();
+                    }
+                    else {
+                        alert(response);
+                    }       
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+
+        $(".ReceiptedDateFix").on("click", function (e) {
+            $.ajax({
+                type: "POST",
+                url: "/Administrator/UpdateReceiptedDate",
+                data: '{OrderID: "' + Number(e.target.id) + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response == "") {
+                        location.reload();
+                    }
+                    else
+                    {
+                        alert(response);
+                    }                   
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+
+        $(".ReceiptedDateDelete").on("click", function (e) {
+            $.ajax({
+                type: "POST",
+                url: "/Administrator/DeleteReceiptedDate",
+                data: '{OrderID: "' + Number(e.target.id) + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response == "") {
+                        location.reload();
+                    }
+                    else {
+                        alert(response);
+                    }
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+    </script>
+
+</body>
 </html>

@@ -1,5 +1,6 @@
 ﻿using BuildSchool.MvcSolution.OnlineStore.Models;
 using BuildSchool.MvcSolution.OnlineStore.Repository;
+using Commerce.Models;
 using Procedure;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace Commerce.Controllers
     public class ShoppingController : Controller
     {
         // GET: Shopping
+        [NoCache]
         public ActionResult ShoppingCart()
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
@@ -63,6 +65,7 @@ namespace Commerce.Controllers
             return View();
         }
 
+        [NoCache]
         [HttpPost]
         public JsonResult ShoppingCart(int ProductFormatID)
         {
@@ -71,6 +74,7 @@ namespace Commerce.Controllers
             return Json(result);
         }
 
+        [NoCache]
         [HttpPost]
         public JsonResult UpdateCartItem(int ShoppingCartID, int Quantity)
         {
@@ -79,6 +83,7 @@ namespace Commerce.Controllers
             return Json("修改成功");
         }
 
+        [NoCache]
         [HttpPost]
         public JsonResult DeleteCartItem(int ShoppingCartID)
         {
@@ -87,6 +92,7 @@ namespace Commerce.Controllers
             return Json("刪除成功");
         }
 
+        [NoCache]
         [HttpPost]
         public JsonResult Order(string name, string phone, string address, string memberID, decimal totalPrice)
         {
@@ -177,6 +183,7 @@ namespace Commerce.Controllers
             }
         }
 
+        [NoCache]
         public ActionResult SideCart()
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
@@ -222,6 +229,15 @@ namespace Commerce.Controllers
             ViewData["ShoppingCart"] = shoppingCarts;
             ViewData["TotalPrice"] = TotalPrice;
             return PartialView();
+        }
+
+        [NoCache]
+        [HttpPost]
+        public JsonResult GetPersonalInformation(string MemberID)
+        {
+            MemberRepository repository = new MemberRepository();
+            var item =  repository.FindById(MemberID);
+            return Json(item);
         }
     }
 }

@@ -1,0 +1,69 @@
+﻿
+@foreach (var item in @ViewData["popualitylist"] as IEnumerable<PopualityProduct>)
+{
+    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women"style="height:364.33px">
+        <!-- Block2 -->
+        <div class="block2">
+            <div class="block2-pic hov-img0">
+                <img src=@item.image alt="IMG-PRODUCT">
+
+                <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1" id="@item.ProductID">
+                    Quick View
+                </a>
+            </div>
+
+            <div class="block2-txt flex-w flex-t p-t-14">
+                <div class="block2-txt-child1 flex-col-l ">
+                    <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                        @item.ProductName
+                    </a>
+                    <span class="stext-105 cl3">
+                        $@item.UnitPrice
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+<script>
+        $('.js-show-modal1').on('click', function (e) {
+            e.preventDefault();
+            console.log(this.id);
+            $.ajax({
+                url: "/Home/Modal",
+                data: {
+                    productid: this.id
+                },
+                success: function (result) {
+                    $('.js-modal1').addClass('show-modal1');
+                    //$("#modalform").remove();
+                    $("#modalform").html(result);
+                    $.ajax({
+                        url: "/Home/Quantity",
+                        data: {
+                            color: $("#color").val(),
+                            size: $("#size").val(),
+                            productid: $("#productid").text(),
+                        },
+                        success: function (result) {
+                            $(".quantry").html(result);
+                            //$.ajax({
+                            //    url: "/Home/CartIconNumber",
+                            //    success: function (result) {
+                            //        $("#datacount").html(result);
+                            //        $("#carticon").attr("data-notify", $("#datacount").text());
+                            //    }
+                            //});
+                        }
+                    });
+                }
+            });
+        });
+
+        $('.js-hide-modal1').on('click', function () {
+            $('.js-modal1').removeClass('show-modal1');
+        });
+
+</script>
+

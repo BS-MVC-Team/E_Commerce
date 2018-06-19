@@ -17,6 +17,7 @@ namespace Commerce.Controllers
 {
     public class HomeController : Controller
     {
+        [NoCache]
         public ActionResult Index()
         {
             ViewBag.Title = "首頁";
@@ -117,6 +118,8 @@ namespace Commerce.Controllers
             return PartialView();
         }
 
+
+        [NoCache]
         public ActionResult SignIn()
         {
             ViewBag.Title = "登入";
@@ -136,7 +139,7 @@ namespace Commerce.Controllers
             return View();
         }
 
-
+        [NoCache]
         public ActionResult ProductDetail()
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
@@ -154,6 +157,7 @@ namespace Commerce.Controllers
             return View();
         }
 
+        [NoCache]
         public ActionResult Contact()
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
@@ -173,6 +177,7 @@ namespace Commerce.Controllers
             return View();
         }
 
+        [NoCache]
         [HttpPost]
         public JsonResult SignIn(string memberid, string memberpassword)
         {
@@ -193,7 +198,7 @@ namespace Commerce.Controllers
                 if (memberpassword == member.Password)
                 {
                     FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
-                        1, "MemberId", DateTime.Now, DateTime.Now.AddMinutes(5), false, memberid);
+                        1, "MemberId", DateTime.Now, DateTime.Now.AddMinutes(30), false, memberid);
 
                     var ticketData = FormsAuthentication.Encrypt(ticket);
 
@@ -210,6 +215,7 @@ namespace Commerce.Controllers
 
         }
 
+        [NoCache]
         public ActionResult SignUp()
         {
             ViewBag.Title = "註冊會員";
@@ -229,6 +235,7 @@ namespace Commerce.Controllers
             return View();
         }
 
+        [NoCache]
         [HttpPost]
         public JsonResult SignUp(string MemberId, string MemberPassword, string MemberCheckPassword, string Name, string Phone, string Email, string Address)
         {
@@ -292,15 +299,14 @@ namespace Commerce.Controllers
             }
         }
 
+        [NoCache]
         [Route("Logout")]
-        public ActionResult Logout()
+        public void Logout()
         {
             FormsAuthentication.SignOut();
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             cookie.Expires = DateTime.Now;
             Response.Cookies.Add(cookie);
-
-            return RedirectToAction("Index");
         }
 
         bool IsValidEmail(string email)
@@ -315,6 +321,8 @@ namespace Commerce.Controllers
                 return false;
             }
         }
+
+        [NoCache]
         public ActionResult ProductInterface(string productid)
         {
             ViewBag.Title = "產品介面";
@@ -339,6 +347,7 @@ namespace Commerce.Controllers
             return View();
         }
 
+        [NoCache]
         public ActionResult Modal(string productid)
         {
             Procedure.Procedure procedure = new Procedure.Procedure();
@@ -366,6 +375,7 @@ namespace Commerce.Controllers
         private string image;
         private string productName;
         private decimal unitPrice;
+        [NoCache]
         [HttpPost]
         public int ModaltoCart(string productid, string size, string color, string quantity)
         {
@@ -401,7 +411,7 @@ namespace Commerce.Controllers
             }
             else
             {
-                if (int.Parse(quantity) < stock)
+                if (int.Parse(quantity) <= stock)
                 {
                     ShoppingCart shoppingCart = new ShoppingCart
                     {
@@ -424,7 +434,7 @@ namespace Commerce.Controllers
             }
         }
 
-
+        [NoCache]
         public ActionResult Quantity(string color, string size, string productid)
         {
             int quantitynumber = 0;
@@ -452,8 +462,7 @@ namespace Commerce.Controllers
             return PartialView();
         }
 
-       
-
+        [NoCache]
         public ActionResult CartIconNumber()
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
@@ -473,5 +482,81 @@ namespace Commerce.Controllers
             ViewData["iconcount"] = Data.Count().ToString();
             return PartialView();
         }
+
+
+        [NoCache]
+        public ActionResult PriceBetween(string lower,string higher,int active)
+        {
+            ViewData["active"] = active;
+            var procedure = new Procedure.Procedure();
+            var priceproducts = procedure.FindMoneyBetween(decimal.Parse(lower), decimal.Parse(higher));
+            ViewData["priceproducts"] = priceproducts;
+
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                ViewBag.IsAuthenticated = false;
+                return View();
+            }
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            ViewBag.IsAuthenticated = true;
+            ViewBag.UserName = ticket.UserData;
+            var repository = new ShoppingCartRepository();
+            var Data = repository.FindByMemberID(ticket.UserData);
+            ViewData["count"] = Data.Count().ToString();
+            return View();
+        }
+
+        public ActionResult PopualityIndex()
+        {
+            ViewBag.Title = "熱銷產品介面";
+            var Popuality = new ProductRepository();
+            var FindPopualityProduct = Popuality.PopularityProduct();
+
+
+            //new list
+            List<string> productcolor = new List<string>();
+            List<string> productsize = new List<string>();
+            ViewBag.FindPopualityProduct = FindPopualityProduct;
+            // ViewData["FindPopualityProduct"] = FindPopualityProduct;
+
+            var popualitylist = new List<PopualityProduct>();
+            foreach (var item in FindPopualityProduct)
+            {
+                PopualityProduct popuality = new PopualityProduct()
+                {
+                    image = item.image,
+                    ProductID = item.ProductID,
+                    ProductName = item.ProductName,
+                    Color = item.Color,
+                    StockQuantity = item.StockQuantity,
+                    Description = item.Description,
+                    UnitPrice = item.UnitPrice
+                };
+                popualitylist.Add(popuality);
+            }
+            //ViewData.Add();
+            ViewData["popualitylist"] = popualitylist;
+            ViewData["count"] = popualitylist.Count();
+            ViewData["productcolor"] = productcolor.Distinct();
+            ViewData["productsize"] = productsize.Distinct();
+            return PartialView();
+        }
+
+        [HttpGet]
+        //[Route("Search")]
+        public ActionResult Search(string productname)
+        {
+
+            Procedure.Procedure procedure = new Procedure.Procedure();
+            var SearchProduct = procedure.Search(productname);
+            ViewData["SearchProduct"] = SearchProduct;
+
+            return PartialView();
+        }
+
+
     }
 }
