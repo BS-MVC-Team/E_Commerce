@@ -45,11 +45,35 @@ namespace Commerce.Controllers
         }
 
         [HttpPost]
-        public int GetItemCount()
+        public int NewProductItemCount()
         {
             var productrepository = new ProductRepository();
             var newProducts = productrepository.NewProduct();
             return newProducts.Count();
+        }
+
+        [HttpPost]
+        public int HighToLowUnitpriceItemCount()
+        {
+            var productrepository = new ProductRepository();
+            var HighToLowUnitprice = productrepository.HighToLowUnitprice();
+            return HighToLowUnitprice.Count();
+        }
+
+        [HttpPost]
+        public int LowToHighUnitpriceItemCount()
+        {
+            var productrepository = new ProductRepository();
+            var LowToHighUnitprice = productrepository.LowToHighUnitprice();
+            return LowToHighUnitprice.Count();
+        }
+
+        [HttpPost]
+        public int ColorFilterItemCount(string Colors)
+        {
+            Procedure.Procedure procedure = new Procedure.Procedure();
+            var Color = procedure.ColorFilters(Colors);
+            return Color.Count();
         }
 
         public ActionResult NewProduct()
@@ -64,7 +88,7 @@ namespace Commerce.Controllers
             if (cookie == null)
             {
                 ViewBag.IsAuthenticated = false;
-                return View();
+                return PartialView();
             }
 
             var tickets = FormsAuthentication.Decrypt(cookie.Value);
@@ -86,7 +110,7 @@ namespace Commerce.Controllers
             if (cookie == null)
             {
                 ViewBag.IsAuthenticated = false;
-                return View();
+                return PartialView();
             }
 
             var ticketes = FormsAuthentication.Decrypt(cookie.Value);
@@ -108,7 +132,7 @@ namespace Commerce.Controllers
             if (cookie == null)
             {
                 ViewBag.IsAuthenticated = false;
-                return View();
+                return PartialView();
             }
 
             var ticketess = FormsAuthentication.Decrypt(cookie.Value);

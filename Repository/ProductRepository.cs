@@ -162,20 +162,20 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
         public IEnumerable<NewProduct> NewProduct()
         {
-            SqlConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            SqlConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
             return connection.Query<NewProduct>("SELECT * FROM NewProduct");
         }
 
         public IEnumerable<HighToLowUnitprice> HighToLowUnitprice()
         {
-            SqlConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
-            return connection.Query<HighToLowUnitprice>("SELECT * FROM HighToLowUnitprice");
+            SqlConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
+            return connection.Query<HighToLowUnitprice>("SELECT * FROM HighToLowUnitprice ORDER BY UnitPrice DESC");
         }
 
         public IEnumerable<LowToHighUnitprice> LowToHighUnitprice()
         {
-            SqlConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
-            return connection.Query<LowToHighUnitprice>("SELECT * FROM LowToHighUnitprice");
+            SqlConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
+            return connection.Query<LowToHighUnitprice>("SELECT * FROM LowToHighUnitprice ORDER BY UnitPrice");
         }
 
         public Products FindNextProductID()

@@ -518,15 +518,14 @@
             $.ajax({
                 url: "/Home/NewProduct",
                 success: function (response) {
-                    $(".isotope-grid").empty();
-
                     $.ajax({
                         type: "POST",
-                        url: "/Home/GetItemCount",
+                        url: "/Home/NewProductItemCount",
                         success: function (result) {
                             console.log(result);
                             var itemCount = Number(result);
                             var heightPX = 365 * Math.ceil(itemCount / 4);
+                            $(".isotope-grid").empty();
                             $(".isotope-grid").css("height", heightPX + "px");
                             $(".isotope-grid").html(response);
                         }
@@ -550,15 +549,14 @@
             $.ajax({
                 url: "/Home/HighToLowUnitprice",
                 success: function (response) {
-                    $(".isotope-grid").empty();
-
                     $.ajax({
                         type: "POST",
-                        url: "/Home/GetItemCount",
+                        url: "/Home/HighToLowUnitpriceItemCount",
                         success: function (result) {
                             console.log(result);
                             var itemCount = Number(result);
                             var heightPX = 365 * Math.ceil(itemCount / 4);
+                            $(".isotope-grid").empty();
                             $(".isotope-grid").css("height", heightPX + "px");
                             $(".isotope-grid").html(response);
                         }
@@ -582,15 +580,14 @@
             $.ajax({
                 url: "/Home/LowToHighUnitprice",
                 success: function (response) {
-                    $(".isotope-grid").empty();
-
                     $.ajax({
                         type: "POST",
-                        url: "/Home/GetItemCount",
+                        url: "/Home/LowToHighUnitpriceItemCount",
                         success: function (result) {
                             console.log(result);
                             var itemCount = Number(result);
                             var heightPX = 365 * Math.ceil(itemCount / 4);
+                            $(".isotope-grid").empty();
                             $(".isotope-grid").css("height", heightPX + "px");
                             $(".isotope-grid").html(response);
                         }
@@ -614,8 +611,19 @@
                 url: "/Home/ColorFilter",
                 data: { Colors: e.target.id },
                 success: function (response) {
-                    $(".isotope-grid").empty();
-                    $(".isotope-grid").html(response);
+                    $.ajax({
+                        type: "POST",
+                        url: "/Home/ColorFilterItemCount",
+                        data: { Colors: e.target.id },
+                        success: function (result) {
+                            console.log(result);
+                            var itemCount = Number(result);
+                            var heightPX = 365 * Math.ceil(itemCount / 4);
+                            $(".isotope-grid").empty();
+                            $(".isotope-grid").css("height", heightPX + "px");
+                            $(".isotope-grid").html(response);
+                        }
+                    });
                 },
                 failure: function (response) {
                     alert(response.responseText);
