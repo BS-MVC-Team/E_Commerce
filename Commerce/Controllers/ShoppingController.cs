@@ -51,7 +51,7 @@ namespace Commerce.Controllers
                     ProductName = productInformation.ProductName,
                     UnitPrice = productInformation.UnitPrice,
                     Color = productFormatInformation.Color,
-                    Image = productFormatInformation.image,
+                    Image = productFormatInformation.Image,
                     Size = productFormatInformation.Size,
                     Quantity = item.Quantity
                 };
@@ -218,7 +218,7 @@ namespace Commerce.Controllers
                     ProductName = productInformation.ProductName,
                     UnitPrice = productInformation.UnitPrice,
                     Color = productFormatInformation.Color,
-                    Image = productFormatInformation.image,
+                    Image = productFormatInformation.Image,
                     Size = productFormatInformation.Size,
                     Quantity = item.Quantity
                 };

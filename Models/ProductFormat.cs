@@ -13,6 +13,6 @@ namespace BuildSchool.MvcSolution.OnlineStore.Models
         public string Size { get; set; }
         public string Color { get; set; }
         public int StockQuantity { get; set; }
-        public string image { get; set; }
+        public string Image { get; set; }
     }
 }

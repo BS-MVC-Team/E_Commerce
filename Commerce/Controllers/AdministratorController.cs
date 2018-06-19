@@ -247,7 +247,7 @@ namespace Commerce.Controllers
                         Size = Size,
                         Color = Color,
                         StockQuantity = int.Parse(StockQuantity),
-                        image = Image
+                        Image = Image
                     };
 
                     repository.Create(productFormat);

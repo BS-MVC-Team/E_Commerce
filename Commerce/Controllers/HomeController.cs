@@ -377,7 +377,7 @@ namespace Commerce.Controllers
             Procedure.Procedure procedure = new Procedure.Procedure();
             var ProductFormat = procedure.GetFormatByProductID(int.Parse(productid));
             ViewData["ProductFormat"] = ProductFormat;
-            var imagegroup = ProductFormat.Select((x) => x.image).Distinct();
+            var imagegroup = ProductFormat.Select((x) => x.Image).Distinct();
             ViewData["ImageGroup"] = imagegroup;
             var productName = ProductFormat.Select((x) => x.ProductName).Distinct();
             ViewData["ProductName"] = productName;

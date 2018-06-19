@@ -26,7 +26,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             command.Parameters.AddWithValue("@Size", model.Size);
             command.Parameters.AddWithValue("@Color", model.Color);
             command.Parameters.AddWithValue("@StockQuantity", model.StockQuantity);
-            command.Parameters.AddWithValue("@image", model.image);
+            command.Parameters.AddWithValue("@image", model.Image);
             connection.Open();
             command.ExecuteNonQuery();
             connection.Close();
@@ -45,7 +45,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             command.Parameters.AddWithValue("@Size", model.Size);
             command.Parameters.AddWithValue("@Color", model.Color);
             command.Parameters.AddWithValue("@StockQuantity", model.StockQuantity);
-            command.Parameters.AddWithValue("@image", model.image);
+            command.Parameters.AddWithValue("@image", model.Image);
 
             connection.Open();
             command.ExecuteNonQuery();
