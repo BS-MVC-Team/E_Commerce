@@ -163,5 +163,13 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             var sql = "SELECT TOP 1 * FROM Products ORDER BY ProductID DESC";
             return connection.Query<Products>(sql).FirstOrDefault();
         }
+
+        public IEnumerable<PopualityProduct> PopularityProduct()
+        {
+            SqlConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
+            return connection.Query<PopualityProduct>("select p.ProductID,o.Quantity,p.ProductName,p.UnitPrice,pf.StockQuantity,pf.Color,pf.Size,pf.image,p.Description from Products p " +
+                "inner join ProductFormat pf on pf.ProductID = p.ProductID " +
+                "inner join OrderDetails o on o.ProductFormatID = pf.ProductFormatID");
+        }
     }
 }

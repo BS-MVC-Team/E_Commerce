@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
     ViewBag.Title = "Index";
 }
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
@@ -129,11 +129,11 @@
             <!-- Search product -->
             <div class="dis-none panel-search w-full p-t-10 p-b-15">
                 <div class="bor8 dis-flex p-l-15">
-                    <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
-                        <i class="zmdi zmdi-search"></i>
+                    <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04 " id="SearchButton">
+                        <i class="zmdi zmdi-search" id="SearchButton"></i>
                     </button>
 
-                    <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
+                    <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search" id="SearchInput">
                 </div>
             </div>
 
@@ -153,7 +153,7 @@
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
+                                <a href="#" class="filter-link stext-106 trans-04" id="Popularity">
                                     Popularity
                                 </a>
                             </li>
@@ -405,18 +405,18 @@
 @Scripts.Render("~/js/js")
 
 @*<script>
-    var priceitem = $('#priceitem a');
+        var priceitem = $('#priceitem a');
 
-    $(priceitem).each(function () {
-        $(this).on('click', function () {
-            for (var i = 0; i < priceitem.length; i++) {
-                $(priceitem[i]).removeClass('filter-link-active');
-            }
+        $(priceitem).each(function () {
+            $(this).on('click', function () {
+                for (var i = 0; i < priceitem.length; i++) {
+                    $(priceitem[i]).removeClass('filter-link-active');
+                }
 
-            $(this).addClass('filter-link-active');
+                $(this).addClass('filter-link-active');
+            });
         });
-    });
-</script>*@
+    </script>*@
 <script>
     $('.js-show-modal1').on('click', function (e) {
         e.preventDefault();
@@ -470,7 +470,7 @@
         }
     });
 
-    $('.js-show-search').click( function () {
+    $('.js-show-search').click(function () {
         $(this).toggleClass('show-search');
         $('.panel-search').slideToggle(400);
 
@@ -480,4 +480,35 @@
         }
     });
 
+</script>
+
+<script>
+    $('#Popularity').on('click', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: "/Home/PopualityIndex",
+            success: function (result) {
+                $(".isotope-grid").empty();
+                $(".isotope-grid").html(result);
+            }
+        });
+
+
+    });
+</script>
+<script>
+    $("#SearchButton").on('click', function (e) {
+        console.log($("#SearchInput").val());
+        $.ajax({
+            url: "/Home/Search",
+            data: { productname : $("#SearchInput").val()},
+            success: function (result) {
+                $(".isotope-grid").empty();
+                $(".isotope-grid").html(result);
+            }
+        });
+    });
+    @*$('#Searchinput').change(function () {
+        $('#SearchButton').attr("href", "@Url.Action("Search","Home")" + "?productname=" + $(this).val());
+    });*@
 </script>
