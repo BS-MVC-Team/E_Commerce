@@ -49,6 +49,19 @@ namespace Procedure
         public string ProductImage { get; set; }
     }
 
+    public class ColorFilter
+    {
+        public int CategroyID { get; set; }
+        public string CategoryName { get; set; }
+        public int ProductFormatID { get; set; }
+        public int ProductID { get; set; }
+        public string ProductName { get; set; }
+        public decimal UnitPrice { get; set; }
+        public string image { get; set; }
+        public string Color { get; set; }
+    }
+    
+
     public class GetProductOrderModel
     {
         public int ProductID { get; set; }
@@ -81,6 +94,7 @@ namespace Procedure
         public int Quantity { get; set; }
     }
 
+    
     public class FindFormatIDByProductIDCS
     {
         public int ProductFormatID { get; set; }
@@ -89,6 +103,8 @@ namespace Procedure
         public string ProductName { get; set; }
         public decimal UnitPrice { get; set; }
     }
+
+
 
 
     public class Procedure
@@ -159,6 +175,25 @@ namespace Procedure
             return FindProductsByCategories;
         }
 
+        public IEnumerable<ColorFilter> ColorFilters(string Color)
+        {
+            
+            var command = Command("dbo.ColorFilter");
+            command.Parameters.Add(new SqlParameter("@Color", Color));
+            command.Connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            var colorfilter = new List<ColorFilter>();
+            while (reader.Read())
+            {
+                var colorfilters = new ColorFilter();
+                colorfilters = DbReaderModelBinder<ColorFilter>.Bind(reader);
+                colorfilter.Add(colorfilters);
+            }
+            command.Connection.Close();
+            return colorfilter;
+        }
+
+
         public IEnumerable<GetProductOrderModel> GetProductOrder()
         {
             var command = Command("dbo.GetProductOrder");
@@ -210,6 +245,7 @@ namespace Procedure
             command.Connection.Close();
             return GetFormatIDByProductIDCS;
         }
+
 
         public Orders FindOrderID(string MemberID)
         {

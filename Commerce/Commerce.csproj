@@ -316,6 +316,7 @@
     <Content Include="images\item-cart-03.jpg" />
     <Content Include="images\item-cart-04.jpg" />
     <Content Include="images\item-cart-05.jpg" />
+    <Content Include="images\logo.png" />
     <Content Include="images\product-01.jpg" />
     <Content Include="images\product-02.jpg" />
     <Content Include="images\product-03.jpg" />
@@ -498,7 +499,9 @@
     <Content Include="vendor\slick\slick.less" />
     <Content Include="vendor\slick\slick.scss" />
     <Content Include="Views\Home\CartIconNumber.cshtml" />
+    <Content Include="Views\Home\ColorFilter.cshtml" />
     <None Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\HighToLowUnitprice.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Administrator\ManageIndex.cshtml" />
     <None Include="Views\Administrator\Order.cshtml" />
@@ -510,6 +513,7 @@
     <None Include="Views\Administrator\Analysis.cshtml" />
     <Content Include="Views\Home\Modal.cshtml" />
     <Content Include="Views\Home\NewProduct.cshtml" />
+    <Content Include="Views\Home\LowToHighUnitprice.cshtml" />
     <None Include="Views\Home\ProductDetail.cshtml" />
     <Content Include="Views\Home\Quantity.cshtml" />
     <None Include="Views\Home\SignIn.cshtml" />

@@ -2,7 +2,7 @@
     Layout = "";
 }
 
-@foreach (var item in @ViewData["newproducts"] as List<NewProduct> )
+@foreach (var item in @ViewData["hightolow"] as List<HighToLowUnitprice>)
 {
     <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item">
         <div class="block2">
@@ -28,3 +28,4 @@
         </div>
     </div>
 }
+

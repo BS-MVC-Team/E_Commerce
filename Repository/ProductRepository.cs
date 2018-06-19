@@ -140,16 +140,20 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             SqlConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
             return connection.Query<Products>("FindProductByUnitPrice", new { lower, upper }, commandType: CommandType.StoredProcedure);
         }
+
         public IEnumerable<FindProductFormatByProductID> FindProductFormatByProductID(int productid)
         {
             SqlConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
             return connection.Query<FindProductFormatByProductID>("FindProductFormatByProductID", new { productid }, commandType: CommandType.StoredProcedure);
         }
+
+
         public IEnumerable<Products> FindByProductName(string ProductName)
         {
             IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
             return connection.Query<Products>("SELECT * FROM Products WHERE ProductName = @ProductName", new {ProductName });
         }
+
 
         public IEnumerable<FindIndexProducts> FindIndexProducts()
         {
@@ -161,6 +165,18 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         {
             SqlConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
             return connection.Query<NewProduct>("SELECT * FROM NewProduct");
+        }
+
+        public IEnumerable<HighToLowUnitprice> HighToLowUnitprice()
+        {
+            SqlConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            return connection.Query<HighToLowUnitprice>("SELECT * FROM HighToLowUnitprice");
+        }
+
+        public IEnumerable<LowToHighUnitprice> LowToHighUnitprice()
+        {
+            SqlConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            return connection.Query<LowToHighUnitprice>("SELECT * FROM LowToHighUnitprice");
         }
     }
 }

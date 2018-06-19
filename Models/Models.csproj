@@ -46,6 +46,8 @@
     <Compile Include="Category.cs" />
     <Compile Include="Employees.cs" />
     <Compile Include="FindIndexProducts.cs" />
+    <Compile Include="HighToLowUnitprice.cs" />
+    <Compile Include="LowToHighUnitprice.cs" />
     <Compile Include="Members.cs" />
     <Compile Include="NewProduct.cs" />
     <Compile Include="OrderDetails.cs" />
