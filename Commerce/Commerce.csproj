@@ -608,6 +608,10 @@
     <Content Include="Views\Shopping\SideCart.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\PopualityIndex.cshtml" />
+    <Content Include="Views\Home\HighToLowUnitprice.cshtml" />
+    <Content Include="Views\Home\LowToHighUnitprice.cshtml" />
+    <Content Include="Views\Home\NewProduct.cshtml" />
+    <Content Include="Views\Home\ColorFilter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
