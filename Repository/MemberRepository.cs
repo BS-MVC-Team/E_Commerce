@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Utils;
 using Dapper;
+using Procedure;
 
 namespace BuildSchool.MvcSolution.OnlineStore.Repository
 {
@@ -16,7 +17,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Create(Members model)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "INSERT INTO Members VALUES (@MemberID, @Password, @Name, @Email, @Phone, @Address, @MemberGUID)";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -37,7 +38,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Update(Members model)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "UPDATE Members SET Password=@Password, Name=@Name, Phone=@Phone, Address=@Address, Email=@Email WHERE MemberID = @MemberID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -57,7 +58,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void Delete(Members model)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "DELETE FROM Members WHERE MemberID = @MemberID";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -72,7 +73,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public Members FindById(string MemberID)
         {
             IDbConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
 
             var result = connection.Query<Members>("SELECT * FROM Members WHERE MemberID = @MemberID", new { MemberID });
             Members member = null;
@@ -82,7 +83,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             }
             return member;
             //SqlConnection connection = new SqlConnection(
-            //    "data source=.; database=Commerce; integrated security=true");
+            //    SqlConnectionString.ConnectionString());
             //var sql = "SELECT * FROM Members WHERE MemberID = @MemberID";
 
             //SqlCommand command = new SqlCommand(sql, connection);
@@ -109,12 +110,12 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public IEnumerable<Members> GetAll()
         {
             IDbConnection connection = new SqlConnection(
-                 "data source=.; database=Commerce; integrated security=true");
+                 SqlConnectionString.ConnectionString());
 
             return connection.Query<Members>("SELECT * FROM Members");
 
             //SqlConnection connection = new SqlConnection(
-            //    "data source=.; database=Commerce; integrated security=true");
+            //    SqlConnectionString.ConnectionString());
             //var sql = "SELECT * FROM Members";
 
             //SqlCommand command = new SqlCommand(sql, connection);

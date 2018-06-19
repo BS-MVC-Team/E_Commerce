@@ -45,7 +45,7 @@
                 <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
             </div>
             <!--logo start-->
-            <a href="index.html" class="logo"><b>| 後台管理 | </b>訂單與物流>物流管理</a>
+            <a href='@Url.Action("Logistics","Administrator")' class="logo"><b>| 後台管理 | </b>訂單與物流>物流管理</a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
                 <!--  notification start -->
@@ -114,7 +114,7 @@
                                 </a>
                             </li>
                             <li class="external">
-                                <a href="tasks.html">查看所有代辦與活動</a>
+                                <a href='@Url.Action("Tasks","Administrator")'>查看所有代辦與活動</a>
                             </li>
                         </ul>
                     </li>
@@ -208,7 +208,7 @@
                     <h5 class="centered">歡迎進入後台!</h5>
 
                     <li class="mt">
-                        <a href="managIndex.html">
+                        <a href='@Url.Action("ManageIndex","Administrator")'>
                             <i class="fas fa-store"></i>
                             <span>店鋪總覽</span>
                         </a>
@@ -220,20 +220,26 @@
                             <span>商品管理</span>
                         </a>
                         <ul class="sub">
+                            @*<li>
+                                <a href='@Url.Action("ProductCreate","Administrator")'>
+                                    <i class="fas fa-cart-plus"></i>
+                                    <span>新增商品</span>
+                                </a>
+                            </li>*@
                             <li>
-                                <a href="products_info.html">
+                                <a href='@Url.Action("ProductsInfo","Administrator")'>
                                     <i class="fas fa-info"></i>
                                     <span>商品資訊</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="categories.html">
+                                <a href='@Url.Action("Categories","Administrator")'>
                                     <i class="fas fa-th-list"></i>
                                     <span>分類管理</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="analysis.html">
+                                <a href='@Url.Action("Analysis","Administrator")'>
                                     <i class="fas fa-sort-numeric-down"></i>
                                     <span>數據統計</span>
                                 </a>
@@ -242,19 +248,19 @@
                     </li>
 
                     <li class="sub-menu">
-                        <a href="javascript:;">
+                        <a class="active" href="javascript:;">
                             <i class="fas fa-sitemap"></i>
                             <span>訂單與物流</span>
                         </a>
                         <ul class="sub">
                             <li>
-                                <a href="order.html">
+                                <a href='@Url.Action("Order","Administrator")'>
                                     <i class="fas fa-list-ol"></i>
                                     <span>訂單管理</span>
                                 </a>
                             </li>
                             <li>
-                                <a class="active" href="logistics.html">
+                                <a href='@Url.Action("Logistics","Administrator")'>
                                     <i class="fas fa-truck"></i>
                                     <span>物流管理</span>
                                 </a>
@@ -372,9 +378,9 @@
                                                     <th>@item.ShipName</th>
                                                     <th>@item.ShipAddress</th>
                                                     <th>@item.ShipPhone</th>
-                                                    <th>@item.ShippedDate</th>
+                                                    <th>@item.ShippedDate<button class="btn-primary ShippedDateFix" id="@item.OrderID">更改時間</button><button class="btn-danger ShippedDateDelete" id="@item.OrderID">刪除</button></th>
                                                     <th>@item.OrderDate</th>
-                                                    <th>@item.ReceiptedDate</th>
+                                                    <th>@item.ReceiptedDate<button class="btn-primary ReceiptedDateFix" id="@item.OrderID">更改時間</button><button class="btn-danger ReceiptedDateDelete" id="@item.OrderID">刪除</button></th>
                                                     @if (item.Status == "未送貨")
                                                     {
                                                         <td><i class="far fa-clock"></i> @item.Status</td>
@@ -431,6 +437,105 @@
     <script src="/assets/js/common-scripts.js"></script>
     <script type="text/javascript" src="/assets/js/gritter/js/jquery.gritter.js"></script>
     <script type="text/javascript" src="/assets/js/gritter-conf.js"></script>
+
+    <script>
+        $(".ShippedDateFix").on("click", function (e) {
+            $.ajax({
+                type: "POST",
+                url: "/Administrator/UpdateShippedDate",
+                data: '{OrderID: "' + Number(e.target.id) + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response == "") {
+                        location.reload();
+                    }
+                    else {
+                        alert(response);
+                    }       
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });        
+        });
+
+        $(".ShippedDateDelete").on("click", function (e) {
+            $.ajax({
+                type: "POST",
+                url: "/Administrator/DeleteShippedDate",
+                data: '{OrderID: "' + Number(e.target.id) + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response == "") {
+                        location.reload();
+                    }
+                    else {
+                        alert(response);
+                    }       
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+
+        $(".ReceiptedDateFix").on("click", function (e) {
+            $.ajax({
+                type: "POST",
+                url: "/Administrator/UpdateReceiptedDate",
+                data: '{OrderID: "' + Number(e.target.id) + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response == "") {
+                        location.reload();
+                    }
+                    else
+                    {
+                        alert(response);
+                    }                   
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+
+        $(".ReceiptedDateDelete").on("click", function (e) {
+            $.ajax({
+                type: "POST",
+                url: "/Administrator/DeleteReceiptedDate",
+                data: '{OrderID: "' + Number(e.target.id) + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response == "") {
+                        location.reload();
+                    }
+                    else {
+                        alert(response);
+                    }
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>

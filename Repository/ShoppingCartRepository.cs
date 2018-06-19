@@ -1,5 +1,6 @@
 ﻿using BuildSchool.MvcSolution.OnlineStore.Models;
 using Dapper;
+using Procedure;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -23,7 +24,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
             //        model.UnitPrice
             //    });
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "INSERT INTO ShoppingCart VALUES ( @MemberID, @ProductID, @ProductFormatID, @Quantity)";
 
             SqlCommand command = new SqlCommand(sql, connection);
@@ -52,7 +53,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
         public void Update(int ShoppingCartID, int Quantity)
         {
-            IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            IDbConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
             connection.Execute("UPDATE ShoppingCart SET Quantity = @Quantity WHERE ShoppingCartID = @ShoppingCartID",
                 new
                 {
@@ -63,7 +64,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
         public void Delete(int ShoppingCartID)
         {
-            IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            IDbConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
             connection.Execute("DELETE FROM ShoppingCart WHERE ShoppingCartID = @ShoppingCartID",
                 new
                 {
@@ -92,7 +93,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
 
         public IEnumerable<ShoppingCart> FindByMemberID(string MemberID)
         {
-            IDbConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            IDbConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
             var result = connection.Query<ShoppingCart>("SELECT * FROM ShoppingCart WHERE MemberID = @MemberID", new { MemberID });
             return result;
         }
@@ -100,7 +101,7 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public void DeleteByMemberId(string MemberID)
         {
             SqlConnection connection = new SqlConnection(
-                "data source=.; database=Commerce; integrated security=true");
+                SqlConnectionString.ConnectionString());
             var sql = "DELETE ShoppingCart WHERE MemberID = @MemberID";
 
             SqlCommand command = new SqlCommand(sql, connection);

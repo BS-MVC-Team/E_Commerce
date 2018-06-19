@@ -21,7 +21,7 @@ namespace Commerce.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "首頁";
-
+            
 
             var productrepository = new ProductRepository();
             var products = productrepository.FindIndexProducts();
@@ -45,7 +45,7 @@ namespace Commerce.Controllers
         }
 
 
-
+        [NoCache]
         public ActionResult SignIn()
         {
             ViewBag.Title = "登入";
@@ -65,7 +65,7 @@ namespace Commerce.Controllers
             return View();
         }
 
-
+        [NoCache]
         public ActionResult ProductDetail()
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
@@ -83,6 +83,7 @@ namespace Commerce.Controllers
             return View();
         }
 
+        [NoCache]
         public ActionResult Contact()
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
@@ -102,6 +103,7 @@ namespace Commerce.Controllers
             return View();
         }
 
+        [NoCache]
         [HttpPost]
         public JsonResult SignIn(string memberid, string memberpassword)
         {
@@ -122,7 +124,7 @@ namespace Commerce.Controllers
                 if (memberpassword == member.Password)
                 {
                     FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
-                        1, "MemberId", DateTime.Now, DateTime.Now.AddMinutes(5), false, memberid);
+                        1, "MemberId", DateTime.Now, DateTime.Now.AddMinutes(30), false, memberid);
 
                     var ticketData = FormsAuthentication.Encrypt(ticket);
 
@@ -139,6 +141,7 @@ namespace Commerce.Controllers
 
         }
 
+        [NoCache]
         public ActionResult SignUp()
         {
             ViewBag.Title = "註冊會員";
@@ -158,10 +161,11 @@ namespace Commerce.Controllers
             return View();
         }
 
+        [NoCache]
         [HttpPost]
-        public JsonResult SignUp(string MemberId, string MemberPassword, string MemberCheckPassword, string Name, string Phone, string Email, string Address)
+        public JsonResult SignUp(string MemberId,string MemberPassword, string MemberCheckPassword, string Name,string Phone,string Email,string Address)
         {
-            if (string.IsNullOrWhiteSpace(MemberId) || string.IsNullOrWhiteSpace(MemberPassword) || string.IsNullOrWhiteSpace(MemberCheckPassword) ||
+            if(string.IsNullOrWhiteSpace(MemberId) || string.IsNullOrWhiteSpace(MemberPassword) || string.IsNullOrWhiteSpace(MemberCheckPassword) ||
                 string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Phone) || string.IsNullOrWhiteSpace(Email) ||
                 string.IsNullOrWhiteSpace(Address))
             {
@@ -169,9 +173,9 @@ namespace Commerce.Controllers
             }
             else
             {
-                if (Regex.Match(Name, @"[\u3000-\u9FA5\x20]{2,4}").Success && Regex.Match(MemberId, @"[\w\-]{8,12}").Success)
+                if(Regex.Match(Name, @"[\u3000-\u9FA5\x20]{2,4}").Success && Regex.Match(MemberId, @"[\w\-]{8,12}").Success)
                 {
-                    if (Regex.Match(MemberPassword, @"[\x21-\x7E]{8,12}").Success)
+                    if(Regex.Match(MemberPassword, @"[\x21-\x7E]{8,12}").Success)
                     {
                         if (MemberPassword != MemberCheckPassword)
                         {
@@ -212,15 +216,16 @@ namespace Commerce.Controllers
                     else
                     {
                         return Json("密碼需8~12碼或是格式不符合");
-                    }
+                    }                   
                 }
                 else
                 {
                     return Json("姓名不符合格式或是帳戶需8~12碼");
-                }
-            }
+                }                
+            }           
         }
 
+        [NoCache]
         [Route("Logout")]
         public void Logout()
         {
@@ -228,8 +233,6 @@ namespace Commerce.Controllers
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
             cookie.Expires = DateTime.Now;
             Response.Cookies.Add(cookie);
-
-
         }
 
         bool IsValidEmail(string email)
@@ -244,6 +247,8 @@ namespace Commerce.Controllers
                 return false;
             }
         }
+
+        [NoCache]
         public ActionResult ProductInterface(string productid)
         {
             ViewBag.Title = "產品介面";
@@ -264,16 +269,17 @@ namespace Commerce.Controllers
             ViewData["productcolor"] = productcolor.Distinct();
             ViewData["productsize"] = productsize.Distinct();
             ViewData["product"] = JSONSerializer.Serialize(product);
-
+            
             return View();
         }
 
+        [NoCache]
         public ActionResult Modal(string productid)
         {
             Procedure.Procedure procedure = new Procedure.Procedure();
             var ProductFormat = procedure.GetFormatByProductID(int.Parse(productid));
             ViewData["ProductFormat"] = ProductFormat;
-            var imagegroup = ProductFormat.Select((x) => x.Image).Distinct();
+            var imagegroup = ProductFormat.Select((x)=>x.Image).Distinct();
             ViewData["ImageGroup"] = imagegroup;
             var productName = ProductFormat.Select((x) => x.ProductName).Distinct();
             ViewData["ProductName"] = productName;
@@ -295,8 +301,9 @@ namespace Commerce.Controllers
         private string image;
         private string productName;
         private decimal unitPrice;
+        [NoCache]
         [HttpPost]
-        public int ModaltoCart(string productid, string size, string color, string quantity)
+        public int ModaltoCart(string productid, string size,string color,string quantity)
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
@@ -309,7 +316,7 @@ namespace Commerce.Controllers
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
             ViewBag.IsAuthenticated = true;
             ViewData["UserName"] = ticket.UserData;
-
+            
             Procedure.Procedure procedure = new Procedure.Procedure();
 
             var ProductFormat = procedure.GetFormatIDByProductIDCS(int.Parse(productid), size, color);
@@ -330,7 +337,7 @@ namespace Commerce.Controllers
             }
             else
             {
-                if (int.Parse(quantity) < stock)
+                if (int.Parse(quantity) <= stock)
                 {
                     ShoppingCart shoppingCart = new ShoppingCart
                     {
@@ -351,11 +358,11 @@ namespace Commerce.Controllers
                     return isempty;
                 }
             }
-
-
+            
+            
         }
 
-
+        [NoCache]
         public ActionResult Quantity(string color, string size, string productid)
         {
             int quantitynumber = 0;
@@ -376,6 +383,7 @@ namespace Commerce.Controllers
             return PartialView();
         }
 
+        [NoCache]
         public ActionResult CartIconNumber()
         {
             var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
@@ -396,56 +404,30 @@ namespace Commerce.Controllers
             return PartialView();
         }
 
-        public ActionResult PopualityIndex()
+
+        [NoCache]
+        public ActionResult PriceBetween(string lower,string higher,int active)
         {
-            ViewBag.Title = "熱銷產品介面";
-            var Popuality = new ProductRepository();
-            var FindPopualityProduct = Popuality.PopularityProduct();
+            ViewData["active"] = active;
+            var procedure = new Procedure.Procedure();
+            var priceproducts = procedure.FindMoneyBetween(decimal.Parse(lower), decimal.Parse(higher));
+            ViewData["priceproducts"] = priceproducts;
 
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
-            //new list
-            List<string> productcolor = new List<string>();
-            List<string> productsize = new List<string>();
-            ViewBag.FindPopualityProduct = FindPopualityProduct;
-            // ViewData["FindPopualityProduct"] = FindPopualityProduct;
-
-            var popualitylist = new List<PopualityProduct>();
-            foreach (var item in FindPopualityProduct)
+            if (cookie == null)
             {
-                PopualityProduct popuality = new PopualityProduct()
-                {
-                    image = item.image,
-                    ProductID = item.ProductID,
-                    ProductName = item.ProductName,
-                    Color = item.Color,
-                    StockQuantity = item.StockQuantity,
-                    Description = item.Description,
-                    UnitPrice = item.UnitPrice
-                };
-                popualitylist.Add(popuality);
+                ViewBag.IsAuthenticated = false;
+                return View();
             }
-            //ViewData.Add();
-            ViewData["popualitylist"] = popualitylist;
-            ViewData["count"] = popualitylist.Count();
-            ViewData["productcolor"] = productcolor.Distinct();
-            ViewData["productsize"] = productsize.Distinct();
-            return PartialView();
-        }
 
-        [HttpGet]
-        //[Route("Search")]
-        public ActionResult Search(string productname)
-        {
-            
-            Procedure.Procedure procedure = new Procedure.Procedure();
-            var SearchProduct = procedure.Search(productname);
-            ViewData["SearchProduct"] = SearchProduct;
-
-
-
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            ViewBag.IsAuthenticated = true;
+            ViewBag.UserName = ticket.UserData;
+            var repository = new ShoppingCartRepository();
+            var Data = repository.FindByMemberID(ticket.UserData);
+            ViewData["count"] = Data.Count().ToString();
             return View();
         }
-
-        
     }
 }

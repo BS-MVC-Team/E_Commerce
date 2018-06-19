@@ -12,6 +12,6 @@ namespace BuildSchool.MvcSolution.OnlineStore.Models
         public string CategoryName { get; set; }
         public decimal UnitPrice { get; set; }
         public string ProductName { get; set; }
-        public string image { get; set; }
+        public string Image { get; set; }
     }
 }

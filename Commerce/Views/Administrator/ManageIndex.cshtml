@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿<!--<!DOCTYPE html>-->
 <html lang="en">
   <head>
       @{ 
@@ -45,7 +45,7 @@
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="index.html" class="logo"><b>| 後台管理 |</b></a>
+            <a href='@Url.Action("ManageIndex","Administrator")' class="logo"><b>| 後台管理 |</b></a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
                 <!--  notification start -->
@@ -114,7 +114,7 @@
                                 </a>
                             </li>
                             <li class="external">
-                                <a href='@Url.Action("Task","Administrator")'>查看所有代辦與活動</a>
+                                <a href='@Url.Action("Tasks","Administrator")'>查看所有代辦與活動</a>
                             </li>
                         </ul>
                     </li>
@@ -221,25 +221,31 @@
                         <span>商品管理</span>
                       </a>
                       <ul class="sub">
-                        <li>
-                            <a href='@Url.Action("ProductsInfo","Administrator")' >
-                                <i class="fas fa-info"></i>
-                                <span>商品資訊</span>
-                            </a>
-                        </li>     
-                        <li>
-                            <a href='@Url.Action("Categories","Administrator")' >
-                                <i class="fas fa-th-list"></i> 
-                                <span>分類管理</span>
-                            </a>
-                        </li>   
-                        <li>
-                            <a href='@Url.Action("Analysis","Administrator")' >
-                                <i class="fas fa-sort-numeric-down"></i>
-                                <span>數據統計</span>
-                            </a>
-                        </li>
-                     </ul>
+                          @*<li>
+                              <a href='@Url.Action("ProductCreate","Administrator")'>
+                                  <i class="fas fa-cart-plus"></i>
+                                  <span>新增商品</span>
+                              </a>
+                          </li>*@
+                          <li>
+                              <a href='@Url.Action("ProductsInfo","Administrator")'>
+                                  <i class="fas fa-info"></i>
+                                  <span>商品資訊</span>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='@Url.Action("Categories","Administrator")'>
+                                  <i class="fas fa-th-list"></i>
+                                  <span>分類管理</span>
+                              </a>
+                          </li>
+                          <li>
+                              <a href='@Url.Action("Analysis","Administrator")'>
+                                  <i class="fas fa-sort-numeric-down"></i>
+                                  <span>數據統計</span>
+                              </a>
+                          </li>
+                      </ul>
                   </li>
 
                   <li class="sub-menu">

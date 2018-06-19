@@ -1,4 +1,5 @@
 ﻿using BuildSchool.MvcSolution.OnlineStore.Models;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -38,7 +39,6 @@ namespace Procedure
         public DateTime HireDate { get; set; }
         public int How_Long { get; set; }
     }
-
 
     public class FindProductsByCategoryModel
     {
@@ -90,16 +90,7 @@ namespace Procedure
         public string ProductName { get; set; }
         public decimal UnitPrice { get; set; }
     }
-    public class SearchProductName
-    {
-        public int ProductID { get; set; }
-        public string ProductName { get; set; }
-        public string Color { get; set; }
-        public decimal UnitPrice { get; set; }
-        public string Description { get; set; }
-        public int StockQuantity { get; set; }
-        public string image { get; set; }
-    }
+
 
     public class Procedure
     {
@@ -248,26 +239,9 @@ namespace Procedure
             return null;
         }
 
-        public IEnumerable<SearchProductName> Search(string productname)
-        {
-            var command = Command("dbo.Search");
-            command.Parameters.Add(new SqlParameter("@productname", productname));
-            command.Connection.Open();
-            SqlDataReader reader = command.ExecuteReader();
-            var SearchProductName = new List<SearchProductName>();
-            while (reader.Read())
-            {
-                var Search = new SearchProductName();
-                Search = DbReaderModelBinder<SearchProductName>.Bind(reader);
-                SearchProductName.Add(Search);
-            }
-            command.Connection.Close();
-            return SearchProductName;
-        }
-
         public SqlCommand Command(string CommandText)
         {
-            SqlConnection connection = new SqlConnection("data source=.; database=Commerce; integrated security=true");
+            SqlConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
             SqlCommand command = new SqlCommand();
 
             command.CommandText = CommandText;
@@ -276,6 +250,29 @@ namespace Procedure
 
             return command;
         }
-       
+
+        public IEnumerable<FindIndexProducts> FindMoneyBetween(decimal lower,decimal higher)
+        {
+            var command = Command("dbo.FindMoneyBetween");
+            command.Parameters.Add(new SqlParameter("@lower", lower));
+            command.Parameters.Add(new SqlParameter("@higher", higher));
+            command.Connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            var FindMoneyBetween = new List<FindIndexProducts>();
+            while (reader.Read())
+            {
+                var GetBetween = new FindIndexProducts();
+                GetBetween = DbReaderModelBinder<FindIndexProducts>.Bind(reader);
+                FindMoneyBetween.Add(GetBetween);
+            }
+            command.Connection.Close();
+            return FindMoneyBetween;
+        }
+
+        public IEnumerable<Products> FindProductsByCategoryID(int CategoryID)
+        {
+            IDbConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
+            return connection.Query<Products>("dbo.FindProductsByCategoryID",new { @CategoryID = CategoryID}, commandType: CommandType.StoredProcedure);
+        }
     }
 }

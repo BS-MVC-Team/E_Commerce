@@ -103,7 +103,6 @@ namespace CommerceTest
                     ShippedDate = new DateTime(2018, 05, 13),
                     OrderDate = new DateTime(2018, 05, 12),
                     ReceiptedDate = n,
-                    Discount = 0,
                     Status = "派送中"
                 };
                 repository.Update(order);
