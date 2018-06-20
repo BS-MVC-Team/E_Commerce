@@ -189,10 +189,11 @@ namespace BuildSchool.MvcSolution.OnlineStore.Repository
         public IEnumerable<PopualityProduct> PopularityProduct()
         {
             SqlConnection connection = new SqlConnection(SqlConnectionString.ConnectionString());
-            return connection.Query<PopualityProduct>("select p.ProductID,SUM(o.Quantity) AS Quantity, p.UnitPrice, p.ProductName, pf.Image from Products p " +
+            return connection.Query<PopualityProduct>("select p.ProductID,SUM(o.Quantity) AS Quantity, p.UnitPrice, p.ProductName, pf.Image, c.CategoryName from Products p " +
                 "inner join ProductFormat pf on pf.ProductID = p.ProductID " +
+                "inner join Category c on c.CategoryID = p.CategoryID " + 
                 "inner join OrderDetails o on o.ProductFormatID = pf.ProductFormatID " +
-                "GROUP BY p.ProductID, p.UnitPrice, p.ProductName, pf.Image " +
+                "GROUP BY p.ProductID, p.UnitPrice, p.ProductName, pf.Image, c.CategoryName " +
                 "ORDER BY SUM(o.Quantity) DESC");
         }
     }
