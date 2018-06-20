@@ -113,7 +113,7 @@ namespace Procedure
         public decimal UnitPrice { get; set; }
         public string Description { get; set; }
         public int StockQuantity { get; set; }
-        public string image { get; set; }
+        public string Image { get; set; }
     }
 
 
