@@ -29,3 +29,43 @@
     </div>
 }
 
+    <script>
+        $('.js-show-modal1').on('click', function (e) {
+            e.preventDefault();
+            console.log(this.id);
+            $.ajax({
+                url: "/Home/Modal",
+                data: {
+                    productid: this.id
+                },
+                success: function (result) {
+                    $('.js-modal1').addClass('show-modal1');
+                    //$("#modalform").remove();
+                    $("#modalform").html(result);
+                    $.ajax({
+                        url: "/Home/Quantity",
+                        data: {
+                            color: $("#color").val(),
+                            size: $("#size").val(),
+                            productid: $("#productid").text(),
+                        },
+                        success: function (result) {
+                            $(".quantry").html(result);
+                            //$.ajax({
+                            //    url: "/Home/CartIconNumber",
+                            //    success: function (result) {
+                            //        $("#datacount").html(result);
+                            //        $("#carticon").attr("data-notify", $("#datacount").text());
+                            //    }
+                            //});
+                        }
+                    });
+                }
+            });
+        });
+
+        $('.js-hide-modal1').on('click', function () {
+            $('.js-modal1').removeClass('show-modal1');
+        });
+
+    </script>

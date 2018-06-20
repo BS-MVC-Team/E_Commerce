@@ -147,7 +147,7 @@
 
                         <ul>
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04">
+                                <a href='@Url.Action("Index","Home")' class="filter-link stext-106 trans-04">
                                     Default
                                 </a>
                             </li>
@@ -158,11 +158,11 @@
                                 </a>
                             </li>
 
-                            <li class="p-b-6">
+                            @*<li class="p-b-6">
                                 <a href="#" class="filter-link stext-106 trans-04">
                                     Average rating
                                 </a>
-                            </li>
+                            </li>*@
 
                                 <li class="p-b-6">
                                     <a href="#" class="filter-link stext-106 trans-04 filter-link-active time-filter">
@@ -290,7 +290,7 @@
                             </ul>
                         </div>
 
-                    <div class="filter-col4 p-b-27">
+                    @*<div class="filter-col4 p-b-27">
                         <div class="mtext-102 cl2 p-b-15">
                             Tags
                         </div>
@@ -316,7 +316,7 @@
                                 Crafts
                             </a>
                         </div>
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>
@@ -459,10 +459,8 @@
     /*==================================================================
     [ Filter / Search product ]*/
     $('.js-show-filter').click(function () {
-        console.log(11111);
         $(this).toggleClass('show-filter');
         $('.panel-filter').slideToggle(400);
-        console.log("123");
         if ($('.js-show-search').hasClass('show-search')) {
             $('.js-show-search').removeClass('show-search');
             $('.panel-search').slideUp(400);
