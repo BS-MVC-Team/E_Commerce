@@ -153,7 +153,7 @@
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04" id="Popularity">
+                                <a href='@Url.Action("PopualityIndex","Home")' class="filter-link stext-106 trans-04" id="Popularity">
                                     Popularity
                                 </a>
                             </li>
@@ -165,19 +165,19 @@
                             </li>*@
 
                                 <li class="p-b-6">
-                                    <a href="#" class="filter-link stext-106 trans-04 filter-link-active time-filter">
+                                    <a href="@Url.Action("NewProduct","Home")" class="filter-link stext-106 trans-04  time-filter">
                                         NewProduct
                                     </a>
                                 </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04 low-filter">
+                                <a href="@Url.Action("LowToHighUnitprice","Home")" class="filter-link stext-106 trans-04 low-filter">
                                     Price: Low to High
                                 </a>
                             </li>
 
                             <li class="p-b-6">
-                                <a href="#" class="filter-link stext-106 trans-04 price-filter">
+                                <a href="@Url.Action("HighToLowUnitprice","Home")" class="filter-link stext-106 trans-04 price-filter">
                                     Price: High to Low
                                 </a>
                             </li>
@@ -233,7 +233,7 @@
                                     <i class="zmdi zmdi-circle"></i>
                                 </span>
 
-                                    <a href="#" class="filter-link stext-106 trans-04 ColorButton" id="黑">
+                                    <a href="@Url.Action("ColorFilter", "Home",new { Colors = "黑"})" class="filter-link stext-106 trans-04 ColorButton" id="黑">
                                         Black
                                     </a>
                                 </li>
@@ -243,7 +243,7 @@
                                     <i class="zmdi zmdi-circle"></i>
                                 </span>
 
-                                    <a href="#" class="filter-link stext-106 trans-04 ColorButton" id="藍">
+                                    <a href="@Url.Action("ColorFilter", "Home",new { Colors = "藍"})" class="filter-link stext-106 trans-04 ColorButton" id="藍">
                                         Blue
                                     </a>
                                 </li>
@@ -253,7 +253,7 @@
                                     <i class="zmdi zmdi-circle"></i>
                                 </span>
 
-                                    <a href="#" class="filter-link stext-106 trans-04 ColorButton" id="灰">
+                                    <a href="@Url.Action("ColorFilter", "Home",new { Colors = "灰"})" class="filter-link stext-106 trans-04 ColorButton" id="灰">
                                         Grey
                                     </a>
                                 </li>
@@ -263,7 +263,7 @@
                                     <i class="zmdi zmdi-circle"></i>
                                 </span>
 
-                                    <a href="#" class="filter-link stext-106 trans-04 ColorButton" id="綠">
+                                    <a href="@Url.Action("ColorFilter", "Home",new { Colors = "綠"})" class="filter-link stext-106 trans-04 ColorButton" id="綠">
                                         Green
                                     </a>
                                 </li>
@@ -273,7 +273,7 @@
                                     <i class="zmdi zmdi-circle"></i>
                                 </span>
 
-                                    <a href="#" class="filter-link stext-106 trans-04 ColorButton" id="紅">
+                                    <a href="@Url.Action("ColorFilter", "Home",new { Colors = "紅"})" class="filter-link stext-106 trans-04 ColorButton" id="紅">
                                         Red
                                     </a>
                                 </li>
@@ -283,40 +283,14 @@
                                     <i class="zmdi zmdi-circle-o"></i>
                                 </span>
 
-                                    <a href="#" class="filter-link stext-106 trans-04 ColorButton" id="白">
+                                    <a href="@Url.Action("ColorFilter", "Home",new { Colors = "白"})" class="filter-link stext-106 trans-04 ColorButton" id="白">
                                         White
                                     </a>
                                 </li>
                             </ul>
                         </div>
 
-                    @*<div class="filter-col4 p-b-27">
-                        <div class="mtext-102 cl2 p-b-15">
-                            Tags
-                        </div>
-
-                        <div class="flex-w p-t-4 m-r--5">
-                            <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                                Fashion
-                            </a>
-
-                            <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                                Lifestyle
-                            </a>
-
-                            <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                                Denim
-                            </a>
-
-                            <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                                Streetstyle
-                            </a>
-
-                            <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-                                Crafts
-                            </a>
-                        </div>
-                    </div>*@
+                    
                 </div>
             </div>
         </div>
@@ -351,11 +325,11 @@
 
         </div>
         <!-- Load more -->
-        <div class="flex-c-m flex-w w-full p-t-45">
+        @*<div class="flex-c-m flex-w w-full p-t-45">
             <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
                 Load More
             </a>
-        </div>
+        </div>*@
     </div>
 </section>
 
@@ -479,158 +453,14 @@
 
 </script>
 
-<script>
-    $('#Popularity').on('click', function (e) {
-        e.preventDefault();
-        $.ajax({
-            url: "/Home/PopualityIndex",
-            success: function (result) {
-                $(".isotope-grid").empty();
-                $(".isotope-grid").html(result);
-            }
-        });
 
-
-    });
-</script>
 <script>
     $("#SearchButton").on('click', function (e) {
-        console.log($("#SearchInput").val());
-        $.ajax({
-            url: "/Home/Search",
-            data: { productname : $("#SearchInput").val()},
-            success: function (result) {
-                $(".isotope-grid").empty();
-                $(".isotope-grid").html(result);
-            }
-        });
+        location.href = "/Home/Search?productname=" + $("#SearchInput").val();
     });
-    @*$('#Searchinput').change(function () {
-        $('#SearchButton').attr("href", "@Url.Action("Search","Home")" + "?productname=" + $(this).val());
-    });*@
+
 </script>
 
-    <script>
-        $(".time-filter").on("click", function (e) {
-            e.preventDefault();
-            $.ajax({
-                url: "/Home/NewProduct",
-                success: function (response) {
-                    $.ajax({
-                        type: "POST",
-                        url: "/Home/NewProductItemCount",
-                        success: function (result) {
-                            console.log(result);
-                            var itemCount = Number(result);
-                            var heightPX = 365 * Math.ceil(itemCount / 4);
-                            $(".isotope-grid").empty();
-                            $(".isotope-grid").css("height", heightPX + "px");
-                            $(".isotope-grid").html(response);
-                        }
-                    });
-                },
-                failure: function (response) {
-                    alert(response.responseText);
-                },
-                error: function (response) {
-                    alert(response.responseText);
-                }
-            });
 
-
-        });
-    </script>
-
-    <script>
-        $(".price-filter").on("click", function (e) {
-            e.preventDefault();
-            $.ajax({
-                url: "/Home/HighToLowUnitprice",
-                success: function (response) {
-                    $.ajax({
-                        type: "POST",
-                        url: "/Home/HighToLowUnitpriceItemCount",
-                        success: function (result) {
-                            console.log(result);
-                            var itemCount = Number(result);
-                            var heightPX = 365 * Math.ceil(itemCount / 4);
-                            $(".isotope-grid").empty();
-                            $(".isotope-grid").css("height", heightPX + "px");
-                            $(".isotope-grid").html(response);
-                        }
-                    });
-                },
-                failure: function (response) {
-                    alert(response.responseText);
-                },
-                error: function (response) {
-                    alert(response.responseText);
-                }
-            });
-
-
-        });
-    </script>
-
-    <script>
-        $(".low-filter").on("click", function (e) {
-            e.preventDefault();
-            $.ajax({
-                url: "/Home/LowToHighUnitprice",
-                success: function (response) {
-                    $.ajax({
-                        type: "POST",
-                        url: "/Home/LowToHighUnitpriceItemCount",
-                        success: function (result) {
-                            console.log(result);
-                            var itemCount = Number(result);
-                            var heightPX = 365 * Math.ceil(itemCount / 4);
-                            $(".isotope-grid").empty();
-                            $(".isotope-grid").css("height", heightPX + "px");
-                            $(".isotope-grid").html(response);
-                        }
-                    });
-                },
-                failure: function (response) {
-                    alert(response.responseText);
-                },
-                error: function (response) {
-                    alert(response.responseText);
-                }
-            });
-        });
-    </script>
-
-    <script>
-        $(".ColorButton").on("click", function (e) {
-            e.preventDefault();
-            console.log(e.target.id);
-            $.ajax({
-                url: "/Home/ColorFilter",
-                data: { Colors: e.target.id },
-                success: function (response) {
-                    $.ajax({
-                        type: "POST",
-                        url: "/Home/ColorFilterItemCount",
-                        data: { Colors: e.target.id },
-                        success: function (result) {
-                            console.log(result);
-                            var itemCount = Number(result);
-                            var heightPX = 365 * Math.ceil(itemCount / 4);
-                            $(".isotope-grid").empty();
-                            $(".isotope-grid").css("height", heightPX + "px");
-                            $(".isotope-grid").html(response);
-                        }
-                    });
-                },
-                failure: function (response) {
-                    alert(response.responseText);
-                },
-                error: function (response) {
-                    alert(response.responseText);
-                }
-            });
-        });
-    </script>
-
+    
    

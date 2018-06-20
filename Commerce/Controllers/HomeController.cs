@@ -88,14 +88,17 @@ namespace Commerce.Controllers
             if (cookie == null)
             {
                 ViewBag.IsAuthenticated = false;
-                return PartialView();
+                return View();
             }
 
-            var tickets = FormsAuthentication.Decrypt(cookie.Value);
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
             ViewBag.IsAuthenticated = true;
-            ViewBag.UserName = tickets.UserData;
+            ViewBag.UserName = ticket.UserData;
+            var repository = new ShoppingCartRepository();
+            var Data = repository.FindByMemberID(ticket.UserData);
+            ViewData["count"] = Data.Count().ToString();
 
-            return PartialView();
+            return View();
         }
 
         public ActionResult HighToLowUnitprice()
@@ -110,14 +113,17 @@ namespace Commerce.Controllers
             if (cookie == null)
             {
                 ViewBag.IsAuthenticated = false;
-                return PartialView();
+                return View();
             }
 
-            var ticketes = FormsAuthentication.Decrypt(cookie.Value);
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
             ViewBag.IsAuthenticated = true;
-            ViewBag.UserName = ticketes.UserData;
+            ViewBag.UserName = ticket.UserData;
+            var repository = new ShoppingCartRepository();
+            var Data = repository.FindByMemberID(ticket.UserData);
+            ViewData["count"] = Data.Count().ToString();
 
-            return PartialView();
+            return View();
         }
 
         public ActionResult LowToHighUnitprice()
@@ -132,14 +138,17 @@ namespace Commerce.Controllers
             if (cookie == null)
             {
                 ViewBag.IsAuthenticated = false;
-                return PartialView();
+                return View();
             }
 
-            var ticketess = FormsAuthentication.Decrypt(cookie.Value);
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
             ViewBag.IsAuthenticated = true;
-            ViewBag.UserName = ticketess.UserData;
+            ViewBag.UserName = ticket.UserData;
+            var repository = new ShoppingCartRepository();
+            var Data = repository.FindByMemberID(ticket.UserData);
+            ViewData["count"] = Data.Count().ToString();
 
-            return PartialView();
+            return View();
         }
 
 
@@ -481,9 +490,25 @@ namespace Commerce.Controllers
 
         public ActionResult ColorFilter(string Colors)
         {
+
             Procedure.Procedure procedure = new Procedure.Procedure();
-            ViewData["color"] = procedure.ColorFilters(Colors);        
-            return PartialView();
+            ViewData["color"] = procedure.ColorFilters(Colors);
+
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                ViewBag.IsAuthenticated = false;
+                return View();
+            }
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            ViewBag.IsAuthenticated = true;
+            ViewBag.UserName = ticket.UserData;
+            var repository = new ShoppingCartRepository();
+            var Data = repository.FindByMemberID(ticket.UserData);
+            ViewData["count"] = Data.Count().ToString();
+            return View();
         }
 
         [NoCache]
@@ -557,7 +582,8 @@ namespace Commerce.Controllers
                     Color = item.Color,
                     StockQuantity = item.StockQuantity,
                     Description = item.Description,
-                    UnitPrice = item.UnitPrice
+                    UnitPrice = item.UnitPrice,
+                    CategoryName = item.CategoryName
                 };
                 popualitylist.Add(popuality);
             }
@@ -566,7 +592,22 @@ namespace Commerce.Controllers
             ViewData["count"] = popualitylist.Count();
             ViewData["productcolor"] = productcolor.Distinct();
             ViewData["productsize"] = productsize.Distinct();
-            return PartialView();
+
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+
+            if (cookie == null)
+            {
+                ViewBag.IsAuthenticated = false;
+                return View();
+            }
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            ViewBag.IsAuthenticated = true;
+            ViewBag.UserName = ticket.UserData;
+            var repository = new ShoppingCartRepository();
+            var Data = repository.FindByMemberID(ticket.UserData);
+            ViewData["count"] = Data.Count().ToString();
+            return View();
         }
 
         [HttpGet]
@@ -577,8 +618,21 @@ namespace Commerce.Controllers
             Procedure.Procedure procedure = new Procedure.Procedure();
             var SearchProduct = procedure.Search(productname);
             ViewData["SearchProduct"] = SearchProduct;
+            var cookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
-            return PartialView();
+            if (cookie == null)
+            {
+                ViewBag.IsAuthenticated = false;
+                return View();
+            }
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            ViewBag.IsAuthenticated = true;
+            ViewBag.UserName = ticket.UserData;
+            var repository = new ShoppingCartRepository();
+            var Data = repository.FindByMemberID(ticket.UserData);
+            ViewData["count"] = Data.Count().ToString();
+            return View();
         }
 
 
